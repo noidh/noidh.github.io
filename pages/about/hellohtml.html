@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <!--
+<style>
+    
+    body
+    {
+        background-color: powderblue;
+    }
+    h1
+    {
+        color: blue;
+    }
+
+    p
+    {
+        color: red;
+    }
+</style>
+        -->
+
+        <link rel="stylesheet" href="styles.css">
+        <meta charset="UTF-8">
+        <script>
+            function myFunction()
+            {
+                alert("You Clicked on Image");
+            }
+            function myFunction()
+            {
+                alert("You Clicked on Image 2");
+            }
+
+            function myfunction2()
+            {
+                var x = document.getElementsByClassName("City");
+                for(var i = 0; i < x.length; ++i)
+                {
+                    x[i].style.display = "none";
+                }
+
+                var test = document.getElementById("testID");
+
+                if(test)
+                {
+                    test.innerHTML = "Have a nice day";
+                    test.style.backgroundColor = "transparent";
+                }
+            }
+
+            var x = document.getElementById("sdfd");
+
+            function getLocation() {
+            x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        </script>    
+        <title>Page title</title>
+        <meta name="author" content="noidh">
+        <meta charset="UTF-8">
+        <base >
+    </head>
+
+    
+
+    <body>
+        <h1>Inline CSS</h1>
+        <p>External CSS</p>
+        <a href="http://google.com" target="_blank"> Google.Com</a>
+        <img src="Capture.jpg" alt="HTML tutorial" style="width: 200px; height: 200px;">
+        <a href="mailto:doanhuunoi@gmail.com">Email</a>
+        <button onclick="document.location='https://google.com'">Google.com</button>
+        <a href="https://google.com" title="Go to Google">Visit Google</a>
+
+        
+        <a href="#C4"> Jump to Chapter 4</a>
+
+
+        <img src="Capture.jpg" alt="Image " style="width: 100px; height: 100px;float:right" usemap="#workmap">
+
+        <map name="workmap">
+            <area shape="rect" coords="0, 0, 50, 50" href="http://google.com" onclick="myFunction()">
+        </map>
+
+        <table>  
+            <caption>Table Example</caption>   
+            <tr>
+                <th colspan="1">
+                    Column 1
+                </th>
+                <th colspan="2">
+                    Column 2
+                </th>
+            </tr>
+            <tr>
+                <td>Cell 1</td>
+                <td>Cell 2</td>
+                <td>Cell 3</td>
+            </tr>
+
+        </table>
+
+        <ul style="list-style: square;">
+            <li>List Item 1</li>
+            <li>
+                <ul>
+                    <li>Item 21</li>
+                    <li>Item 22</li>
+                </ul>
+            </li>
+            <li>List Item 3</li>
+        </ul>
+        <ol>
+            <li>Ordered List Item 1</li>
+            <li>Ordered List Item 2</li>
+        </ol>
+        <dl>
+            <dt>Description List Item 1</dt>
+            <dd>--Sample</dd>
+            <dt>Item 2</dt>
+            <dd>dfdf</dd>
+        </dl>
+
+        <ul id="horizontal_list">
+            <li><a>Item 1</a></li>
+            <li><a>Item 2</a></li>
+        </ul>
+
+        <ol type="1" start="50">
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 2</li>
+            <li >
+
+                <ol>
+                    <li>Item 2</li>
+                    <li>Item 2</li>
+                </ol>
+            </li>
+            <li>Item 2</li>
+            <li>Item 2</li>
+        </ol>
+
+        <div>Block 1</div><div>Block 2</div>
+        <span>Inline 1</span><span>Inline 2</span>
+        <div style="background-color: black; color: white; padding: 20px;">
+            <h2>London</h2>
+            <p>sdfsdfs <span style="color: red; font-weight: bold;">sdfsd</span> dfsdfs dfdffffffffffffffffffffffffffffffffff</p>
+        </div>
+
+
+        <div class="City">
+            London
+        </div>
+        <div class="City">
+            Paris
+        </div>
+
+        <button onclick="myfunction2()">Test Class</button>
+
+        <p id="testID">Téest</p>
+
+        <iframe src="https://www.w3schools.com/"></iframe>
+
+        <div>
+            <pre>
+                <code>
+x = 5;
+y = 6;
+z = x + y;
+                </code>
+            </pre>
+        </div>
+
+        <div>
+            <p>Save the document by press <kbd>Ctrl + S</kbd></p>
+        </div>
+
+        <div>
+            <p>Message from my computer:</p>
+            <samp>File not found<br>Press F1 to continue</samp>
+        </div>
+
+        <div>
+            <p>The area of a triangle is: 1/2 x <var>b</var> x <var>h</var></p>
+        </div>
+        <div>
+            <article>
+                sdfsdf
+            </article>
+            <figcaption>
+                sdfsdfd
+            </figcaption>
+            <summary>
+                sdfsdf &lt &#8364; 	a&#768; a&#771; O&#771; &#x20AC; &#8364; &euro;
+            </summary>
+            <p>&#65; &#66; &#67; &#128512; &#128512; &#128516; &#128525; &#128151;
+
+                &#128510;
+            </p>
+        </div>
+
+        <div>
+            
+            <button onclick="getLocation()">Geo</button>
+            <p id="sdfd">ddg</p>
+        </div>
+
+        
+        <pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </pre>
+        <h1 id="C4">Chapter 4</h1>
+
+    </body>
+</html>
