@@ -1,76 +1,116 @@
 <html>
     <head>
-        <style>
-            th, tr, td
-            {
-                border: 1px black solid;    
-            }
-        </style>    
+        <link rel="stylesheet" href="../../../index_css.css">
     </head>
     <body>
-        <div id="div_header">
-            <img src="ximagetrainer.png" alt="icon" style="width: 80px; float: left; padding: 10px;">
-            <h1>XImage Trainer</h1>
-            <p>
-                XImageTrainer is a free tool using for preparing image data and collabrate with other DeepLearning framework to train the dataset. Currently, it's can work well with darknet and yolo.
-
-            </p>
+        <div class="header">
+            <h3>
+            Doan Huu Noi
+			</h3>
+			<p class="header_email"><a>doanhuunoi@gmail.com</a></p>
+			<p class="header_job">Image Processing-Software Engineer</p>
         </div>
-
-        <div>
-            <p>
-                Download the last releases at below
+        <div class="navigation">
+            <div class="nav_item"><a href="https://noidh.github.io">Main</a></div>
+            <div class="nav_item">
+                <a>Software</a>
                 <ul>
-                    <li><a href="ximagetrainer_win_x64_v1.0.0.zip">ximagetrainer_win_x64 (v1.0.0).zip</a></li>
-                    <li><a href="">ximagetrainer_linux_x64.zip (update soon)</a></li>
+                    <li>
+                        <a href="./pages/sw/ximage_trainer/ximage_trainer.html">XImage Trainer</a>
+                    </li>
                 </ul>
-            </p>
-            <p>
-                Supported Deeplearning framework
-                <ul>
-                    <li><a href="https://pjreddie.com/darknet/">Darknet and Yolo</a></li>
-                </ul>
-            </p>
+            </div>
         </div>
-        <div>
-            <h2>1. Setting tool</h2>
-            <p>
-                Click [Setting] button to open Setting dialog.
+        <div class="ỉntroduction">
+            <div id="div_header">
+                <img src="ximagetrainer.png" alt="icon" style="width: 80px; float: left; padding: 10px;">
+                <h1>XImage Trainer</h1>
+                <p>
+                    XImageTrainer is a free tool using for preparing image data and collaborates with other DeepLearning frameworks to train the dataset. 
+                    Adding boundry box for objects of thousand images will be painful without a good UI tool. 
+                    XImageTrainer provides basic tool make this task more convinient and simple.
+                </p>
+            </div>
+    
+            <div>
+                <p>
+                    Download the last release
+                    <ul>
+                        <li><a href="ximagetrainer_win_x64_v1.0.0.zip">ximagetrainer_win_x64 (v1.0.0).zip</a></li>
+                        <li><a href="">ximagetrainer_linux_x64.zip (update soon)</a></li>
+                    </ul>
+                </p>
+                <p>
+                    Supported Deeplearning frameworks
+                    <ul>
+                        <li><a href="https://pjreddie.com/darknet/">Darknet and Yolo</a></li>
+                    </ul>
+                </p>
+            </div>
+            <div>
+                <h2>1. Setting tool</h2>
+                <p>
+                    Click [Setting] button to open Setting dialog.
+                    
+                </p>
+                <img src="settings.jpg" style="height: 300px;">
+                <p>
+                    Choose Darknet's execution file and setting arguments value same as above image.
+                </p>
                 
-            </p>
-            <img src="settings.jpg" style="height: 300px;">
-            <p>
-                Choose Darknet's execution file and setting arguments value same as above image.
-            </p>
-            
-        </div>
-        <div>
-            <h2>2. Create new project</h2>
-            <p>
-                Click [New Project] button to open Add Project dialog.
-            </p>
-            <img src="create_project.jpg" style="height: 100px;">
-            <p>
-                Enter project's name and workspace's directory. After generating, a new project's structure consist of Classes, Configuration, Train Images, Test Images.
-            </p>
-            <img src="new_project.jpg" style="height: 150px;">
-        </div>
-        <div>
-            <h2>3. Add class (category) name</h2>
-			<p>
-				Right click on [Classes] and choose [Edit Class Categories] to open Edit Class dialog. Enter new class name on each row.
-			</p>
-			<img src="editclass.jpg" style="height: 150px;">
-        </div>
-        <div>
-            <h2>4. Configurate Yolo network</h2>
-			<p>
-				Right click on [Configuration] and choose [Edit Configuration] to open Configuration dialog.
-			</p>
-			<img src="configuration.jpg" style="height: 150px;">
-        </div>
-        <div>
-            <h2>5. Add Train and Test images, add Rectangle for each objects</h2>
+            </div>
+            <div>
+                <h2>2. Create new project</h2>
+                <p>
+                    Click [New Project] button to open Add Project dialog.
+                </p>
+                <img src="create_project.jpg" style="height: 100px;">
+                <p>
+                    Enter project's name and workspace's directory. After generating, a new project's structure consist of Classes, Configuration, Train Images, Test Images.
+                </p>
+                <img src="new_project.jpg" style="height: 150px;">
+            </div>
+            <div>
+                <h2>3. Add class (category) name</h2>
+                <p>
+                    Right click on [Classes] and choose [Edit Class Categories] to open Edit Class dialog. Enter new class name on each row.
+                </p>
+                <img src="editclass.jpg" style="height: 150px;">
+            </div>
+            <div>
+                <h2>4. Configurate Yolo network</h2>
+                <p>
+                    Right click on [Configuration] and choose [Edit Configuration] to open Configuration dialog.
+                </p>
+                <img src="configuration.jpg" style="height: 150px;">
+            </div>
+            <div>
+                <h2>5. Add Images and ROI (Region of interest)</h2>
+                <p>
+                Right click on [Train Image] or [Test Images] and choose [Add Image] to open Open File dialog. You can select a single file or multiple files to import. Images then are copied into project's Images folder. Images already exist cannot be added.
+                </p>
+                <img src="addimage.jpg" style="height: 150px;">
+                
+                <p>
+                Click on Image to open it in the center image view. Choose [Rectangle] on the toolbox and draw boundary box for object. 
+                </p>
+                <img src="openimage.jpg" style="height: 250px;">
+                
+                <p>
+                After drawing the bounding box, a Class Selection dialog will be popupped. You need to choose the right class for this object and click [OK] to confirm.
+                </p>
+                <img src="chooseclass.jpg" style="height: 250px;">
+                
+                <p>
+                Notice: all images must be drawed bounding box before starting the training.
+                </p>
+            </div>
+            <div>
+                <h2>6. Run the project</h2>
+                <p>
+                Click [Run] button to Build & Start training the project. After finish, the Model file will be saved into project's Backup folder.
+                </b>
+            </div>
         </div>
     </body>
 </html>
