@@ -18,9 +18,9 @@
                 <img src="ximagetrainer.png" alt="icon" style="width: 80px; float: left; padding: 10px;">
                 <h1>XImage Trainer</h1>
                 <p>
-                    XImageTrainer is a free software using for preparing image data and collaborates with other DeepLearning frameworks to train the dataset. 
-                    Adding boundry box for objects of thousand images will be painful without a good UI tool. 
-                    XImageTrainer provides basic tool make this task more convinient and simple.
+                    XImageTrainer is free software using for preparing image data and collaborates with other DeepLearning frameworks to train the dataset. 
+                    Adding a bounding box for objects of thousand images would be a painful job without a good UI tool. 
+                    XImageTrainer provides a basic tool to make this task more convenient and simple.
                 </p>
             </div>
     
@@ -29,46 +29,50 @@
                     Download the lastest release
                     <ul>
                         <li><a href="ximagetrainer_win_x64_v1.0.0.zip">ximagetrainer_win_x64 (v1.0.0).zip</a></li>
-                        <li><a href="">ximagetrainer_linux_x64.zip (update soon)</a></li>
+                        <li><a href="">ximagetrainer_linux_x64.zip (will be updated soon)</a></li>
                     </ul>
                 </p>
                 <p>
-                    Current supported Deeplearning frameworks
+                    <span style="color: red;">Notice:</span> Windows 10 users may face with an Microsoft Defender SmartScreen warning dialog for the first time opening 
+                    because I still don't pay a fee for signing certificate and it doesn't have enough reputation with Microsoft Defender yet.
+                    You can click [More info] -> [Run anyway] to overcome this issue temporaly.
+                </p>
+                <p>
+                    List of supported Deeplearning frameworks until now
                     <ul>
                         <li><a href="https://pjreddie.com/darknet/">Darknet and Yolo</a></li>
                     </ul>
                 </p>
             </div>
             <div>
-                <h2>1. Setting deeplearning engine</h2>
+                <h2>1. Setting the Darknet</h2>
 				<p>
-					Go to <a href="https://pjreddie.com/darknet/">Darknet and Yolo</a> to obtain and build deeplearning engine by yourself.
+					You must go to <a href="https://github.com/pjreddie/darknet">Darknet</a> to obtain the source code, then build the Darknet which using Yolo network to train the image dataset.
 				</p>
                 <p>
-                    Click [Setting] button to open Setting dialog.
-                    
+                    Click [Setting] button to open Setting dialog.                 
                 </p>
                 <img src="settings.jpg" style="height: 300px;">
                 <p>
-                    Choose Darknet's execution file and setting arguments value same as above image.
+                    Choose the Darknet's execution file and command arguments value
                 </p>
                 
             </div>
             <div>
-                <h2>2. Create new project</h2>
+                <h2>2. Create a new project</h2>
                 <p>
                     Click [New Project] button to open Add Project dialog.
                 </p>
                 <img src="create_project.jpg" style="height: 100px;">
                 <p>
-                    Enter project's name and workspace's directory. After generating, a new project's structure consist of Classes, Configuration, Train Images, Test Images.
+                    Enter the project's name and workspace's directory. After generating, the project's structure consist of Classes, Configuration, Train Images, Test Images.
                 </p>
                 <img src="new_project.jpg" style="height: 150px;">
             </div>
             <div>
                 <h2>3. Add class (category) name</h2>
                 <p>
-                    Right click on [Classes] and choose [Edit Class Categories] to open Edit Class dialog. Enter new class name on each row.
+                    Right click on [Classes] and choose [Edit Class Categories] to open Edit Class dialog. Enter new class name for each row.
                 </p>
                 <img src="editclass1.jpg" style="height: 150px;">
             </div>
@@ -87,24 +91,25 @@
                 <img src="addimage.jpg" style="height: 150px;">
                 
                 <p>
-                Click on Image to open it in the center image view. Choose [Rectangle] on the toolbox and draw boundary box for object. 
+                Click on Image to open it in the center image view. Choose [Rectangle] on the toolbox and draw bounding box for object. 
                 </p>
                 <img src="openimage.jpg" style="height: 250px;">
                 
                 <p>
-                After drawing the bounding box, a Class Selection dialog will be popupped. You need to choose the right class for this object and click [OK] to confirm.
+                After drawing the bounding box, a Class Selection dialog will pop-up. You need to choose the right class for this object and click [OK] to confirm.
                 </p>
                 <img src="chooseclass.jpg" style="height: 250px;">
                 
                 <p>
-                Notice: all images must be drawed bounding box before starting the training.
+                <span style="color: red;">Notice:</span> all the images must be drawn bounding box before starting the training.
                 </p>
             </div>
             <div>
                 <h2>6. Run the project</h2>
                 <p>
-                Click [Run] button to Build & Start training the project. After finish, the Model file will be saved into project's Backup folder.
-                </b>
+                    Click [Run] button to Build & Start training the project. After finish without any error, you can find the final model file in the project's Backup folder.
+                </p>
+                <img src="model.jpg" style="height: 250px;">
             </div>
         </div>
     </body>
