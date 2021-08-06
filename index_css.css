@@ -8,16 +8,25 @@
     font-size: 15px;
 }
 
+.header_email:hover, .header_job:hover
+{
+	background-color: rgb(127, 127, 127, 127);
+	display: inline-block;
+	color: rgb(255, 255, 255)
+}
+
 .navigation
 {
     float: left;
     padding: 15px;
     text-decoration: underline;
+	width: 150px;
 }
 
 .ỉntroduction
 {
     float: left;
-    padding-left: 30px;
+    padding-left: 15px;
+	width: 750px;
 }
 
