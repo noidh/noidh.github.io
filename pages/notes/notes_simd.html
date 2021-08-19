@@ -1,0 +1,430 @@
+<html>
+    <head>
+        <title>Funy notes</title>
+        <link rel="stylesheet" href="../../../index_css.css">
+    </head>
+
+    <body>
+        <div class="header">
+            <h3>
+            Doan Huu Noi
+			</h3>
+			<span class="header_email"><a>doanhuunoi@gmail.com</a></span><br>
+			<span class="header_job">Image Processing - Software Engineer</span>
+        </div>
+        <div class="navigation">
+            <div class="nav_item"><a href="https://noidh.github.io">Main</a></div>
+        </div>
+
+        <div class="ỉntroduction">
+            <h3># Short note of Intel SIMD api</h3>
+            <p>Api Reference: <a href="https://software.intel.com/sites/landingpage/IntrinsicsGuide/">https://software.intel.com/sites/landingpage/IntrinsicsGuide/</a></p>
+            <ul>
+                <li>
+                    <a href="#rotate_90">Rotate 90 degree</a>
+                </li>
+                <li>
+                    <a href="#median_filter">Median Filter By Sorting Network</a>
+                </li>
+            </ul>
+            <h4 id="rotate_90"># Rotate 90 degree</h4>
+            <pre>
+                <code>
+auto Transpose = [](BYTE* pSrcCur, int nSrcWidthStep, int nType, __m128i* pVec)
+{
+    __m128i veciZero = _mm_setzero_si128();
+
+    __m128i veciRow0 = _mm_loadu_si128((const __m128i*)pSrcCur);
+    __m128i veciRow1 = _mm_loadu_si128((const __m128i*)(pSrcCur + nSrcWidthStep));
+    __m128i veciRow2 = _mm_loadu_si128((const __m128i*)(pSrcCur + nSrcWidthStep * 2));
+    __m128i veciRow3 = _mm_loadu_si128((const __m128i*)(pSrcCur + nSrcWidthStep * 3));
+
+    __m128i veciRow0Unpack[] =
+    {
+        _mm_unpacklo_epi8(veciRow0, veciZero),
+        _mm_unpackhi_epi8(veciRow0, veciZero),
+    };
+
+    __m128i veciRow1Unpack[] =
+    {
+        _mm_unpacklo_epi8(veciRow1, veciZero),
+        _mm_unpackhi_epi8(veciRow1, veciZero),
+    };
+
+    __m128i veciRow2Unpack[] =
+    {
+        _mm_unpacklo_epi8(veciRow2, veciZero),
+        _mm_unpackhi_epi8(veciRow2, veciZero),
+    };
+
+    __m128i veciRow3Unpack[] =
+    {
+        _mm_unpacklo_epi8(veciRow3, veciZero),
+        _mm_unpackhi_epi8(veciRow3, veciZero),
+    };
+
+    __m128i veciRow0UnpackUnpack[] =
+    {
+        _mm_unpacklo_epi8(veciRow0Unpack[0], veciZero),
+        _mm_unpackhi_epi8(veciRow0Unpack[0], veciZero),
+        _mm_unpacklo_epi8(veciRow0Unpack[1], veciZero),
+        _mm_unpackhi_epi8(veciRow0Unpack[1], veciZero),
+    };
+
+    __m128i veciRow1UnpackUnpack[] =
+    {
+        _mm_unpacklo_epi8(veciRow1Unpack[0], veciZero),
+        _mm_unpackhi_epi8(veciRow1Unpack[0], veciZero),
+        _mm_unpacklo_epi8(veciRow1Unpack[1], veciZero),
+        _mm_unpackhi_epi8(veciRow1Unpack[1], veciZero),
+    };
+
+    __m128i veciRow2UnpackUnpack[] =
+    {
+        _mm_unpacklo_epi8(veciRow2Unpack[0], veciZero),
+        _mm_unpackhi_epi8(veciRow2Unpack[0], veciZero),
+        _mm_unpacklo_epi8(veciRow2Unpack[1], veciZero),
+        _mm_unpackhi_epi8(veciRow2Unpack[1], veciZero),
+    };
+
+    __m128i veciRow3UnpackUnpack[] =
+    {
+        _mm_unpacklo_epi8(veciRow3Unpack[0], veciZero),
+        _mm_unpackhi_epi8(veciRow3Unpack[0], veciZero),
+        _mm_unpacklo_epi8(veciRow3Unpack[1], veciZero),
+        _mm_unpackhi_epi8(veciRow3Unpack[1], veciZero),
+    };
+
+    __m128 veciRow0UnpackUnpackFloat[] =
+    {
+        _mm_castsi128_ps(veciRow0UnpackUnpack[0]),
+        _mm_castsi128_ps(veciRow0UnpackUnpack[1]),
+        _mm_castsi128_ps(veciRow0UnpackUnpack[2]),
+        _mm_castsi128_ps(veciRow0UnpackUnpack[3])
+    };
+
+    __m128 veciRow1UnpackUnpackFloat[] =
+    {
+        _mm_castsi128_ps(veciRow1UnpackUnpack[0]),
+        _mm_castsi128_ps(veciRow1UnpackUnpack[1]),
+        _mm_castsi128_ps(veciRow1UnpackUnpack[2]),
+        _mm_castsi128_ps(veciRow1UnpackUnpack[3])
+    };
+
+    __m128 veciRow2UnpackUnpackFloat[] =
+    {
+        _mm_castsi128_ps(veciRow2UnpackUnpack[0]),
+        _mm_castsi128_ps(veciRow2UnpackUnpack[1]),
+        _mm_castsi128_ps(veciRow2UnpackUnpack[2]),
+        _mm_castsi128_ps(veciRow2UnpackUnpack[3])
+    };
+
+    __m128 veciRow3UnpackUnpackFloat[] =
+    {
+        _mm_castsi128_ps(veciRow3UnpackUnpack[0]),
+        _mm_castsi128_ps(veciRow3UnpackUnpack[1]),
+        _mm_castsi128_ps(veciRow3UnpackUnpack[2]),
+        _mm_castsi128_ps(veciRow3UnpackUnpack[3])
+    };
+
+    _MM_TRANSPOSE4_PS(veciRow3UnpackUnpackFloat[0], veciRow2UnpackUnpackFloat[0], veciRow1UnpackUnpackFloat[0], veciRow0UnpackUnpackFloat[0]);
+    _MM_TRANSPOSE4_PS(veciRow3UnpackUnpackFloat[1], veciRow2UnpackUnpackFloat[1], veciRow1UnpackUnpackFloat[1], veciRow0UnpackUnpackFloat[1]);
+    _MM_TRANSPOSE4_PS(veciRow3UnpackUnpackFloat[2], veciRow2UnpackUnpackFloat[2], veciRow1UnpackUnpackFloat[2], veciRow0UnpackUnpackFloat[2]);
+    _MM_TRANSPOSE4_PS(veciRow3UnpackUnpackFloat[3], veciRow2UnpackUnpackFloat[3], veciRow1UnpackUnpackFloat[3], veciRow0UnpackUnpackFloat[3]);
+
+    veciRow0UnpackUnpack[0] = _mm_castps_si128(veciRow3UnpackUnpackFloat[0]);
+    veciRow0UnpackUnpack[1] = _mm_castps_si128(veciRow3UnpackUnpackFloat[1]);
+    veciRow0UnpackUnpack[2] = _mm_castps_si128(veciRow3UnpackUnpackFloat[2]);
+    veciRow0UnpackUnpack[3] = _mm_castps_si128(veciRow3UnpackUnpackFloat[3]);
+
+    veciRow1UnpackUnpack[0] = _mm_castps_si128(veciRow2UnpackUnpackFloat[0]);
+    veciRow1UnpackUnpack[1] = _mm_castps_si128(veciRow2UnpackUnpackFloat[1]);
+    veciRow1UnpackUnpack[2] = _mm_castps_si128(veciRow2UnpackUnpackFloat[2]);
+    veciRow1UnpackUnpack[3] = _mm_castps_si128(veciRow2UnpackUnpackFloat[3]);
+
+    veciRow2UnpackUnpack[0] = _mm_castps_si128(veciRow1UnpackUnpackFloat[0]);
+    veciRow2UnpackUnpack[1] = _mm_castps_si128(veciRow1UnpackUnpackFloat[1]);
+    veciRow2UnpackUnpack[2] = _mm_castps_si128(veciRow1UnpackUnpackFloat[2]);
+    veciRow2UnpackUnpack[3] = _mm_castps_si128(veciRow1UnpackUnpackFloat[3]);
+
+    veciRow3UnpackUnpack[0] = _mm_castps_si128(veciRow0UnpackUnpackFloat[0]);
+    veciRow3UnpackUnpack[1] = _mm_castps_si128(veciRow0UnpackUnpackFloat[1]);
+    veciRow3UnpackUnpack[2] = _mm_castps_si128(veciRow0UnpackUnpackFloat[2]);
+    veciRow3UnpackUnpack[3] = _mm_castps_si128(veciRow0UnpackUnpackFloat[3]);
+
+    switch (nType)
+    {
+    case 0:
+    {
+        pVec[0] = _mm_packus_epi16(_mm_packus_epi32(veciRow0UnpackUnpack[0], veciZero), veciZero); // 0
+        pVec[1] = _mm_packus_epi16(_mm_packus_epi32(veciRow1UnpackUnpack[0], veciZero), veciZero);
+        pVec[2] = _mm_packus_epi16(_mm_packus_epi32(veciRow2UnpackUnpack[0], veciZero), veciZero);
+        pVec[3] = _mm_packus_epi16(_mm_packus_epi32(veciRow3UnpackUnpack[0], veciZero), veciZero);
+
+        pVec[4] = _mm_packus_epi16(_mm_packus_epi32(veciRow0UnpackUnpack[1], veciZero), veciZero);
+        pVec[5] = _mm_packus_epi16(_mm_packus_epi32(veciRow1UnpackUnpack[1], veciZero), veciZero);
+        pVec[6] = _mm_packus_epi16(_mm_packus_epi32(veciRow2UnpackUnpack[1], veciZero), veciZero);
+        pVec[7] = _mm_packus_epi16(_mm_packus_epi32(veciRow3UnpackUnpack[1], veciZero), veciZero);
+
+        pVec[8] = _mm_packus_epi16(_mm_packus_epi32(veciRow0UnpackUnpack[2], veciZero), veciZero);
+        pVec[9] = _mm_packus_epi16(_mm_packus_epi32(veciRow1UnpackUnpack[2], veciZero), veciZero);
+        pVec[10] = _mm_packus_epi16(_mm_packus_epi32(veciRow2UnpackUnpack[2], veciZero), veciZero);
+        pVec[11] = _mm_packus_epi16(_mm_packus_epi32(veciRow3UnpackUnpack[2], veciZero), veciZero);
+
+        pVec[12] = _mm_packus_epi16(_mm_packus_epi32(veciRow0UnpackUnpack[3], veciZero), veciZero);
+        pVec[13] = _mm_packus_epi16(_mm_packus_epi32(veciRow1UnpackUnpack[3], veciZero), veciZero);
+        pVec[14] = _mm_packus_epi16(_mm_packus_epi32(veciRow2UnpackUnpack[3], veciZero), veciZero);
+        pVec[15] = _mm_packus_epi16(_mm_packus_epi32(veciRow3UnpackUnpack[3], veciZero), veciZero);
+    }
+    break;
+
+    case 1:
+    {
+        pVec[0] = _mm_packus_epi16(_mm_packus_epi32(veciZero, veciRow0UnpackUnpack[0]), veciZero); // 1
+        pVec[1] = _mm_packus_epi16(_mm_packus_epi32(veciZero, veciRow1UnpackUnpack[0]), veciZero);
+        pVec[2] = _mm_packus_epi16(_mm_packus_epi32(veciZero, veciRow2UnpackUnpack[0]), veciZero);
+        pVec[3] = _mm_packus_epi16(_mm_packus_epi32(veciZero, veciRow3UnpackUnpack[0]), veciZero);
+
+        pVec[4] = _mm_packus_epi16(_mm_packus_epi32(veciZero, veciRow0UnpackUnpack[1]), veciZero);
+        pVec[5] = _mm_packus_epi16(_mm_packus_epi32(veciZero, veciRow1UnpackUnpack[1]), veciZero);
+        pVec[6] = _mm_packus_epi16(_mm_packus_epi32(veciZero, veciRow2UnpackUnpack[1]), veciZero);
+        pVec[7] = _mm_packus_epi16(_mm_packus_epi32(veciZero, veciRow3UnpackUnpack[1]), veciZero);
+
+        pVec[8] = _mm_packus_epi16(_mm_packus_epi32(veciZero, veciRow0UnpackUnpack[2]), veciZero);
+        pVec[9] = _mm_packus_epi16(_mm_packus_epi32(veciZero, veciRow1UnpackUnpack[2]), veciZero);
+        pVec[10] = _mm_packus_epi16(_mm_packus_epi32(veciZero, veciRow2UnpackUnpack[2]), veciZero);
+        pVec[11] = _mm_packus_epi16(_mm_packus_epi32(veciZero, veciRow3UnpackUnpack[2]), veciZero);
+
+        pVec[12] = _mm_packus_epi16(_mm_packus_epi32(veciZero, veciRow0UnpackUnpack[3]), veciZero);
+        pVec[13] = _mm_packus_epi16(_mm_packus_epi32(veciZero, veciRow1UnpackUnpack[3]), veciZero);
+        pVec[14] = _mm_packus_epi16(_mm_packus_epi32(veciZero, veciRow2UnpackUnpack[3]), veciZero);
+        pVec[15] = _mm_packus_epi16(_mm_packus_epi32(veciZero, veciRow3UnpackUnpack[3]), veciZero);
+    }
+    break;
+
+    case 2:
+    {
+        pVec[0] = _mm_packus_epi16(veciZero, _mm_packus_epi32(veciRow0UnpackUnpack[0], veciZero)); //2
+        pVec[1] = _mm_packus_epi16(veciZero, _mm_packus_epi32(veciRow1UnpackUnpack[0], veciZero));
+        pVec[2] = _mm_packus_epi16(veciZero, _mm_packus_epi32(veciRow2UnpackUnpack[0], veciZero));
+        pVec[3] = _mm_packus_epi16(veciZero, _mm_packus_epi32(veciRow3UnpackUnpack[0], veciZero));
+
+        pVec[4] = _mm_packus_epi16(veciZero, _mm_packus_epi32(veciRow0UnpackUnpack[1], veciZero));
+        pVec[5] = _mm_packus_epi16(veciZero, _mm_packus_epi32(veciRow1UnpackUnpack[1], veciZero));
+        pVec[6] = _mm_packus_epi16(veciZero, _mm_packus_epi32(veciRow2UnpackUnpack[1], veciZero));
+        pVec[7] = _mm_packus_epi16(veciZero, _mm_packus_epi32(veciRow3UnpackUnpack[1], veciZero));
+
+        pVec[8] = _mm_packus_epi16(veciZero, _mm_packus_epi32(veciRow0UnpackUnpack[2], veciZero));
+        pVec[9] = _mm_packus_epi16(veciZero, _mm_packus_epi32(veciRow1UnpackUnpack[2], veciZero));
+        pVec[10] = _mm_packus_epi16(veciZero, _mm_packus_epi32(veciRow2UnpackUnpack[2], veciZero));
+        pVec[11] = _mm_packus_epi16(veciZero, _mm_packus_epi32(veciRow3UnpackUnpack[2], veciZero));
+
+        pVec[12] = _mm_packus_epi16(veciZero, _mm_packus_epi32(veciRow0UnpackUnpack[3], veciZero));
+        pVec[13] = _mm_packus_epi16(veciZero, _mm_packus_epi32(veciRow1UnpackUnpack[3], veciZero));
+        pVec[14] = _mm_packus_epi16(veciZero, _mm_packus_epi32(veciRow2UnpackUnpack[3], veciZero));
+        pVec[15] = _mm_packus_epi16(veciZero, _mm_packus_epi32(veciRow3UnpackUnpack[3], veciZero));
+    }
+    break;
+
+    case 3:
+    {
+        pVec[0] = _mm_packus_epi16(veciZero, _mm_packus_epi32(veciZero, veciRow0UnpackUnpack[0])); //3
+        pVec[1] = _mm_packus_epi16(veciZero, _mm_packus_epi32(veciZero, veciRow1UnpackUnpack[0]));
+        pVec[2] = _mm_packus_epi16(veciZero, _mm_packus_epi32(veciZero, veciRow2UnpackUnpack[0]));
+        pVec[3] = _mm_packus_epi16(veciZero, _mm_packus_epi32(veciZero, veciRow3UnpackUnpack[0]));
+
+        pVec[4] = _mm_packus_epi16(veciZero, _mm_packus_epi32(veciZero, veciRow0UnpackUnpack[1]));
+        pVec[5] = _mm_packus_epi16(veciZero, _mm_packus_epi32(veciZero, veciRow1UnpackUnpack[1]));
+        pVec[6] = _mm_packus_epi16(veciZero, _mm_packus_epi32(veciZero, veciRow2UnpackUnpack[1]));
+        pVec[7] = _mm_packus_epi16(veciZero, _mm_packus_epi32(veciZero, veciRow3UnpackUnpack[1]));
+
+        pVec[8] = _mm_packus_epi16(veciZero, _mm_packus_epi32(veciZero, veciRow0UnpackUnpack[2]));
+        pVec[9] = _mm_packus_epi16(veciZero, _mm_packus_epi32(veciZero, veciRow1UnpackUnpack[2]));
+        pVec[10] = _mm_packus_epi16(veciZero, _mm_packus_epi32(veciZero, veciRow2UnpackUnpack[2]));
+        pVec[11] = _mm_packus_epi16(veciZero, _mm_packus_epi32(veciZero, veciRow3UnpackUnpack[2]));
+
+        pVec[12] = _mm_packus_epi16(veciZero, _mm_packus_epi32(veciZero, veciRow0UnpackUnpack[3]));
+        pVec[13] = _mm_packus_epi16(veciZero, _mm_packus_epi32(veciZero, veciRow1UnpackUnpack[3]));
+        pVec[14] = _mm_packus_epi16(veciZero, _mm_packus_epi32(veciZero, veciRow2UnpackUnpack[3]));
+        pVec[15] = _mm_packus_epi16(veciZero, _mm_packus_epi32(veciZero, veciRow3UnpackUnpack[3]));
+    }
+    break;
+
+    }
+
+
+};
+
+                    
+                </code>
+            </pre>
+            <pre>
+                <code>
+for (; y < nSizeY - 16; y += 16)
+{
+    BYTE* pSrcRow = pSrcOffsetY[y];
+
+    int nDstX = nSizeY - y - 16;
+
+    ptrdiff_t x = 0;
+
+    for (; x < nSizeX - 16; x += 16)
+    {
+        BYTE* pSrcCur = pSrcRow + x;
+
+        __m128i veciRows0[16], veciRows1[16], veciRows2[16], veciRows3[16];
+
+        Transpose(pSrcCur, nSrcWidthStep, 3, &veciRows0[0]);
+        Transpose(pSrcCur + nSrcWidthStep * 4, nSrcWidthStep, 2, &veciRows1[0]);
+        Transpose(pSrcCur + nSrcWidthStep * 8, nSrcWidthStep, 1, &veciRows2[0]);
+        Transpose(pSrcCur + nSrcWidthStep * 12, nSrcWidthStep, 0, &veciRows3[0]);
+
+        for (int i = 0; i < 16; i++)
+        {
+            __m128i veciStoreu = _mm_or_si128(_mm_or_si128(veciRows0[i], veciRows1[i]), _mm_or_si128(veciRows2[i], veciRows3[i]));
+
+            BYTE* pDstCur = pDstOffsetY[x + i] + nDstX;
+
+            _mm_storeu_si128((__m128i*)pDstCur, veciStoreu);
+        }
+
+    }
+
+    nDstX = nSizeY - 1 - y;
+
+    for (; x < nSizeX; ++x)
+    {
+        BYTE* pSrcCur = pSrcRow + x;
+
+        for (int i = 0; i < 16; ++i)
+        {
+            *(pDstOffsetY[x] + nDstX - i) = *(pSrcCur + nSrcWidthStep * i);
+        }
+
+    }
+
+}
+
+for (; y < nSizeY; y++)
+{
+    BYTE* pSrcRow = pSrcOffsetY[y];
+
+    int nDstX = nSizeY - 1 - y;
+
+    for (ptrdiff_t x = 0; x < nSizeX; ++x)
+    {
+        BYTE* pSrcCur = pSrcRow + x;
+
+        *(pDstOffsetY[x] + nDstX) = *pSrcCur;
+    }
+}
+                </code>
+            </pre>
+
+            <h4 id="median_filter"># Median Filter By Sorting Network : http://pages.ripco.net/~jgamble/nw.html</h4>
+            <code>
+                <pre>
+[3x3]
+SortNetSwap(arr, 0, 1); SortNetSwap(arr, 3, 4); SortNetSwap(arr, 6, 7);
+SortNetSwap(arr, 1, 2); SortNetSwap(arr, 4, 5); SortNetSwap(arr, 7, 8);
+SortNetSwap(arr, 0, 1); SortNetSwap(arr, 3, 4); SortNetSwap(arr, 6, 7);
+
+SortNetMax(arr, 0, 3); SortNetMax(arr, 3, 6);
+
+SortNetSwap(arr, 1, 4); SortNetMin(arr, 4, 7); SortNetMax(arr, 1, 4);
+SortNetMin(arr, 5, 8); SortNetMin(arr, 2, 5);
+
+SortNetSwap(arr, 2, 4); SortNetMin(arr, 4, 6); SortNetMax(arr, 2, 4);
+
+[5x5]
+SortNetSwap(arr, 1, 2); SortNetSwap(arr, 4, 5); SortNetSwap(arr, 7, 8); SortNetSwap(arr, 10, 11);
+SortNetSwap(arr, 13, 14); SortNetSwap(arr, 16, 17); SortNetSwap(arr, 19, 20); SortNetSwap(arr, 21, 22);
+SortNetSwap(arr, 23, 24);
+
+SortNetSwap(arr, 0, 2); SortNetSwap(arr, 3, 5); SortNetSwap(arr, 6, 8); SortNetSwap(arr, 9, 11);
+SortNetSwap(arr, 12, 14); SortNetSwap(arr, 15, 17); SortNetSwap(arr, 18, 20); SortNetSwap(arr, 21, 23);
+SortNetSwap(arr, 22, 24);
+
+SortNetSwap(arr, 0, 1); SortNetSwap(arr, 3, 4); SortNetSwap(arr, 2, 5); SortNetSwap(arr, 6, 7);
+SortNetSwap(arr, 9, 10); SortNetSwap(arr, 8, 11); SortNetSwap(arr, 12, 13); SortNetSwap(arr, 15, 16);
+SortNetSwap(arr, 14, 17); SortNetSwap(arr, 18, 19); SortNetSwap(arr, 22, 23); SortNetSwap(arr, 20, 24);
+
+SortNetSwap(arr, 0, 3); SortNetSwap(arr, 1, 4); SortNetSwap(arr, 6, 9); SortNetSwap(arr, 7, 10); SortNetSwap(arr, 5, 11);
+SortNetSwap(arr, 12, 15); SortNetSwap(arr, 13, 16); SortNetSwap(arr, 18, 22); SortNetSwap(arr, 19, 23); SortNetSwap(arr, 17, 24);
+
+SortNetSwap(arr, 2, 4); SortNetSwap(arr, 1, 3); SortNetSwap(arr, 8, 10); SortNetSwap(arr, 7, 9); SortNetSwap(arr, 0, 6);
+SortNetSwap(arr, 14, 16); SortNetSwap(arr, 13, 15); SortNetSwap(arr, 18, 21); SortNetSwap(arr, 20, 23); SortNetSwap(arr, 11, 24);
+
+SortNetSwap(arr, 2, 3); SortNetSwap(arr, 8, 9); SortNetSwap(arr, 1, 7); SortNetSwap(arr, 4, 10);
+SortNetSwap(arr, 14, 15); SortNetSwap(arr, 19, 21); SortNetSwap(arr, 20, 22); SortNetSwap(arr, 16, 23);
+
+SortNetSwap(arr, 2, 8); SortNetSwap(arr, 1, 6); SortNetSwap(arr, 3, 9); SortNetSwap(arr, 5, 10); SortNetSwap(arr, 20, 21);
+SortNetSwap(arr, 12, 19); SortNetSwap(arr, 15, 22); SortNetSwap(arr, 17, 23);
+
+SortNetSwap(arr, 2, 7); SortNetSwap(arr, 4, 9); SortNetSwap(arr, 12, 18); SortNetSwap(arr, 13, 20);
+SortNetSwap(arr, 14, 21); SortNetSwap(arr, 16, 22); SortNetSwap(arr, 10, 23);
+
+SortNetSwap(arr, 2, 6); SortNetSwap(arr, 5, 9); SortNetSwap(arr, 4, 7); SortNetSwap(arr, 14, 20); SortNetSwap(arr, 13, 18);
+SortNetSwap(arr, 17, 22); SortNetSwap(arr, 11, 23);
+
+SortNetSwap(arr, 3, 6); SortNetSwap(arr, 5, 8); SortNetSwap(arr, 14, 19); SortNetSwap(arr, 16, 20); SortNetSwap(arr, 17, 21);
+SortNetSwap(arr, 0, 13); SortNetSwap(arr, 9, 22);
+
+SortNetSwap(arr, 5, 7); SortNetSwap(arr, 4, 6); SortNetSwap(arr, 14, 18); SortNetSwap(arr, 15, 19); SortNetSwap(arr, 17, 20);
+SortNetSwap(arr, 0, 12); SortNetSwap(arr, 8, 21); SortNetSwap(arr, 10, 22);
+
+SortNetSwap(arr, 5, 6); SortNetSwap(arr, 15, 18); SortNetSwap(arr, 17, 19); SortNetSwap(arr, 1, 14); SortNetSwap(arr, 7, 20);
+SortNetSwap(arr, 11, 22);
+
+SortNetSwap(arr, 16, 18); SortNetSwap(arr, 2, 15); SortNetSwap(arr, 1, 12); SortNetSwap(arr, 6, 19); SortNetSwap(arr, 8, 20);
+SortNetSwap(arr, 11, 21);
+
+SortNetSwap(arr, 17, 18); SortNetSwap(arr, 2, 14); SortNetSwap(arr, 3, 16); SortNetSwap(arr, 7, 19); SortNetSwap(arr, 10, 20);
+
+SortNetSwap(arr, 2, 13); SortNetSwap(arr, 4, 17); SortNetSwap(arr, 5, 18); SortNetSwap(arr, 8, 19); SortNetSwap(arr, 11, 20);
+
+SortNetSwap(arr, 2, 12); SortNetSwap(arr, 5, 17); SortNetSwap(arr, 4, 16); SortNetSwap(arr, 3, 13); SortNetSwap(arr, 9, 19);
+
+SortNetSwap(arr, 5, 16); SortNetSwap(arr, 3, 12); SortNetSwap(arr, 4, 14); SortNetSwap(arr, 10, 19);
+
+SortNetSwap(arr, 5, 15); SortNetSwap(arr, 4, 12); SortNetSwap(arr, 11, 19); SortNetSwap(arr, 9, 16); SortNetSwap(arr, 10, 17);
+
+SortNetSwap(arr, 5, 14); SortNetSwap(arr, 8, 15); SortNetSwap(arr, 11, 18); SortNetSwap(arr, 10, 16);
+
+SortNetSwap(arr, 5, 13); SortNetSwap(arr, 7, 14); SortNetSwap(arr, 11, 17);
+
+SortNetSwap(arr, 5, 12); SortNetSwap(arr, 6, 13); SortNetSwap(arr, 8, 14); SortNetSwap(arr, 11, 16);
+
+SortNetSwap(arr, 6, 12); SortNetSwap(arr, 8, 13); SortNetSwap(arr, 10, 14); SortNetSwap(arr, 11, 15);
+
+SortNetSwap(arr, 7, 12); SortNetSwap(arr, 9, 13); SortNetSwap(arr, 11, 14);
+
+SortNetSwap(arr, 8, 12); SortNetSwap(arr, 11, 13);
+
+SortNetSwap(arr, 9, 12);
+
+SortNetSwap(arr, 10, 12);
+
+SortNetSwap(arr, 11, 12);
+
+static void SortNetSwap(arg_type* arr, int i, int j)
+{
+    arg_type tmp = OpMinMax::_min(arr[i], arr[j]);
+    arr[j] = OpMinMax::_max(arr[i], arr[j]);
+    arr[i] = tmp;
+};
+
+static void SortNetMin(arg_type* arr, int i, int j)
+{
+    arr[i] = OpMinMax::_min(arr[i], arr[j]);
+};
+
+static void SortNetMax(arg_type* arr, int i, int j)
+{
+    arr[j] = OpMinMax::_max(arr[i], arr[j]);
+};
+                </pre>
+            </code>
+        </div>
+    </body>
+</html>
