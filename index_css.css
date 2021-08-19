@@ -12,8 +12,21 @@
 {
 	background-color: rgb(127, 127, 127, 127);
 	display: inline-block;
-	color: rgb(255, 255, 255)
+	color: rgb(255, 255, 255);
 }
+.background_prog_good:hover
+{
+	background-color: rgb(127, 127, 127, 127);
+	display: inline-block;
+	color: rgb(221, 33, 33);
+}
+.background_prog_avg:hover
+{
+	background-color: rgb(127, 127, 127, 127);
+	display: inline-block;
+	color: rgb(124, 57, 57);
+}
+
 
 .navigation
 {
