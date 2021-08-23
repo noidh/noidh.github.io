@@ -17,10 +17,26 @@
         </div>
 
         <div class="ỉntroduction">
-            <h3>Short note of CUDA api</h3>
+            <h3>CUDA Api</h3>
             <a href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html">Api Refenrence</a>
         
-            
+            <h3>CUDA and class</h3>
+            <pre>
+                <code>
+#ifdef __CUDACC__
+#define CUDA_CALLABLE_MEMBER __host__ __device__
+#else
+#define CUDA_CALLABLE_MEMBER
+#endif                     
+
+class Foo {
+    public:
+        CUDA_CALLABLE_MEMBER Foo() {}
+        CUDA_CALLABLE_MEMBER ~Foo() {}
+        CUDA_CALLABLE_MEMBER void aMethod() {}
+};
+                </code>
+            </pre>
         </div>
     </body>
 </html>
