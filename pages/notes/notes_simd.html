@@ -1,7 +1,7 @@
 <html>
     <head>
-        <title>Funy notes</title>
-        <link rel="stylesheet" href="../../../index_css.css">
+        <title>notes</title>
+        <link rel="stylesheet" href="../../index_css.css">
     </head>
 
     <body>
@@ -28,7 +28,8 @@
                 </li>
             </ul>
             <h4 id="rotate_90"># Rotate 90 degree</h4>
-            <pre>
+            
+            <pre class="code_view">
                 <code>
 auto Transpose = [](BYTE* pSrcCur, int nSrcWidthStep, int nType, __m128i* pVec)
 {
@@ -255,11 +256,6 @@ auto Transpose = [](BYTE* pSrcCur, int nSrcWidthStep, int nType, __m128i* pVec)
 
 };
 
-                    
-                </code>
-            </pre>
-            <pre>
-                <code>
 for (; y < nSizeY - 16; y += 16)
 {
     BYTE* pSrcRow = pSrcOffsetY[y];
@@ -317,13 +313,13 @@ for (; y < nSizeY; y++)
 
         *(pDstOffsetY[x] + nDstX) = *pSrcCur;
     }
-}
+}                    
                 </code>
             </pre>
 
             <h4 id="median_filter"># Median Filter By Sorting Network : http://pages.ripco.net/~jgamble/nw.html</h4>
-            <code>
-                <pre>
+            <pre class="code_view">
+                <code>
 [3x3]
 SortNetSwap(arr, 0, 1); SortNetSwap(arr, 3, 4); SortNetSwap(arr, 6, 7);
 SortNetSwap(arr, 1, 2); SortNetSwap(arr, 4, 5); SortNetSwap(arr, 7, 8);
@@ -423,8 +419,9 @@ static void SortNetMax(arg_type* arr, int i, int j)
 {
     arr[j] = OpMinMax::_max(arr[i], arr[j]);
 };
-                </pre>
-            </code>
+                                </code>
+            </pre>
+
         </div>
     </body>
 </html>

@@ -43,3 +43,8 @@
 	width: 850px;
 }
 
+.code_view
+{
+	height: 400px; 
+	overflow: scroll;
+}
