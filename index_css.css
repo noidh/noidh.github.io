@@ -45,6 +45,6 @@
 
 .code_view
 {
-	max-height: 400px; 
-	overflow: auto;
+	height: 400px; 
+	overflow: scroll;
 }
