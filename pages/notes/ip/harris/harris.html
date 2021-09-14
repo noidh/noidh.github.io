@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Harris Corner Detector</title>
+        <link rel="stylesheet" href="../../../../index_css.css">
+		
+		<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+		<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+    </head>
+
+    <body>
+        <div class="header">
+            <h3>
+            Doan Huu Noi
+			</h3>
+			<span class="header_email"><a>doanhuunoi@gmail.com</a></span><br>
+			<span class="header_job">Image Processing - Software Engineer</span>
+        </div>
+        <div class="navigation">
+            <div class="nav_item"><a href="https://noidh.github.io">Main</a></div>
+        </div>
+
+        <div class="introduction">	
+			<h3>1. Introduction</h3>
+			<p>Harris Corner Detector is a good feature detector which used by other feature-based matching algorithm</p>
+			<p>A good feature should be distingush, and invariant in rotation. Therefor, shifting the window in any direction should yield a large change in apperance.</p>
+			<ul>
+				<li>"flat" region: no change in all directions.</li>
+				<li>"edge" region: no change along the edge direction.</li>
+				<li>"corner" region: significant change in all directions.</li>
+			</ul>
+			
+			<p>Change of intensity for the shift [u, v]</p>
+			<p>\[E(v, v) = \sum_{x, y}^{}w(x, y)[I(x + u, y + v) - I(x, y)]^2 \tag{1}\]</p>
+			<p>\(w(x, y)\)  is window function, \(I(x + u, y + v)\) is shifted intensity, \(I(x, y)\) is intensity</p>
+			
+			<p>Taylor series for 2D functions for first order</p>
+			<p>\[f(x + u, y + v)=f(x, y) + uf_{x}^{'}(x, y) + vf_{y}^{'}(x, y)\]</p>
+			
+			<p>Hence, \[\sum_{x, y}[I(x + u, y + v) - I(x, y)]^2\approx\sum_{x, y}[I(x, y) + uI_x + vI_y - I(x, y)]^2
+			
+			=\sum_{x, y}(u^2I_{x}^2 + 2uvI_{x}I_{y} + v^2I_{y}^2)
+			=\sum_{x, y}\left[\begin{array}{}u & v\end{array}\right]\left[\begin{array}{}I_{x}^2 & I_{x}I_{y}\\ I_{x}I_{y} & I_{y}^2\\\end{array}\right]\left[\begin{array}{}u\\v\end{array}\right]
+			=\left[\begin{array}{}u & v\end{array}\right]\sum_{x, y}\left[\begin{array}{}I_{x}^2 & I_{x}I_{y}\\ I_{x}I_{y} & I_{y}^2\\\end{array}\right]\left[\begin{array}{}u\\v\end{array}\right]
+			 \tag{2}\]</p>
+			
+			<p>From \((1)\) and \((2)\), \[E(u, v)\approx\left[\begin{array}{}u & v\end{array}\right]\ M \left[\begin{array}{}u\\v\end{array}\right]\]</p>
+			<p>\[M=\sum_{x, y}w(x,y)\left[\begin{array}{}I_{x}^2 & I_{x}I_{y}\\ I_{x}I_{y} & I_{y}^2\\\end{array}\right]\]</p>
+			<p>Window function \(w(x,y)\) can be 1 for simple case.</p>
+			
+			<p>Finally, We can measure responding value of corner by \(R=\det(M) - k\operatorname{trace}(M)^2, k = 0.04-0.06\)</p>
+			
+			<h3>2. References</h3>
+			<p>
+				<ul>
+					<li><a href="http://www.cse.psu.edu/~rtc12/CSE486/lecture06.pdf">http://www.cse.psu.edu/~rtc12/CSE486/lecture06.pdf</a></li>
+					<li><a href="http://www.cs.cmu.edu/~16385/s17/Slides/6.2_Harris_Corner_Detector.pdf">http://www.cs.cmu.edu/~16385/s17/Slides/6.2_Harris_Corner_Detector.pdf</a></li>
+				</ul>
+			</p>
+		</div>
+    </body>
+</html>
