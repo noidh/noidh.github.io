@@ -22,8 +22,8 @@
 
         <div class="introduction">	
 			<h3>1. Introduction</h3>
-			<p>Harris Corner Detector is a good feature detector which used by other feature-based matching algorithm</p>
-			<p>A good feature should be distingush, and invariant in rotation. Therefor, shifting the window in any direction should yield a large change in apperance.</p>
+			<p>Harris Corner Detector is a good feature detector which used by other feature-based matching algorithms.</p>
+			<p>A good feature area should be distingush with around area, and invariant in rotation. Therefore, shifting the window in any direction should yield a large change in apperance.</p>
 			<ul>
 				<li>"flat" region: no change in all directions.</li>
 				<li>"edge" region: no change along the edge direction.</li>
@@ -48,9 +48,43 @@
 			<p>\[M=\sum_{x, y}w(x,y)\left[\begin{array}{}I_{x}^2 & I_{x}I_{y}\\ I_{x}I_{y} & I_{y}^2\\\end{array}\right]\]</p>
 			<p>Window function \(w(x,y)\) can be 1 for simple case.</p>
 			
-			<p>Finally, We can measure responding value of corner by \(R=\det(M) - k\operatorname{trace}(M)^2, k = 0.04-0.06\)</p>
-			
-			<h3>2. References</h3>
+			<p>Finally, We can measure responding value of corner by below methods</p>
+			<ul>
+				<li>
+					<p>Harris & Stephens (1988): \(R=\det(M) - k\operatorname{trace}(M)^2, k = 0.04-0.06\)</p>
+				</li>
+
+				<li>
+				    <p>Kanade & Tomasi (1994): \(R=min(\lambda_{1}, \lambda_{2})\)</p>
+
+				</li>
+
+				<li>
+					<p>Nobel (1998): \(R=\frac{det(M)}{trace(M) + \epsilon}\)</p>
+
+				</li>
+
+			</ul>
+			<h3>2. Experiment</h3>
+			<p>Below is demo video by XImageTool</p>
+			<iframe width="853" height="480"src="https://www.youtube.com/embed/1b8Ji3yzeBo" frameborder="0" allowfullscreen></iframe>
+
+			<p>Harris & Stephens (1988): \(R=\det(M) - k\operatorname{trace}(M)^2, k = 0.04-0.06\)</p>
+			<img src="harris_harrisandstephen.jpg" width="500">
+
+			<br>
+
+			<p>Kanade & Tomasi (1994): \(R=min(\lambda_{1}, \lambda_{2})\)</p>
+			<img src="harris_kanadeandtomasi.jpg" width="500">
+
+			<br>
+			<p>Nobel (1998): \(R=\frac{det(M)}{trace(M) + \epsilon}\)</p>
+			<img src="harris_nobel.jpg" width="500">
+
+			<br>
+			<p>In order to improve result, Non Maximal Suppression with size 3x3 can be apply to corner map image.</p>
+		
+			<h3>3. References</h3>
 			<p>
 				<ul>
 					<li><a href="http://www.cse.psu.edu/~rtc12/CSE486/lecture06.pdf">http://www.cse.psu.edu/~rtc12/CSE486/lecture06.pdf</a></li>
