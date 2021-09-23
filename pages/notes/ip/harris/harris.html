@@ -22,19 +22,22 @@
 
         <div class="introduction">	
 			<h3>1. Introduction</h3>
-			<p>Harris Corner Detector is a good feature detector which used by other feature-based matching algorithms.</p>
-			<p>A good feature area should be distingush with around area, and invariant in rotation. Therefore, shifting the window in any direction should yield a large change in apperance.</p>
+			<p>Harris Corner Detector is one kind of feature detectors which can be used by other feature-based matching algorithms.</p>
+			<p>A good feature should be distinctive comparing with around area. Therefore, shifting the window in any direction should yield a large change in apperance.</p>
 			<ul>
 				<li>"flat" region: no change in all directions.</li>
 				<li>"edge" region: no change along the edge direction.</li>
 				<li>"corner" region: significant change in all directions.</li>
 			</ul>
+			<img width="500" src="harris_1.jpg">
 			
-			<p>Change of intensity for the shift [u, v]</p>
+			<p>Change of intensity for the shift \([u, v]\) can be formulated by below enery function.</p>
 			<p>\[E(v, v) = \sum_{x, y}^{}w(x, y)[I(x + u, y + v) - I(x, y)]^2 \tag{1}\]</p>
 			<p>\(w(x, y)\)  is window function, \(I(x + u, y + v)\) is shifted intensity, \(I(x, y)\) is intensity</p>
-			
-			<p>Taylor series for 2D functions for first order</p>
+			<p>For nearly constant patches, this will be near 0.</p>
+			<p>For very distinctive patches, this will be larger. So, a Corner can be detected at patch having large value of \(E(u, v)\)</p>
+
+			<p>Taylor series can be used for 2D functions for first order</p>
 			<p>\[f(x + u, y + v)=f(x, y) + uf_{x}^{'}(x, y) + vf_{y}^{'}(x, y)\]</p>
 			
 			<p>Hence, \[\sum_{x, y}[I(x + u, y + v) - I(x, y)]^2\approx\sum_{x, y}[I(x, y) + uI_x + vI_y - I(x, y)]^2
@@ -47,8 +50,10 @@
 			<p>From \((1)\) and \((2)\), \[E(u, v)\approx\left[\begin{array}{}u & v\end{array}\right]\ M \left[\begin{array}{}u\\v\end{array}\right]\]</p>
 			<p>\[M=\sum_{x, y}w(x,y)\left[\begin{array}{}I_{x}^2 & I_{x}I_{y}\\ I_{x}I_{y} & I_{y}^2\\\end{array}\right]\]</p>
 			<p>Window function \(w(x,y)\) can be 1 for simple case.</p>
-			
-			<p>Finally, We can measure responding value of corner by below methods</p>
+
+			<p>By analyzing the eigen values of matrix \(M\), \(E(u, v)\) increases in all directions when \(\lambda_1\) and \(\lambda_2\) are large.</p>
+			<img width="500" src="harris_2.jpg">
+			<p>Instead of calculating and thresholding each single eigen value, We can measure responding map of corner by below methods</p>
 			<ul>
 				<li>
 					<p>Harris & Stephens (1988): \(R=\det(M) - k\operatorname{trace}(M)^2, k = 0.04-0.06\)</p>
@@ -69,20 +74,8 @@
 			<p>Below is demo video by XImageTool</p>
 			<iframe width="853" height="480"src="https://www.youtube.com/embed/1b8Ji3yzeBo" frameborder="0" allowfullscreen></iframe>
 
-			<p>Harris & Stephens (1988): \(R=\det(M) - k\operatorname{trace}(M)^2, k = 0.04-0.06\)</p>
-			<img src="harris_harrisandstephen.jpg" width="500">
-
 			<br>
-
-			<p>Kanade & Tomasi (1994): \(R=min(\lambda_{1}, \lambda_{2})\)</p>
-			<img src="harris_kanadeandtomasi.jpg" width="500">
-
-			<br>
-			<p>Nobel (1998): \(R=\frac{det(M)}{trace(M) + \epsilon}\)</p>
-			<img src="harris_nobel.jpg" width="500">
-
-			<br>
-			<p>In order to improve result, Non Maximal Suppression with size 3x3 can be apply to corner map image.</p>
+			<p>In order to improve result, a Non Maximal Suppression with size 3x3 can be applied to filter the corner map image.</p>
 		
 			<h3>3. References</h3>
 			<p>
