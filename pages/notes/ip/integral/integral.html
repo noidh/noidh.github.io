@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Integral Image, Integral Histogram</title>
+        <link rel="stylesheet" href="../../../../index_css.css">
+		
+		<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+		<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+    </head>
+
+    <body>
+        <div class="header">
+            <h3>
+            Doan Huu Noi
+			</h3>
+			<span class="header_email"><a>doanhuunoi@gmail.com</a></span><br>
+			<span class="header_job">Image Processing - Software Engineer</span>
+        </div>
+        <div class="navigation">
+            <div class="nav_item"><a href="https://noidh.github.io">Main</a></div>
+        </div>
+
+        <div class="introduction">	
+			<h3>1. Introduction</h3>
+			<p>Integral Image or Summed-area table is a data structure and algorithm for quickly and effiently generaiting the sum of values in a rectangular subset of a grid.</p>
+			<p>An integral image is created to store integral value at every position (x,y). Value at any point (x, y) is the sum of all the pixels to the left top of (x, y).</p>
+            <p>\[Integral(x,y)=\sum_{x^{'}<{x}, y^{'} <{y}}I(x^{'}, y^{'})\]</p>
+            
+            <p>The integral value can be computed more efficiently.</p>
+            <img width="300" style="margin-left: auto; margin-right: auto; display: block;" src="integral.png">
+            <p>\[Integral(x,y)=I(x,y) + Integral(x, y - 1) + Integral(x - 1,y) - Integral(x -1, y-1)\]</p>
+
+            <p>After finish calculating the integral image, summation of arbitrary rectangular area can be computed from 4 corners.</p>
+            <p>\[sum(ABCD)=Integral(D) + Integral(A) - Integral(B) - Integral(C)\]</p>
+
+            <p>Integral histogram is similar with integral image but having 256 channel value per pixel (8-bit image).</p>
+            
+            <p>Moreover, this method can be extended to quickly calculate variance or standard deviation of a block.</p>
+            <p>\[Var(ABCD)=\frac{1}{W * H}\sum_{x, y}(I(x,y) - \mu)^{2}=\frac{1}{W*H}\sum_{x,y}(I^{2}(x, y) - 2*{\mu}*{I(x,y)} + {\mu}^{2})=\frac{1}{W*H}(\sum_{x,y}I^{2}(x, y) - 2*{\mu}*\sum_{x,y}{I(x,y)} + \sum_{x,y}{\mu}^{2})=\frac{1}{W*H}(\sum_{x,y}I^{2}(x, y) - 2*{\mu}*\sum_{x,y}{I(x,y)} + (W*H)*{\mu}^{2})\]</p>
+            <p>Where \(\sum_{x,y}I^{2}(x, y)\) can be obtained by integral of square pixel value</p>
+            
+            <br>
+            <h3>2. Experiment</h3>
+			
+			<h3>3. References</h3>
+			<p>
+				<ul>
+                    <li><a href="https://ieeexplore.ieee.org/document/6202458">Performance-analysis-based acceleration of image quality assessment.</a></li>
+                </ul>
+			</p>
+		</div>
+    </body>
+</html>
