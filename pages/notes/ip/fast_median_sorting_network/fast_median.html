@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Fast Median Filter by using Sorting Network</title>
+        <link rel="stylesheet" href="../../../../index_css.css">
+		
+		<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+		<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+    </head>
+
+    <body>
+        <div class="header">
+
+        </div>
+        <div class="navigation">
+            <div class="nav_item"><a href="https://noidh.github.io">Main</a></div>
+        </div>
+
+        <div class="introduction">	
+			<h3>1. Introduction</h3>
+			<p>Conventinonal Median Filter is very easy to be implementated by using standard sorting algorithms like quicksort. However, it's hard to optimize the algorithm by using parallel processing.</p>
+			<p>With sorting network consisting of basic comparing and swap, a parallel processing (SIMD, GPGPU) can be adapted.</p>
+			<p>Example of array size 3, comparing and swapping sequently to move the smallest element to the bottom.</p>
+			<img src="fast_median_1.jpg">
+			<img src="fast_median_2.jpg">
+			<p>Example of array size 5</p>
+			<img src="fast_median_3.jpg">
+			<p>And there are some various optimal versions.</p>
+			<img src="fast_median_4.jpg">
+			
+			<br>
+			<h3>2. Experiment</h3>
+			
+			<h3>3. References</h3>
+			<p>
+				<ul>
+					<li>https://hoytech.github.io/sorting-networks/</li>
+				</ul>
+			</p>
+		</div>
+    </body>
+</html>
