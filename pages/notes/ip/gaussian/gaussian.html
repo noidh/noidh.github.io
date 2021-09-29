@@ -26,7 +26,7 @@
 			<p>In 2D, the Gaussian kernel is described as \(G(x,y)=\frac{1}{2\pi{\sigma^2}}e^{-\frac{x^2+y^2}{2\sigma^2}}\)</p>
 			<p>Where \(\sigma\) is the standard deviation of the distribution.</p>
 			<img src="gaussian_1.jpg">
-			<p>When \(\sigma\) get larger, the value of kernel becomes smaller and can make the image darker. In order to avoid this, the kernel value should be normalized so that the sum of them is always near 1.</p>
+			<p>When \(\sigma\) get larger, the value of kernel becomes smaller. And if the kernel size isn't scaled to bigger, it'll make the image darker gradually as you see Video 2 below. In order to avoid this, the kernel value should be normalized so that the sum of them is always 1.</p>
 			
 			<p>The Gaussian filter can be optimized in several ways.</p>
 			<p>The first, in 2D an isotropic Gaussian shown above is separatable into \(x\) and \(y\) components, thus 2-D convolution can be performed by \(x\) direction first, then \(y\) direction.</p>	
@@ -40,7 +40,10 @@
 			
 			<br>
 			<h3>2. Experiment</h3>
-			<p>Demo a 2D Gaussion Filter</p>
+			<p>Video 1: Demo a 2D Gaussion Filter</p>	
+			<iframe width="853" height="480" frameborder="0" allowfullscreen src="https://www.youtube.com/embed/fkY-NthXh-k"></iframe>
+
+			<p>Video 2: Demo a 2D Gaussion Filter Without Normalize Kernel</p>
 			<iframe width="853" height="480" frameborder="0" allowfullscreen src="https://www.youtube.com/embed/b5EtYKqknpc"></iframe>
 			<h3>3. References</h3>
 			<p>
