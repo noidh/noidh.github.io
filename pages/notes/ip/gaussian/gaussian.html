@@ -26,14 +26,17 @@
 			<p>In 2D, the Gaussian kernel is described as \(G(x,y)=\frac{1}{2\pi{\sigma^2}}e^{-\frac{x^2+y^2}{2\sigma^2}}\)</p>
 			<p>Where \(\sigma\) is the standard deviation of the distribution.</p>
 			<img src="gaussian_1.jpg">
+			<p>When \(\sigma\) get larger, the value of kernel becomes smaller and can make the image darker. In order to avoid this, the kernel value should be normalized so that the sum of them is always near 1.</p>
 			
 			<p>The Gaussian filter can be optimized in several ways.</p>
-			<p>The first is approximate a gaussian using a box filter aka mean filter. By performing the box filter multiple times, an approximation gaussion filter can be obtained more quickly.</p>
-			<img src="gaussian_2.jpg">
+			<p>The first, in 2D an isotropic Gaussian shown above is separatable into \(x\) and \(y\) components, thus 2-D convolution can be performed by \(x\) direction first, then \(y\) direction.</p>	
+			<p>\(G(x,y)=\frac{1}{2\pi{\sigma^2}}e^{-\frac{x^2+y^2}{2\sigma^2}} = \frac{1}{\sqrt{2\pi}{\sigma}}e^{-\frac{x^2}{2\sigma^2}}\cdot{\frac{1}{\sqrt{2\pi}{\sigma}}e^{-\frac{y^2}{2\sigma^2}}}\)</p>
 			
-			<p>The second is using an approximation Gaussian kernel. Below is an approximation of Gaussion filter with \(kernel size = 5\times{5},\sigma=1.0\).</p>
-			<img src="gaussian_3.jpg">
-			<p>The 2-D isotropic Gaussian shown above is separatable into \(x\) and \(y\) components, thus 2-D convolution can be performed by \(x\) direction first, then \(y\) direction.</p>			
+			<p>The second is approximate a gaussian using a box filter aka mean filter. By performing the box filter multiple times, an approximation gaussion filter can be obtained more quickly.</p>
+			<img height="400" src="gaussian_2.jpg">
+			
+			<p>The third is using an approximation Gaussian kernel. Below is an approximation of Gaussion filter with \(kernel size = 5\times{5},\sigma=1.0\).</p>
+			<img src="gaussian_3.jpg">					
 			
 			<br>
 			<h3>2. Experiment</h3>
@@ -42,6 +45,7 @@
 			<h3>3. References</h3>
 			<p>
 				<ul>
+					<li>http://pages.stat.wisc.edu/~mchung/teaching/MIA/reading/diffusion.gaussian.kernel.pdf.pdf</li>
 					<li>https://homepages.inf.ed.ac.uk/rbf/HIPR2/gsmooth.htm</li>
 					<li>http://elynxsdk.free.fr/ext-docs/Blur/Fast_box_blur.pdf</li>
 					<li>http://nghiaho.com/?p=1159</li>

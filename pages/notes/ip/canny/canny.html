@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Canny Edge Detector</title>
+        <link rel="stylesheet" href="../../../../index_css.css">
+		
+		<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+		<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+    </head>
+
+    <body>
+        <div class="header">
+
+        </div>
+        <div class="navigation">
+            <div class="nav_item"><a href="https://noidh.github.io">Main</a></div>
+        </div>
+
+        <div class="introduction">	
+			<h3>1. Introduction</h3>
+			<p>The process of Canny edge detection algorithm consists of 5 different steps:</p>
+			<ol type="1">
+				<li>Apply Gaussian filter to denoise</li>
+				<li>Find the intensity gradients of the image</li>
+				<li>Apply gradient magnitude thresholding or lower bound cut-off suppression to get rid of spurious response to edge detection</li>
+				<li>Apply double threshold to determine potential edges</li>
+				<li>Track edge by hysteresis: Finalize the detection of edges by suppressing all the other edges that are weak and not connected to strong edges.</li>
+			</ol>
+			
+			<br>
+			<h3>2. Experiment</h3>
+			
+			<h3>3. References</h3>
+			<p>
+				<ul>
+					<li>https://en.wikipedia.org/wiki/Canny_edge_detector</li>
+				</ul>
+			</p>
+		</div>
+    </body>
+</html>
