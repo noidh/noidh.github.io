@@ -10,7 +10,11 @@
 
     <body>
         <div class="header">
-
+			<h3>
+			Doan Huu Noi
+			</h3>
+			<span class="header_email"><a>doanhuunoi@gmail.com</a></span><br>
+			<span class="header_job">Image Processing - Software Engineer</span>
         </div>
         <div class="navigation">
             <div class="nav_item"><a href="https://noidh.github.io">Main</a></div>
@@ -20,20 +24,24 @@
 			<h3>1. Introduction</h3>
 			<p>The process of Canny edge detection algorithm consists of 5 different steps:</p>
 			<ol type="1">
-				<li>Apply Gaussian filter to denoise</li>
-				<li>Find the intensity gradients of the image</li>
-				<li>Apply gradient magnitude thresholding or lower bound cut-off suppression to get rid of spurious response to edge detection</li>
-				<li>Apply double threshold to determine potential edges</li>
-				<li>Track edge by hysteresis: Finalize the detection of edges by suppressing all the other edges that are weak and not connected to strong edges.</li>
+				<li>Apply Gaussian filter to denoise.</li>
+				<li>Find the intensity gradients of the image.</li>
+				<li>Compute gradient's maginute and theta, then apply a non-maximal suppression to remove undesired edges.</li>
+				<li>Apply double threshold to determine potential edges.</li>
+				<li>Perform edge tracking by hysteresis to detect real edge.</li>
 			</ol>
 			
 			<br>
 			<h3>2. Experiment</h3>
-			
+			<p>Demo video</p>
+			<iframe width="853" height="480" frameborder="0" allowfullscreen src="https://www.youtube.com/embed/TWromJvCQks"></iframe>
+
 			<h3>3. References</h3>
 			<p>
 				<ul>
 					<li>https://en.wikipedia.org/wiki/Canny_edge_detector</li>
+					<li>http://justin-liang.com/tutorials/canny/</li>
+					<li>https://towardsdatascience.com/canny-edge-detection-step-by-step-in-python-computer-vision-b49c3a2d8123</li>
 				</ul>
 			</p>
 		</div>
