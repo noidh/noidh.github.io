@@ -10,6 +10,11 @@
 
     <body>
         <div class="header">
+			<h3>
+			Doan Huu Noi
+			</h3>
+			<span class="header_email"><a>doanhuunoi@gmail.com</a></span><br>
+			<span class="header_job">Image Processing - Software Engineer</span>
 
         </div>
         <div class="navigation">
@@ -18,11 +23,12 @@
 
         <div class="introduction">	
 			<h3>1. Introduction</h3>
-			<p>A straight line \(y=mx+b\) can be represented as a point \((b,m)\) a the parameter space. However, vertical lines pose a problem because of unbounded values of the slope parameter \(m\).</p>
+			<p>Hough Line Transform is a typical algorithm used for detecting the lines existing in the image.</p>
+			<p>We know that a straight line \(y=mx+b\) can be represented as a point \((b,m)\) a the parameter space. However, vertical lines pose a problem because of unbounded values of the slope parameter \(m\).</p>
 			<p>For example, we have a line depicted in Cartesian system as red line below</p>
 			<img src="hough_1.jpg">
 			<p>The intersection point of the line and the perpendicular line that comes from the origin is \(P_{0}=(\rho\cos{\theta}, \rho\sin{\theta})\).</p>
-			<p>So, for any point \(P\) on the line, vector \(P-P_{0}\) and \(P_{0}-0=P_{0}\) must be orthogonal together.</p>
+			<p>So, for any point \(P=(x,y)\) on the line, vector \(P-P_{0}\) and \(P_{0}-0=P_{0}\) must be orthogonal together.</p>
 			<p>Therefore, \((P-P_{0})\cdot{P}=0\) or \(P\cdot{P_{0}} = P_{0}\cdot{P_{0}}\)</p>
 			<p>\(x * \rho\cos{\theta} + y * \rho\sin{\theta}=\rho\cos{\theta} * \rho\cos{\theta} + \rho\sin{\theta} * \rho\sin{\theta}\)</p>
 			<p>\(\rho(x\cos{\theta} + y\sin{\theta}) = \rho^{2}(cos^{2}{\theta} + sin^{2}{\theta})\)</p>
