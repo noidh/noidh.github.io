@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Linear Least Square Approximation</title>
+        <title>Linear Least Square Approximation by Matrix Method</title>
         <link rel="stylesheet" href="../../../../index_css.css">
 		
 		<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -10,7 +10,12 @@
 
     <body>
         <div class="header">
-
+			<h3>
+			Doan Huu Noi
+			</h3>
+			<span class="header_email"><a>doanhuunoi@gmail.com</a></span><br>
+			<span class="header_job">Image Processing - Software Engineer</span>
+	
         </div>
         <div class="navigation">
             <div class="nav_item"><a href="https://noidh.github.io">Main</a></div>
@@ -18,10 +23,9 @@
 
         <div class="introduction">	
 			<h3>1. Introduction</h3>
-			<p>A linear problem \(Ax=b\) often has no solution, that means the error \(e=b - Ax\) isn't always zero.
-			When \(e\) is zero, \(x\) is an exact solution to \(Ax=b\). When the length of \(e\) is as small as possible, \(\widehat{x}\) is a least squares solution.
+			<p>\(x\) is an exact solution to linear problem \(Ax=b\) if the error \(e=b - Ax\) is zero. However, when the error \(e\) isn't zero and its length is as small as possible, we can find a least squares solution \(\widehat{x}\).
 			</p>	
-			<p>So, when \(Ax=b\) has no solution, we can solve \(A\widehat{x}=b\) to obtain an approximation solution.</p>
+			<p>Therefore, if \(Ax=b\) has no exact solution, we can solve \(A\widehat{x}=b\) to obtain an approximation solution.</p>
 			<p>In order to solve \(A\widehat{x}=b\), multiply 2 side by \(A^{T}\) transpose matrix of \(A\)</p>
 			<p>
 				\[A^{T}A\widehat{x}=A^{T}b\]
@@ -30,13 +34,13 @@
 			<p>
 				\[\widehat{x}=\left[A^{T}A\right]^{-1}A^{T}b\tag{1}\]
 			</p>
-			<p>Apply least squares approximation to fit a straight line in 2D, assume there are N pair of 2D points \((x_{1-N}, y_{1-N})\) we have equation for a line is \(Mx + B = y\)</p>
-			<p>\(Ax=b\) is \(\left[\begin{array}{ccc}x_{1} & 1\\x_{2} & 1\\...\\x_{N} & 1\end{array}\right]\left[\begin{array}{ccc}M\\B\end{array}\right]=\left[\begin{array}{c}y_{1}\\y_{2}\\...\\y_{N}\end{array}\right]\)</p>
+			<p>To apply the least squares approximation to fit a straight line in 2D, we assume that there are number of N 2D points \((x_{1-N}, y_{1-N})\). A straight line that has least square distance to each point can be described as \(y=Mx + B\)</p>
+			<p>The linear problem \(Ax=b\) now is \(\left[\begin{array}{ccc}x_{1} & 1\\x_{2} & 1\\...\\x_{N} & 1\end{array}\right]\left[\begin{array}{ccc}M\\B\end{array}\right]=\left[\begin{array}{c}y_{1}\\y_{2}\\...\\y_{N}\end{array}\right]\)</p>
             <p>Where \(A=\left[\begin{array}{ccc}x_{1} & 1\\x_{2} & 1\\...\\x_{N} & 1\end{array}\right]\), \(x=\left[\begin{array}{ccc}M\\B\end{array}\right]\), and \(b=\left[\begin{array}{c}y_{1}\\y_{2}\\...\\y_{N}\end{array}\right]\)</p>
 			<p>\[\left[A^{T}A\right]^{-1}=\left[\begin{array}{}\sum_{i}^{N}x_{i}^{2} & \sum_{i}^{N}x_{i}\\\sum_{i}^{N}x_{i}&N\end{array}\right], A^{T}b=\left[\begin{array}{}\sum_{i}^{N}x_{i}y_{i}\\\sum_{i}^{N}y_{i}\end{array}\right]\tag{2}\]</p>
 			<p>From \((1)\) and \((2)\), we have \(\widehat{x}=\left[\begin{array}{}\sum_{i}^{N}x_{i}^{2} & \sum_{i}^{N}x_{i}\\\sum_{i}^{N}x_{i}&N\end{array}\right]^{-1}\left[\begin{array}{}\sum_{i}^{N}x_{i}y_{i}\\\sum_{i}^{N}y_{i}\end{array}\right]\)</p>
 			<p>We need to find inverse of square matrix \(\left[\begin{array}{}\sum_{i}^{N}x_{i}^{2} & \sum_{i}^{N}x_{i}\\\sum_{i}^{N}x_{i}&N\end{array}\right]^{-1}\)</p>
-			<p>\(Det=N\sum_{i}^{N}x_{i}^{2} - (\sum_{i}^{N}x_{i})^2\), check for \(Det\) is difference zero.</p>
+			<p>\(Det=N\sum_{i}^{N}x_{i}^{2} - (\sum_{i}^{N}x_{i})^2\), check for the \(Det\) is difference from zero.</p>
 			<p>Inverse matrix is \[\frac{1}{N\sum_{i}^{N}x_{i}^{2} - (\sum_{i}^{N}x_{i})^2}\left[\begin{array}{}N & -\sum_{i}^{N}x_{i}\\-\sum_{i}^{N}x_{i}&\sum_{i}^{N}x_{i}^{2}\end{array}\right]\tag{3}\]</p>
 			
 			<p>Finally, we have </p>
@@ -45,10 +49,13 @@
 			
 			<br>
 			<h3>2. Experiment</h3>
-			
+			<iframe width="853" height="480" frameborder="0" allowfullscreen src="https://www.youtube.com/embed/JXKumJ3AX9U"></iframe>
+
+		
 			<h3>3. References</h3>
 			<p>
 				<ul>
+					<li>https://en.wikipedia.org/wiki/Least_squares</li>
 					<li>https://math.mit.edu/~gs/linearalgebra/ila0403.pdf</li>
 				</ul>
 			</p>
