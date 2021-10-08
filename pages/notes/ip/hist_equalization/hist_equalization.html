@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>A Simple Contrast Enhancement by Histogram Equalization</title>
+        <link rel="stylesheet" href="../../../../index_css.css">
+		
+		<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+		<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+    </head>
+
+    <body>
+        <div class="header">
+			<h3>
+			Doan Huu Noi
+			</h3>
+			<span class="header_email"><a>doanhuunoi@gmail.com</a></span><br>
+			<span class="header_job">Image Processing - Software Engineer</span>
+	
+        </div>
+        <div class="navigation">
+            <div class="nav_item"><a href="https://noidh.github.io">Main</a></div>
+        </div>
+
+        <div class="introduction">	
+			<h3>1. Introduction</h3>
+			<p>Histogram Equalization is a simple algorithm that improves the contrast in an image</p>
+			<p>By stretching out the range of histogram distribution, the contrast of image can be enhanced a lot.</p>
+
+			<p>For the histogram H(i), a cummulative distribution function (cdf) \(H^{'}(i)\) is described as below.</p>
+			<p>\[H^{'}(i)=\sum_{0\le{j}<{i}}H(j)\]</p>
+
+			<p>After calculating the cdf function, \(H^{'}(i)\) must be normalized such that the maximum value is in range of intensity gray value.  Then, we can map the image pixel to new value.</p>
+			<p>\[I^{hist_equalized}(x,y)=H^{'}(I(x,y))\]</p>
+			<br>
+			<h3>2. Experiment</h3>
+			
+		
+			<h3>3. References</h3>
+			<p>
+				<ul>
+					<li>https://en.wikipedia.org/wiki/Histogram_equalization</li>
+					<li>https://docs.opencv.org/3.4.15/d4/d1b/tutorial_histogram_equalization.html</li>
+				</ul>
+			</p>
+		</div>
+    </body>
+</html>
