@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>A Simple Contrast Enhancement by Histogram Equalization</title>
+        <title>A Simple Contrast Enhancement Algorithm by Histogram Equalization</title>
         <link rel="stylesheet" href="../../../../index_css.css">
 		
 		<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -26,17 +26,18 @@
 
         <div class="introduction">	
 			<h3>1. Introduction</h3>
-			<p>Histogram Equalization is a simple algorithm that improves the contrast in an image</p>
-			<p>By stretching out the range of histogram distribution, the contrast of image can be enhanced a lot.</p>
-
-			<p>For the histogram H(i), a cummulative distribution function (cdf) \(H^{'}(i)\) is described as below.</p>
+			<p>Histogram Equalization is a simple algorithm that can improve the contrast in an image.</p>
+			<p>By stretching out the range of histogram distribution, the contrast of image can be enhanced. However, the noise can be strengthened too.</p>
+			<img height="300px" src="hist_1.bmp">
+			<img height="300px" src="hist_2.bmp">
+			<p>For the histogram H(i), a cummulative distribution function (cdf) \(H^{'}(i)\) is defined as below.</p>
 			<p>\[H^{'}(i)=\sum_{0\le{j}<{i}}H(j)\]</p>
 
-			<p>After calculating the cdf function, \(H^{'}(i)\) must be normalized such that the maximum value is in range of intensity gray value.  Then, we can map the image pixel to new value.</p>
+			<p>After calculating the cdf function, \(H^{'}(i)\) must be normalized such that the maximum value is in the range of intensity gray value.  Then, the image pixel is mapped into a new value.</p>
 			<p>\[I^{hist_equalized}(x,y)=H^{'}(I(x,y))\]</p>
 			<br>
 			<h3>2. Experiment</h3>
-			
+			<iframe width="853" height="480" frameborder="0" allowfullscreen src="https://www.youtube.com/embed/n8Oz8ctenvA"></iframe>
 		
 			<h3>3. References</h3>
 			<p>
