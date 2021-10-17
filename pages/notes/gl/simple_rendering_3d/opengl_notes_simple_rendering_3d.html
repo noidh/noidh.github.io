@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>A Simple 3D Rendering By QT and OpenGL</title>
+        <link rel="stylesheet" href="../../../../index_css.css">
+		
+		<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+		<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+    </head>
+
+    <body>
+        <div class="header">
+			<div  style="width: 270px; float: left;">
+				<h2 style="display: flex; align-self: left; position:absolute; top:0px;">Doan Huu Noi (NEO)</h2>
+				<h4></h4><p><a><< doanhuunoi@gmail.com >></a></p></h4>
+				<p style="word-wrap: break-word;">I'm an enthusiastic researcher in Image Processing and Computer Vision. Learning new theories and bringing them to practice is my hobby. My research topics are Pattern Matching, Stereo-Vision Reconstruction, and other Miscellaneous.</p>
+			</div>
+			<div style="float: left;">
+				<img style="height: 220px;" src="https://noidh.github.io/header.jpg">
+			</div>
+        </div>
+        <div class="navigation">
+            <div class="nav_item"><a href="https://noidh.github.io">Main</a></div>
+        </div>
+
+        <div class="introduction">	
+			<h3>1. Introduction</h3>
+			<h4>Vertex Shader</h4>
+            <code class="code_view">
+            <pre>
+#version 330 core
+layout (location = 0) in vec3 aPos;
+layout (location = 1) in vec3 aColor;
+
+out vec3 color;
+
+uniform mat4 model;
+uniform mat4 view;
+uniform mat4 projection;
+
+void main()
+{
+    gl_Position = projection * view * model * vec4(aPos, 1.0);
+    color = aColor;
+}
+            </pre>
+            </code>
+
+            <h4>Fragment Shader</h4>
+            <code class="code_view">
+            <pre>
+#version 330 core
+
+in vec3 color;
+
+out vec4 FragColor;
+
+void main()
+{
+    FragColor = vec4(color, 1.0);
+}
+            </pre>
+            </code>
+
+            <h4>Initialize OpenGL Context in initializeGL()</h4>
+            <code class="code_view">
+            <pre>
+do
+{
+    initializeOpenGLFunctions();
+    
+    QOpenGLBuffer* pVBO = new QOpenGLBuffer(QOpenGLBuffer::VertexBuffer);
+
+    if(!pVBO)
+        break;
+
+    QOpenGLBuffer* pEBO = new QOpenGLBuffer(QOpenGLBuffer::IndexBuffer);
+
+    if(!pEBO)
+        break;
+
+    QOpenGLVertexArrayObject* pVAO = new QOpenGLVertexArrayObject();
+
+    if(!pVAO)
+        break;
+
+    pVBO->create();
+    pEBO->create();
+    pVAO->create();
+                
+}
+while(false);
+
+            </pre>
+            </code>   
+            
+            
+            <h4>Allocate and assign buffer data</h4>
+            <p>Vertices buffer is created as 1-D array of x, y, z and color value of each pixel. Indices buffer is created as array of triangles formed by 3 pixel's positions near together.</p>
+            <code class="code_view">
+            <pre>
+do
+{
+    m_nVerticesSize = pModel->GetVerticesSize();
+    m_nIndicesSize = pModel->GetIndicesSize();
+
+    pVAO->bind();
+
+    pVBO->bind();
+    pVBO->setUsagePattern(QOpenGLBuffer::StaticDraw);
+    pVBO->allocate(pModel->GetVerticesBuffer(), m_nVerticesSize * sizeof(float));
+
+    pEBO->bind();
+    pEBO->setUsagePattern(QOpenGLBuffer::StaticDraw);
+    pEBO->allocate(pModel->GetIndicesBuffer(), m_nIndicesSize * sizeof(unsigned int));
+
+    pProgram->enableAttributeArray(0);
+    pProgram->setAttributeBuffer(0, GL_FLOAT, 0, 3, 6 * sizeof(float));
+
+    pProgram->enableAttributeArray(1);
+    pProgram->setAttributeBuffer(1, GL_FLOAT, 3 * sizeof(float), 3, 6 * sizeof(float));
+
+    pVAO->release();
+    pVBO->release();
+    pEBO->release();
+                
+}
+while(false);
+            </pre>
+            </code>   
+            
+            
+            <h4>Initialize model, view and projection matrix</h4>
+            <code class="code_view">
+            <pre>
+do
+{
+    QMatrix4x4 m_matrixModel;
+    QMatrix4x4 m_matrixView;
+    QMatrix4x4 m_matrixProjection;
+
+    m_matrixModel.setToIdentity();
+    m_matrixModel.rotate(m_pModel->GetRotateX(), QVector3D(1.0f, 0.0f, 0.0f));
+    m_matrixModel.rotate(m_pModel->GetRotateY(), QVector3D(0.0f, 1.0f, 0.0f));
+    m_matrixModel.rotate(m_pModel->GetRotateZ(), QVector3D(0.0f, 0.0f, 1.0f));
+    m_matrixModel.translate(m_pModel->GetTranslateX(), m_pModel->GetTranslateY(), m_pModel->GetTranslateZ());
+    m_matrixModel.scale(m_pModel->GetScaleX(), m_pModel->GetScaleY(), m_pModel->GetScaleZ());
+
+
+    QVector3D vectorCamPos = QVector3D(m_pModel->GetCameraPositionX(), m_pModel->GetCameraPositionY(), m_pModel->GetCameraPositionZ());
+    QVector3D vectorCamCenter = QVector3D(m_pModel->GetCameraCenterX(), m_pModel->GetCameraCenterY(), m_pModel->GetCameraCenterZ());
+    QVector3D vectorCamUp = QVector3D(m_pModel->GetCameraUpX(), m_pModel->GetCameraUpY(), m_pModel->GetCameraUpZ());
+
+    m_matrixView.setToIdentity();
+    m_matrixView.lookAt(vectorCamPos, vectorCamCenter, vectorCamUp);
+
+    QSize windowSize = size();
+    m_matrixProjection.setToIdentity();
+    m_matrixProjection.perspective(m_pModel->GetFOV(), (float)windowSize.width()/(float)windowSize.height(), m_pModel->GetNear(), m_pModel->GetFar());
+                
+}
+while(false);
+            </pre>
+            </code>              
+            
+            <h4>Render in paintGL()</h4>
+            <code class="code_view">
+            <pre>
+do
+{
+    glClearColor(0.2f, 0.2f, 0.2f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    glEnable(GL_DEPTH_TEST);
+    glDisable(GL_CULL_FACE);
+
+    if(!pProgram->isLinked())
+        break;
+
+    pProgram->bind();
+
+    pProgram->setUniformValue("model", m_matrixModel);
+    pProgram->setUniformValue("view", m_matrixView);
+    pProgram->setUniformValue("projection", m_matrixProjection);
+
+    if(!pVAO->isCreated())
+        break;
+
+    pVAO->bind();
+
+    glDrawElements(GL_TRIANGLES, m_nIndicesSize, GL_UNSIGNED_INT, nullptr);
+
+    pVAO->release();
+                
+}
+while(false);
+            </pre>
+            </code>  
+
+			<br>
+			<h3>2. Experiment</h3>
+			<p>Demo video</p>
+			<iframe width="853" height="480" frameborder="0" allowfullscreen src="https://www.youtube.com/embed/-Tr2X8o1ssE"></iframe>
+
+			<h3>3. References</h3>
+			<p>
+				
+			</p>
+		</div>
+    </body>
+</html>
