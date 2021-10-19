@@ -59,6 +59,73 @@ class Foo {
                     <a href="#median_filter">Median Filter By Sorting Network</a>
                 </li>
             </ul>
+
+            <h3 id = "dynamic program"># Dynamic Programming</h3>
+            <pre class="code_view">
+                <code>
+int CountCoin()
+{
+    int nRet = -1;
+
+    const int N = 3;
+    const int S = 11;
+    int w[N] = { 1, 3, 5 };
+
+    int dp[S + 1];
+    dp[0] = 0;
+
+    for (int i = 1; i <= S; ++i)
+    {
+        int nMin = (std::numeric_limits<int>::max)();
+        for (int j = 0; j < N; ++j)
+        {
+            int nRemain = i - w[j];
+            if(nRemain >= 0)
+                nMin = __min(nMin, dp[nRemain] + 1);
+        }
+
+        dp[i] = nMin;
+    }
+
+    nRet = dp[S];
+
+    return nRet;
+}
+
+int CountLCS()
+{
+    int nRet = -1;
+
+    char str1[] = "quetzalcoatl";
+    char str2[] = "zal";
+
+    const int nSize1 = sizeof(str1) - 1;
+    const int nSize2 = sizeof(str2) - 1;
+
+    int dp[nSize1 + 1][nSize2 + 1] = { 0 };
+
+    for (int i = 0; i < nSize1; ++i)
+    {		
+        for (int j = 0; j < nSize2; ++j)
+        {
+            if (str2[j] == str1[i])
+            {
+                dp[i + 1][j + 1] = dp[i][j] + 1;
+            }
+            else
+            {
+                dp[i + 1][j + 1] = __max(dp[i + 1][j], dp[i][j + 1]);
+            }
+        }
+    }
+
+    nRet = dp[nSize1][nSize2];
+
+    return nRet;
+}                   
+                </code>
+            </pre>
+
             <h4 id="rotate_90"># Rotate 90 degree</h4>
             
             <pre class="code_view">
