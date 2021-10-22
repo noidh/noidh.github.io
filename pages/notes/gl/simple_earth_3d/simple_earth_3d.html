@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>A Simple Earth 3D Rendering</title>
+        <link rel="stylesheet" href="../../../../index_css.css">
+		
+		<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+		<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+    </head>
+
+    <body>
+        <div class="header">
+			<div  style="width: 270px; float: left;">
+				<h2 style="display: flex; align-self: left; position:absolute; top:0px;">Doan Huu Noi (NEO)</h2>
+				<h4></h4><p><a><< doanhuunoi@gmail.com >></a></p></h4>
+				<p style="word-wrap: break-word;">I'm an enthusiastic researcher in Image Processing and Computer Vision. Learning new theories and bringing them to practice is my hobby. My research topics are Pattern Matching, Stereo-Vision Reconstruction, and other Miscellaneous.</p>
+			</div>
+			<div style="float: left;">
+				<img style="height: 220px;" src="https://noidh.github.io/header.jpg">
+			</div>
+        </div>
+        <div class="navigation">
+            <div class="nav_item"><a href="https://noidh.github.io">[Home]</a></div>
+        </div>
+
+        <div class="introduction">	
+			<h3>1. Introduction</h3>
+
+            <h4>A. Calculate Vertices</h4>
+            <p>We can calculate vertex's coordinate based on longitude and latitude of the Earth. The longitude ranges from -180 to 180 degree and the Prime meridian or zero degree longitude goes through Greenwich. The latitude ranges from -90 degree to 90 degree.</p>
+            <img src="640px-Latitude_and_Longitude_of_the_Earth.svg.png">
+            <p>By choosing step is 1 degree, there are 360 longitudes and 180 latitudes. We can get better resolution by decreasing step size that however results in lower computing performance and rendering.</p>
+            <p>Now, from every longitude \(\theta\) and latitude \(\phi\), vertex's coordinate \((x,y,z)\) can be calculated as below.</p>
+            <img height="300px" src="earth_3d_1.bmp">
+            <p>\(y=r \times sin(\phi)\)</p>
+            <p>\(xz=r \times cos(\phi)\)</p>           
+            <p>\(x=xz \times sin(\theta)\)</p>
+            <p>\(z=xz \times cos(\theta)\)</p>
+            <p>Where, \(r=1.0\)</p>
+            <p>For rendering the Earth with color texture, we also need to calculate the texture's coordinate. For each vertex, the corresponding texture's coordinate is the index of the longitude and the latitude which is normalized from 0->1.0.</p>
+
+            <h4>B. Calculate Indices</h4>
+            <p>From 4 vertices, two triangles can be formed in counterclockwise ordering as below</p>
+            <img height="300px" src="earth_3d_2.png">
+            <p>\(k1 \to k2 \to k1+1\) and \(k1+1 \to k2 \to k2+1\)</p>
+
+			<h4>C. Vertex Shader</h4>
+            <code class="code_view">
+            <pre>
+#version 330 core
+layout(location = 0) in vec3 aPos;
+layout(location = 1) in vec2 aTexCoord;
+
+out VS_OUT
+{
+    vec2 TexCoord;
+
+} vs_out;
+
+uniform mat4 model;
+uniform mat4 view;
+uniform mat4 projection;
+
+void main(void)
+{
+    gl_Position = projection * view * model * vec4(aPos, 1.0);
+    vs_out.TexCoord = aTexCoord;
+}
+                
+            </pre>
+            </code>
+
+            <h4>D. Fragment Shader</h4>
+            <code class="code_view">
+            <pre>
+#version 330 core
+
+uniform sampler2D qt_Texture0;
+
+in VS_OUT
+{
+    vec2 TexCoord;
+
+} fg_in;
+
+out vec4 FragColor;
+
+void main(void)
+{
+    FragColor = texture(qt_Texture0, fg_in.TexCoord);
+}                  
+            </pre>
+            </code>
+
+			<h3>2. Experiment</h3>
+			<p>Demo video</p>
+			<iframe width="853" height="480" frameborder="0" allowfullscreen src="https://www.youtube.com/embed/yW5V0UeQDYw"></iframe>
+
+			<h3>3. References</h3>
+			<p>
+				<ul>
+                    <li>http://www.songho.ca/opengl/gl_sphere.html</li>
+                </ul>
+			</p>
+		</div>
+    </body>
+</html>
