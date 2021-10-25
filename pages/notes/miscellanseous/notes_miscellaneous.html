@@ -20,7 +20,27 @@
         </div>
 
         <div class="introduction">
-		
+
+            <h3>Priority Queue, Min Max Heap</h3>
+            <pre class="code_view">
+                <code>
+std::priority_queue<int, std::vector<int>, std::greater<int>> queue;
+
+queue.push(1);
+queue.push(100);
+queue.push(10);
+queue.push(20);
+queue.push(5);
+queue.push(45);
+
+while (!queue.empty())
+{
+    int a = queue.top();
+    queue.pop();
+}                   
+                </code>
+            </pre>
+
             <h3>KDTree</h3>
             <p><a href="kdtree.h">Link</a></p>
 
