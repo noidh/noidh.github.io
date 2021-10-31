@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Normalized Cross Correlation</title>
+        <link rel="stylesheet" href="../../../../index_css.css">
+		
+		<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+		<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+    </head>
+
+    <body>
+        <div class="header">
+			<div  style="width: 270px; float: left;">
+				<h2 style="display: flex; align-self: left; position:absolute; top:0px;">Doan Huu Noi (NEO)</h2>
+				<h4></h4><p><a><< doanhuunoi@gmail.com >></a></p></h4>
+				<p style="word-wrap: break-word;">I'm an enthusiastic researcher in Image Processing and Computer Vision. Learning new theories and bringing them to practice is my hobby. My research topics are Pattern Matching, Stereo-Vision Reconstruction, and other Miscellaneous.</p>
+			</div>
+			<div style="float: left;">
+				<img style="height: 220px;" src="https://noidh.github.io/header.jpg">
+			</div>
+        </div>
+        <div class="navigation">
+            <div class="nav_item"><a href="https://noidh.github.io">[Home]</a></div>
+        </div>
+
+        <div class="introduction">	
+			<h3>1. Fast Normalized Cross Correlation</h3>
+			<p>Normalized Cross Correlation aka NCC is a basic pattern matching algorithm which effectively deal with very noise or blurring condition.</p>
+            <p>With a template image \(T\) and target image \(I\), matching equation is below.</p>
+            <p>\[s(u,v)=\frac{\sum_{x,y}(I(x,y)-\overline{I})(T(x -u, y-v) - \overline{T})}{\sqrt{\sum_{x,y}(I(x,y)-\overline{I})^2}\sqrt{\sum_{x,y}(T(x - u,y -v)-\overline{T})^2}}\tag{1}\]</p>
+
+            <p>For short, we can call \(I(x,y)\) as \(I\) and \(T(x-u, y-v)\) as \(T\)</p>
+            <p>The numerator is simplified as below</p>
+            <p> \[\sum(I-\overline I)(T - \overline T) = \sum I \cdot (T - \overline T) - \overline I \cdot \sum (T - \overline T) =  \sum I \cdot (T - \overline T) = \sum I \cdot T - \frac{\sum I \sum T}{W \cdot H}\tag{2}\]</p>
+            
+            <p>A part of the denominator \(\sum(I-\overline{I})^2\) can be expanded as below for later optimizing</p>
+            <p>\[\sum(I-\overline I)^2 = \sum I \cdot I - 2 \cdot \overline I \cdot \sum I + \sum \overline I \cdot \overline I = \sum I \cdot I - \frac{2 \cdot \sum I \cdot \sum I}{W \cdot H} + \frac{\sum I \cdot \sum I}{W \cdot H} = \sum I^2 - \frac{{(\sum I)}^2}{W \cdot H}\tag{3}\]</p>
+            <p>Similarly, \(\sum(T-\overline{T})^2\) is expanded as below</p>
+            <p>\[\sum(T-\overline{T})^2 = \sum T^2 - \frac{{(\sum T)}^2}{W \cdot H}\tag{4}\]</p>
+
+            <p>Substitute \(2\), \(3\) and \(4\) into \(1\), we get a new matching equation as below</p>
+            <p>\[s(u,v) = \frac{\sum I \cdot T - \frac{\sum I \sum T}{W \cdot H}}{\sqrt{\sum I^2 - \frac{{(\sum I)}^2}{W \cdot H}}\sqrt{\sum T^2 - \frac{{(\sum T)}^2}{W \cdot H}}}=\frac{\sum I \cdot T - \frac{\sum I \sum T}{W \cdot H}}{\frac{1}{W \cdot H}\sqrt{(W \cdot H \cdot \sum I^2 - (\sum I)^2) \cdot (W \cdot H \cdot \sum T^2 - (\sum T)^2)}}=\frac{W \cdot H \cdot \sum I \cdot T - \sum I \sum T}{\sqrt{(W \cdot H \cdot \sum I^2 - (\sum I)^2) \cdot (W \cdot H \cdot \sum T^2 - (\sum T)^2)}}\]</p>
+            <p>For the template \(T\), computation of \(\sum T\) and \(\sum T^2\) are done at initial step.</p>
+            <p>For the target image \(I\), \(\sum I^2\) and \(\sum I\) have to be computed at every sliding-window. However, it can be optimized more efficiently by using the <a href="https://noidh.github.io/pages/notes/ip/integral/integral.html">Integral Image</a> mechanism.</p>
+
+            <h3>2. Experiment</h3>
+			<iframe width="853" height="480" frameborder="0" allowfullscreen src="https://www.youtube.com/embed/Ytk1mdB4A8M"></iframe>
+
+			<h3>3. References</h3>
+			<p>
+				<ul>
+                    <li>https://archive.stsci.edu/iue/manual/newsips/node39.html</li>
+                    <li>https://docs.opencv.org/master/df/dfb/group__imgproc__object.html#ga586ebfb0a7fb604b35a23d85391329be</li>
+                </ul>
+			</p>
+		</div>
+    </body>
+</html>
