@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Basic of Lighting Model in OpenGL</title>
+        <link rel="stylesheet" href="../../../../index_css.css">
+		
+		<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+		<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+    </head>
+
+    <body>
+        <div class="header">
+			<div  style="width: 270px; float: left;">
+				<h2 style="display: flex; align-self: left; position:absolute; top:0px;">Doan Huu Noi (NEO)</h2>
+				<h4></h4><p><a><< doanhuunoi@gmail.com >></a></p></h4>
+				<p style="word-wrap: break-word;">I'm an enthusiastic researcher in Image Processing and Computer Vision. Learning new theories and bringing them to practice is my hobby. My research topics are Pattern Matching, Stereo-Vision Reconstruction, and other Miscellaneous.</p>
+			</div>
+			<div style="float: left;">
+				<img style="height: 220px;" src="https://noidh.github.io/header.jpg">
+			</div>
+        </div>
+        <div class="navigation">
+            <div class="nav_item"><a href="https://noidh.github.io">[Home]</a></div>
+        </div>
+
+        <div class="introduction">	
+			<h3>1. Basic of Lighting Model in OpenGL</h3>
+            
+            <p>In order to simulate the lighting, OpenGL uses lighting models which are based on approximations of reality. One of the most popular and simplest models is Phong lighting model.</p>
+            <p>Phong lighting model basically consist of 3 components: ambient, diffuse and specular</p>            
+            <img width="500px" src="basic_lighting_phong.png">
+
+            <h3>A. Ambient lighting</h3>
+            <p>There is always some light from somewhere in the world, thus objects are never completely dark. For simple simulation, we use an small constant value as ambient factor that always gives the object some color.</p>
+            <code class="code_view">
+                <pre>
+float fAmbientStrength = 0.1;
+vec3 ambient = fAmbientStrength * lightColor;
+                </pre>
+            </code>
+            
+            <h3>B. Diffuse lighting</h3>
+            <p>The diffuse lighting is calculated by dot product of the light source's direction vector and the surface's normal vector. Since dot product of 2 vectors gradually converges to 1 if angle between them goes to zero, the closer the surface is aligned to the light source's direction, the more lighting it can receive.</p>
+            <img height="300px" src="diffuse_light.png">
+            <code class="code_view">
+                <pre>
+vec3 norm = normalize(fg_in.Normal);
+vec3 lightDir = normalize(lightPos - fg_in.FragPos);
+
+float diff = max(dot(norm, lightDir), 0.0);
+vec3 diffuse = diff * lightColor;
+                </pre>
+            </code>
+
+
+            <h3>C. Specular lighting</h3>
+            <p>The specular lighting depicts the bright spot on a shiny object. it's calculated by the dot product of the refection vector of the light source's direction vector and the eye's direction vector. the closer the angle between them, the more lighting our eyes can perceive. the pow operation makes the specular light down to zero faster so that a bright spot displays more intuitively.</p>
+            <img height="300px" src="basic_lighting_specular_theory.png">
+            <code class="code_view">
+                <pre>
+vec3 cameraDir = normalize(cameraPos - fg_in.FragPos);
+vec3 reflectDir = reflect(-lightDir, norm);
+
+float spec = pow(max(dot(cameraDir, reflectDir), 0.0), 8);
+
+float specularStrength = 0.5;
+vec3 specular = specularStrength * spec * lightColor;
+                </pre>
+            </code>     
+            
+            <h3>D. Vertex Shader</h3>
+            <code class="code_view">
+                <pre>
+#version 330 core
+layout(location = 0) in vec3 aPos;
+layout(location = 1) in vec3 aNormal;
+layout(location = 2) in vec2 aTexCoord;
+
+out VS_OUT
+{
+    vec3 Normal;
+    vec2 TexCoord;
+    vec3 FragPos;
+
+} vs_out;
+
+uniform mat4 model;
+uniform mat4 view;
+uniform mat4 projection;
+
+void main(void)
+{
+    gl_Position = projection * view * model * vec4(aPos, 1.0);
+    vs_out.TexCoord = aTexCoord;
+    vs_out.Normal = vec3(model * vec4(aNormal, 1.0));
+    vs_out.FragPos = vec3(model * vec4(aPos, 1.0));
+}                    
+                </pre>
+            </code>  
+
+            <h3>E. Fragment Shader</h3>
+            <code class="code_view">
+                <pre>
+#version 330 core
+
+uniform sampler2D qt_Texture0;
+
+uniform vec3 lightPos;
+uniform vec3 lightColor;
+
+uniform vec3 cameraPos;
+
+in VS_OUT
+{
+    vec3 Normal;
+    vec2 TexCoord;
+    vec3 FragPos;
+
+} fg_in;
+
+out vec4 FragColor;
+
+void main(void)
+{
+    float fAmbientStrength = 0.1;
+    vec3 ambient = fAmbientStrength * lightColor;
+
+    vec3 norm = normalize(fg_in.Normal);
+    vec3 lightDir = normalize(lightPos - fg_in.FragPos);
+
+    float diff = max(dot(norm, lightDir), 0.0);
+    vec3 diffuse = diff * lightColor;
+
+    vec3 cameraDir = normalize(cameraPos - fg_in.FragPos);
+    vec3 reflectDir = reflect(-lightDir, norm);
+
+    float spec = pow(max(dot(cameraDir, reflectDir), 0.0), 8);
+
+    float specularStrength = 0.5;
+    vec3 specular = specularStrength * spec * lightColor;
+
+    FragColor = vec4(diffuse + ambient + specular, 1.0) * texture(qt_Texture0, fg_in.TexCoord);
+}
+                                   
+                </pre>
+            </code> 
+
+			<h3>2. Experiment</h3>
+			<p>Demo video</p>
+			<iframe width="853" height="480" frameborder="0" allowfullscreen src="https://www.youtube.com/embed/3FZQZEDzwYQ"></iframe>
+
+			<h3>3. References</h3>
+			<p>
+				<ul>
+                    <li>https://learnopengl.com/Lighting/Basic-Lighting</li>
+                </ul>
+			</p>
+		</div>
+    </body>
+</html>
