@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Linear Regression</title>
+        <link rel="stylesheet" href="../../../../index_css.css">
+		
+		<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+		<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+    </head>
+
+    <body>
+        <div class="header">
+			<div  style="width: 270px; float: left;">
+				<h2 style="display: flex; align-self: left; position:absolute; top:0px;">Doan Huu Noi (NEO)</h2>
+				<h4></h4><p><a><< doanhuunoi@gmail.com >></a></p></h4>
+				<p style="word-wrap: break-word;">I'm an enthusiastic researcher in Image Processing and Computer Vision. Learning new theories and bringing them to practice is my hobby. My research topics are Pattern Matching, Stereo-Vision Reconstruction, and other Miscellaneous.</p>
+			</div>
+			<div style="float: left;">
+				<img style="height: 220px;" src="https://noidh.github.io/header.jpg">
+			</div>
+        </div>
+        <div class="navigation">
+            <div class="nav_item"><a href="https://noidh.github.io">[Home]</a></div>
+        </div>
+
+        <div class="introduction">	
+			<h3>1. Linear Regression</h3>
+			<p>Linear regression is studied as a model for finding the relationship between the input variables and the output variables.</p>
+            <p>\[y=mx + b\]</p>
+
+            <h4>Cost Function</h4>
+            <p>The cost function is used for describing the best values for m and b so that the error between the predicted value and the actual value is minimal.</p>
+			<p>\[minimize \frac{1}{N} \sum_{i=1}^N (y_i^{'} - y_i)^2\]</p>
+            <p>\[J=\frac{1}{N} \sum_{i=1}^N (y_i^{'} - y_i)^2\]</p>
+
+            <h4>Gradient Descent</h4>
+            <p>Gradient descent is a method used for updating \(m\) and \(b\) to reduce the cost function</p>
+            <p>By taking the partial derivatices with respect to \(m\) and \(b\)</p>
+            <p>\[J=\frac{1}{N} \sum_{i=1}^N (y_i^{'} - y_i)^2 =\frac{1}{N} \sum_{i=1}^N (mx_i + b - y_i)^2 \]</p>
+            <p>\[\frac{\delta J}{\delta m} = \frac{2}{N} \sum_{i=1}^N (mx_i + b - y_i) \cdot x_i = \frac{2}{N} \sum_{i=1}^N (y_i^{'} - y_i) \cdot x_i\]</p>
+            <p>\[\frac{\delta J}{\delta b} = \frac{2}{N} \sum_{i=1}^N (mx_i + b - y_i) = \frac{2}{N} \sum_{i=1}^N (y_i^{'} - y_i)\]</p>
+
+            <p>Learning function</p>
+            <p>\[m \leftarrow m - \alpha \cdot \frac{\delta J}{\delta m} = m - \alpha \cdot \frac{2}{N} \sum_{i=1}^N (y_i^{'} - y_i) \cdot x_i\]</p>
+            <p>\[b \leftarrow b - \alpha \cdot \frac{\delta J}{\delta b} = b - \alpha \cdot \frac{2}{N} \sum_{i=1}^N (y_i^{'} - y_i) \]</p>
+            <p>Where \(a\) is the learning rate. A smaller learning rate help us get closer to minimal but it's slow, a larger learning rate can make cost funtion coverage to minima faster but it can lead to overfit.</p>
+
+            <h3>2. Experiment</h3>
+			<p>Demo video</p>
+			
+
+			<h3>3. References</h3>
+			<p>
+				<ul>
+                    <li>https://towardsdatascience.com/introduction-to-machine-learning-algorithms-linear-regression-14c4e325882a</li>
+                    <li>https://machinelearningmastery.com/linear-regression-for-machine-learning/</li>
+                </ul>
+			</p>
+		</div>
+    </body>
+</html>

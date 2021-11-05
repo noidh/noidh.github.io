@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Principal Component Analysis</title>
+        <link rel="stylesheet" href="../../../../index_css.css">
+		
+		<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+		<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+    </head>
+
+    <body>
+        <div class="header">
+			<div  style="width: 270px; float: left;">
+				<h2 style="display: flex; align-self: left; position:absolute; top:0px;">Doan Huu Noi (NEO)</h2>
+				<h4></h4><p><a><< doanhuunoi@gmail.com >></a></p></h4>
+				<p style="word-wrap: break-word;">I'm an enthusiastic researcher in Image Processing and Computer Vision. Learning new theories and bringing them to practice is my hobby. My research topics are Pattern Matching, Stereo-Vision Reconstruction, and other Miscellaneous.</p>
+			</div>
+			<div style="float: left;">
+				<img style="height: 220px;" src="https://noidh.github.io/header.jpg">
+			</div>
+        </div>
+        <div class="navigation">
+            <div class="nav_item"><a href="https://noidh.github.io">[Home]</a></div>
+        </div>
+
+        <div class="introduction">	
+			<h3>1. Principal Component Analysis</h3>
+			<p>Principal Component Analysis (PCA) is an important statistic technique and widely used in Machine Learning to reduce the dimension of training data.</p>
+            <p>In other words, PCA help us eliminate the unuseful information or noise and keep the most important once in data.</p>
+            <p>Below are steps for calculating PCA in 2D data which is can be easily extended to higher dimension dataset.</p>
+            <ol>
+                <li>
+                    <p>Creating a matrix \(D\) by assembling all the data points into it where each column is one data point.</p>
+                    <p>\[D=\left[\begin{array}{} x_1 & x_2 & ... & x_n \\ y_1 & y_2 & ... & y_n \end{array} \right]\]</p>
+                </li>
+
+                <li>
+                    <p>Calculating the mean of each row of matrix \(D\)</p>
+                    <p>\[\mu_x = \frac{1}{n}\sum_{i=1}^n x_i\]</p>
+                    <p>\[\mu_y = \frac{1}{n}\sum_{i=1}^n y_i\]</p>
+                </li>
+
+                <li>
+                    <p>Creating a matrix \(M\) by subtractiing it's value by the corresponding mean value: this step is to standardize the range of variables.
+                        Since variables which have larger ranges will dominate the calculation and it can lead to wrong results. we can obtain a better result by dividing by the standard deviation after subtracting by the mean value.
+                    </p>    
+                    <p><p>\[M=\left[\begin{array}{} (x_1 - \mu_x) & (x_2 - \mu_x) & ... & (x_n - \mu_x) \\ (y_1 - \mu_y) & (y_2 - \mu_y) & ... & (y_n - \mu_y) \end{array} \right]\]</p></p>
+                </li>
+
+                <li>
+                    <p>Calculating the covariance matrix \(C\): the reason why we need to calculate the covariance matrix is expoloring the relationship between variables itself and between difference variables.</p>
+                    <p>\[C=MM^T\]</p>
+                </li>
+
+                <li>
+                    <p>Calculating the eignen values and eigen vectors of the covariance matrix: the eigen vector represents the direction and the eigen value represents the magnitude of the covariance value. Therefore, principal components show the directions of the data that having a maximum of variance.</p>
+                </li>
+            </ol>
+
+
+			<h3>2. Experiment</h3>
+			<p>Demo video</p>
+			
+
+			<h3>3. References</h3>
+			<p>
+				<ul>
+                    <li>https://learnopencv.com/principal-component-analysis/</li>
+                    <li>https://towardsdatascience.com/a-one-stop-shop-for-principal-component-analysis-5582fb7e0a9c</li>
+                    <li>https://builtin.com/data-science/step-step-explanation-principal-component-analysis</li>
+                </ul>
+			</p>
+		</div>
+    </body>
+</html>
