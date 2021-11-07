@@ -25,26 +25,28 @@
 
         <div class="introduction">	
 			<h3>1. Linear Regression</h3>
-			<p>Linear regression is studied as a model for finding the relationship between the input variables and the output variables.</p>
+			<p>Linear regression is used for modeling the linear relationship between the input variables and the corresponding output variables. After that, with the trained model and an arbitrary input value, we can predict or forecast an approximation output value.</p>
+            <p>For a simple case in 2D, the modeling process is to find parameters \(m\) and \(b\) so that the below equation is satisfied.</p>
             <p>\[y=mx + b\]</p>
 
             <h4>Cost Function</h4>
-            <p>The cost function is used for describing the best values for m and b so that the error between the predicted value and the actual value is minimal.</p>
+            <p>In order to find the best values for \(m\) and \(b\), we choose Mean Square Error (MSE) function as a cost function and minimize this cost function help us find these parameter values.</p>
 			<p>\[minimize \frac{1}{N} \sum_{i=1}^N (y_i^{'} - y_i)^2\]</p>
             <p>\[J=\frac{1}{N} \sum_{i=1}^N (y_i^{'} - y_i)^2\]</p>
+            <p>For linear regression, the MSE is a convex function, therefore it's guaranteed to find a global minima.</p>
 
             <h4>Gradient Descent</h4>
-            <p>Gradient descent is a method used for updating \(m\) and \(b\) to reduce the cost function</p>
+            <p>Gradient descent is an iteration way used for adjusting parameter values to make the cost function converge to minima.</p>
             <p>By taking the partial derivatices with respect to \(m\) and \(b\)</p>
             <p>\[J=\frac{1}{N} \sum_{i=1}^N (y_i^{'} - y_i)^2 =\frac{1}{N} \sum_{i=1}^N (mx_i + b - y_i)^2 \]</p>
             <p>\[\frac{\delta J}{\delta m} = \frac{2}{N} \sum_{i=1}^N (mx_i + b - y_i) \cdot x_i = \frac{2}{N} \sum_{i=1}^N (y_i^{'} - y_i) \cdot x_i\]</p>
             <p>\[\frac{\delta J}{\delta b} = \frac{2}{N} \sum_{i=1}^N (mx_i + b - y_i) = \frac{2}{N} \sum_{i=1}^N (y_i^{'} - y_i)\]</p>
 
-            <p>Learning function</p>
+            <p>The learning function is defined as</p>
             <p>\[m \leftarrow m - \alpha \cdot \frac{\delta J}{\delta m} = m - \alpha \cdot \frac{2}{N} \sum_{i=1}^N (y_i^{'} - y_i) \cdot x_i\]</p>
             <p>\[b \leftarrow b - \alpha \cdot \frac{\delta J}{\delta b} = b - \alpha \cdot \frac{2}{N} \sum_{i=1}^N (y_i^{'} - y_i) \]</p>
-            <p>Where \(a\) is the learning rate. A smaller learning rate help us get closer to minimal but it's slow, a larger learning rate can make cost funtion coverage to minima faster but it can lead to overfit.</p>
-
+            <p>Where \(a\) is the learning rate. A smaller learning rate helps us get closer to minima but it's slow, a larger learning rate can make cost function converge to the minima faster but it can lead to overshoot.</p>
+            <img height="300px" src="learning_rate.png">
             <h3>2. Experiment</h3>
 			<p>Demo video</p>
 			
