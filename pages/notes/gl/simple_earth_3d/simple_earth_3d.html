@@ -28,10 +28,10 @@
 
             <h4>A. Calculate Vertices</h4>
             <p>Actually, the Earth isn't a pefect sphere, thus for a simple rendering in this article, we assume that it's a sphere so that vertex's coordinate can be easily calculated based on longitude and latitude of the Earth. The longitude ranges from -180 to 180 degree and the Prime meridian or zero degree longitude goes through Greenwich. The latitude ranges from -90 degree to 90 degree.</p>
-            <img src="640px-Latitude_and_Longitude_of_the_Earth.svg.png">
+            <img class="image_center" src="640px-Latitude_and_Longitude_of_the_Earth.svg.png">
             <p>By choosing step is 1 degree, there are 360 longitudes and 180 latitudes. We can get better resolution by decreasing step size that however results in lower computing performance and rendering.</p>
             <p>Now, from every longitude \(\theta\) and latitude \(\phi\), vertex's coordinate \((x,y,z)\) can be calculated as below.</p>
-            <img height="300px" src="earth_3d_1.png">
+            <img class="image_center" src="earth_3d_1.png">
             <p>\(y=r \times sin(\phi)\)</p>
             <p>\(xz=r \times cos(\phi)\)</p>           
             <p>\(x=xz \times sin(\theta)\)</p>
@@ -41,7 +41,7 @@
 
             <h4>B. Calculate Indices</h4>
             <p>From 4 vertices, two triangles can be formed in counterclockwise ordering as below</p>
-            <img height="300px" src="earth_3d_2.png">
+            <img class="image_center" src="earth_3d_2.png">
             <p>\(k1 \to k2 \to k1+1\) and \(k1+1 \to k2 \to k2+1\)</p>
 
 			<h4>C. Vertex Shader</h4>

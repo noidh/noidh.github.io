@@ -28,7 +28,7 @@
             
             <p>In order to simulate the lighting, OpenGL uses lighting models which are based on approximations of reality. One of the most popular and simplest models is Phong lighting model.</p>
             <p>Phong lighting model basically consist of 3 components: ambient, diffuse and specular</p>            
-            <img width="500px" src="basic_lighting_phong.png">
+            <img class="image_center" src="basic_lighting_phong.png">
 
             <h3>A. Ambient lighting</h3>
             <p>There is always some light from somewhere in the world, thus objects are never completely dark. For simple simulation, we use an small constant value as ambient factor that always gives the object some color.</p>
@@ -41,7 +41,7 @@ vec3 ambient = fAmbientStrength * lightColor;
             
             <h3>B. Diffuse lighting</h3>
             <p>The diffuse lighting is calculated by dot product of the light source's direction vector and the surface's normal vector. Since dot product of 2 vectors gradually converges to 1 if angle between them goes to zero, the closer the surface is aligned to the light source's direction, the more lighting it can receive.</p>
-            <img height="300px" src="diffuse_light.png">
+            <img class="image_center" src="diffuse_light.png">
             <code class="code_view">
                 <pre>
 vec3 norm = normalize(fg_in.Normal);
@@ -55,7 +55,7 @@ vec3 diffuse = diff * lightColor;
 
             <h3>C. Specular lighting</h3>
             <p>The specular lighting depicts the bright spot on a shiny object. it's calculated by the dot product of the refection vector of the light source's direction vector and the eye's direction vector. the closer the angle between them, the more lighting our eyes can perceive. the pow operation makes the specular light down to zero faster so that a bright spot displays more intuitively.</p>
-            <img height="300px" src="basic_lighting_specular_theory.png">
+            <img class="image_center" src="basic_lighting_specular_theory.png">
             <code class="code_view">
                 <pre>
 vec3 cameraDir = normalize(cameraPos - fg_in.FragPos);

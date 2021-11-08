@@ -29,7 +29,7 @@
 			<p>Hough Line Transform is a typical algorithm used for detecting the lines existing in the image.</p>
 			<p>We know that a straight line \(y=mx+b\) can be represented as a point \((b,m)\) a the parameter space. However, vertical lines pose a problem because of unbounded values of the slope parameter \(m\).</p>
 			<p>For example, we have a line depicted in Cartesian system as red line below</p>
-			<img src="hough_1.jpg">
+			<img class="image_center" src="hough_1.jpg">
 			<p>The intersection point of the line and the perpendicular line that comes from the origin is \(P_{0}=(\rho\cos{\theta}, \rho\sin{\theta})\).</p>
 			<p>So, for any point \(P=(x,y)\) on the line, vector \(P-P_{0}\) and \(P_{0}-0=P_{0}\) must be orthogonal together.</p>
 			<p>Therefore, \((P-P_{0})\cdot{P}=0\) or \(P\cdot{P_{0}} = P_{0}\cdot{P_{0}}\)</p>
@@ -38,14 +38,14 @@
 			<p>Since \(cos^{2}{\theta} + sin^{2}{\theta}=1\), \[x\cos{\theta} + y\sin{\theta} = \rho\tag{1}\]</p>
 			
 			<p>A straight line can also be described as point \((\rho, \theta)\) in Polar system.</p>
-			<img src="hough_2.jpg">
+			<img class="image_center" src="hough_2.jpg">
 			
 			<p>From \((1)\), with fixed \((x,y)\), a point in Cartesian system can form a sinusoid in Polar system.</p>
-			<img src="hough_3.jpg">
+			<img class="image_center" src="hough_3.jpg">
 			
 			<p>Several points belonging to a straight line in the image space will form multiple sinusoids in the Hough space and they are intersecting at one point.</p>
-			<img src="hough_4.jpg">
-			<img src="hough_5.jpg">
+			<img class="image_center" src="hough_4.jpg">
+			<img class="image_center" src="hough_5.jpg">
 			
 			<br>
 			<h3>2. Experiment</h3>

@@ -46,7 +46,8 @@
             <p>\[m \leftarrow m - \alpha \cdot \frac{\delta J}{\delta m} = m - \alpha \cdot \frac{2}{N} \sum_{i=1}^N (y_i^{'} - y_i) \cdot x_i\]</p>
             <p>\[b \leftarrow b - \alpha \cdot \frac{\delta J}{\delta b} = b - \alpha \cdot \frac{2}{N} \sum_{i=1}^N (y_i^{'} - y_i) \]</p>
             <p>Where \(a\) is the learning rate. A smaller learning rate helps us get closer to minima but it's slow, a larger learning rate can make cost function converge to the minima faster but it can lead to overshoot.</p>
-            <img height="300px" src="learning_rate.png">
+
+            <img class="image_center" src="learning_rate.png">
 
             <p>*) To avoid bias (the larger range feature gives more impaction to result) or overflow while calculating, the train data should be normalized or standardized into the same range before training</p>
             <p>Normalization: \(z = \frac{x - x_{min}}{x_{max} - x_{min}}\)</p>
@@ -60,6 +61,7 @@
 				<ul>
                     <li>https://towardsdatascience.com/introduction-to-machine-learning-algorithms-linear-regression-14c4e325882a</li>
                     <li>https://machinelearningmastery.com/linear-regression-for-machine-learning/</li>
+                    <li>https://www.analyticsvidhya.com/blog/2020/04/feature-scaling-machine-learning-normalization-standardization/</li>
                     <li>https://towardsai.net/p/data-science/how-when-and-why-should-you-normalize-standardize-rescale-your-data-3f083def38ff</li>
                     <li>https://www.baeldung.com/cs/normalization-vs-standardization</li>
                     <li><a href="https://www.kaggle.com/general/219378">What is bias, variance, overfitting, underfitting?</a></li>
