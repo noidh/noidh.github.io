@@ -32,7 +32,7 @@
 				<li>"edge" region: no change along the edge direction.</li>
 				<li>"corner" region: significant change in all directions.</li>
 			</ul>
-			<img width="500" src="harris_1.jpg">
+			<img class="image_center"  src="harris_1.jpg">
 			
 			<p>Change of intensity for the shift \([u, v]\) can be formulated by below enery function.</p>
 			<p>\[E(v, v) = \sum_{x, y}^{}w(x, y)[I(x + u, y + v) - I(x, y)]^2 \tag{1}\]</p>
@@ -55,7 +55,7 @@
 			<p>Window function \(w(x,y)\) can be 1 for simple case.</p>
 
 			<p>By analyzing the eigen values of matrix \(M\), we know that \(E(u, v)\) increases in all directions when \(\lambda_1\) and \(\lambda_2\) are large.</p>
-			<img width="500" src="harris_2.jpg">
+			<img class="image_center"  src="harris_2.jpg">
 			<p>Instead of calculating and thresholding on each single eigen value, we can measure the responding map of the corner by using one of the below methods</p>
 			<ul>
 				<li>
