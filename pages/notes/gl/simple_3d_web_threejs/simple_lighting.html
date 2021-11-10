@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Simple 3D Rendering on web by Threejs</title>
+        <link rel="stylesheet" href="../../../../index_css.css">
+		
+		<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+		<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+    </head>
+
+    <body>
+        <div class="header">
+			<div  style="width: 270px; float: left;">
+				<h2 style="display: flex; align-self: left; position:absolute; top:0px;">Doan Huu Noi (NEO)</h2>
+				<h4></h4><p><a><< doanhuunoi@gmail.com >></a></p></h4>
+				<p style="word-wrap: break-word;">I'm an enthusiastic researcher in Image Processing and Computer Vision. Learning new theories and bringing them to practice is my hobby. My research topics are Pattern Matching, Stereo-Vision Reconstruction, and other Miscellaneous.</p>
+			</div>
+			<div style="float: left;">
+				<img style="height: 220px;" src="https://noidh.github.io/header.jpg">
+			</div>
+        </div>
+        <div class="navigation">
+            <div class="nav_item"><a href="https://noidh.github.io">[Home]</a></div>
+        </div>
+
+        <div class="introduction">	
+			<h3>1. Simple 3D Rendering on Web by using Threejs</h3>
+
+            <div id="canvas" style=" display: block; margin-left: auto; margin-right: auto; width: 60%; height: 400px;"></div>
+
+            <script src=""></script>
+            <script type="module">
+                import * as THREE from './build/three.module.js';
+                import {OBJLoader} from './example/jsm/loaders/OBJLoader.js';
+                import {VRButton} from './example/jsm/webxr/VRButton.js';
+
+                import {OrbitControls} from './example/jsm/controls/OrbitControls.js';
+                import {GLTFLoader} from './example/jsm/loaders/GLTFLoader.js';
+
+                const scene = new THREE.Scene();
+                
+                const renderer = new THREE.WebGLRenderer();
+                renderer.setClearColor(0x3f4f44);
+                var canvas = document.getElementById('canvas');
+                var w = canvas.offsetWidth;
+                var h = canvas.offsetHeight;
+                renderer.setSize(w, h);
+                canvas.appendChild(renderer.domElement);
+
+                const camera = new THREE.PerspectiveCamera(45, w/h, 0.1, 1000);
+                camera.position.set(0, 0, 3);
+                camera.lookAt(0, 0, 0);
+
+                const controls = new OrbitControls(camera, renderer.domElement);
+                controls.addEventListener('change', renderer);
+
+                /* LIGHTING */
+                const hlight = new THREE.AmbientLight(0xd98f8f, 0.7);
+                scene.add(hlight);
+
+                const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+                directionalLight.position.set(0, 1, 0);
+                directionalLight.castShadow = true;
+                scene.add(directionalLight);
+
+                /* LINE */
+
+                // const material = new THREE.LineBasicMaterial({color:0x0000ff});
+                // const points = [];
+                // points.push(new THREE.Vector3(-10, 0, 0));
+                // points.push(new THREE.Vector3(0, 10, 0));
+                // points.push(new THREE.Vector3(10, 0, 0));
+
+                // const geometry = new THREE.BufferGeometry().setFromPoints(points);
+                // const line = new THREE.Line(geometry, material);
+                // scene.add(line);
+
+                /* CUBE */
+                // const geometry = new THREE.BoxGeometry(1, 1, 1);
+                // const material = new THREE.MeshBasicMaterial({color: 0xff0051});
+                // const cube = new THREE.Mesh(geometry, material);
+                // scene.add(cube);
+
+                /* TEXT */
+
+                /* MODEL */
+ 				function onProgress( xhr ) {
+
+					if ( xhr.lengthComputable ) {
+
+						const percentComplete = xhr.loaded / xhr.total * 100;
+						console.log( 'model ' + Math.round( percentComplete, 2 ) + '% downloaded' );
+
+					}
+
+				}             
+
+                var object;
+                // const loader = new OBJLoader();
+                // loader.load('./model/tree.obj', function(obj){
+                //     object = obj;
+                //     scene.add(obj);
+                // }, onProgress, function(error){
+                //     console.error(error);
+                // });
+
+                /* LOADING MANAGER*/
+                const manager = new THREE.LoadingManager();
+                manager.onStart = function(url, itemsLoaded, itemsTotal){
+                    console.log('Started loading file: ' + url + '.\nLoaded' + itemsLoaded + ' of ' + itemsTotal + ' files.');
+                };
+
+                manager.onLoad = function(){
+                    console.log('Loading complete!!');
+                };
+
+                manager.onProgress = function(url, itemsLoaded, itemsTotal){
+                    console.log('Loading file: ' + url + '.\nLoaded' + itemsLoaded + ' of ' + itemsTotal + ' files.');
+                };
+
+                manager.onError = function(url){
+                    console.log('Error: ' + url);
+                };
+
+                const loader = new GLTFLoader(manager);
+                loader.load('./model/pink_rose/scene.gltf', function(gltf){
+                    object = gltf;
+                    scene.add(gltf.scene);
+                });
+        
+                function animate()
+                {   
+                    // if(object)
+                    // {
+                    //     object.rotation.y += 0.01;
+                    // }   
+
+                    requestAnimationFrame(animate);
+                    renderer.render(scene, camera);
+                }
+
+                
+
+                const canvasCheckGL = document.createElement('canvas');
+                if(window.WebGLRenderingContext && (canvasCheckGL.getContext('webgl') || canvasCheckGL.getContext('experimental-webgl')))
+                {
+                    animate();
+                    //renderer.setAnimationLoop(animate);
+                    //renderer.render(scene, camera);
+                }
+                else
+                {
+                    canvas.appendChild('WebGL is not supported');
+                }
+
+                
+
+            </script>
+            
+            <h4>Import Module</h4>
+            <code class="code_view">
+                <pre>
+import * as THREE from './build/three.module.js';
+import {OrbitControls} from './example/jsm/controls/OrbitControls.js';
+import {GLTFLoader} from './example/jsm/loaders/GLTFLoader.js';                   
+                </pre>
+            </code>
+
+            <h4>Setup Scene, Renderer, Camera and Control</h4>
+            <code class="code_view">
+                <pre>
+const scene = new THREE.Scene();
+
+const renderer = new THREE.WebGLRenderer();
+renderer.setClearColor(0x3f4f44);
+var canvas = document.getElementById('canvas');
+var w = canvas.offsetWidth;
+var h = canvas.offsetHeight;
+renderer.setSize(w, h);
+canvas.appendChild(renderer.domElement);
+
+const camera = new THREE.PerspectiveCamera(75, w/h, 0.1, 1000);
+camera.position.set(0, 0, 3);
+camera.lookAt(0, 0, 0);
+
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.addEventListener('change', renderer);                  
+                </pre>
+            </code>      
+            
+            <h4>Setup Lighting</h4>
+            <code class="code_view">
+                <pre>
+const hlight = new THREE.AmbientLight(0xd98f8f, 0.7);
+scene.add(hlight);
+
+const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+directionalLight.position.set(0, 1, 0);
+directionalLight.castShadow = true;
+scene.add(directionalLight);                  
+                </pre>
+            </code>
+
+            <h4>Load 3D Model</h4>
+            <code class="code_view">
+                <pre>
+const loader = new GLTFLoader(manager);
+loader.load('./model/pink_rose/scene.gltf', function(gltf){
+    object = gltf;
+    scene.add(gltf.scene);
+});              
+                </pre>
+            </code>
+
+            <h4>Start Rendering</h4>
+            <code class="code_view">
+                <pre>
+function animate()
+{   
+    requestAnimationFrame(animate);
+    renderer.render(scene, camera);
+}   
+animate();         
+                </pre>
+            </code>           
+			
+			<h3>2. References</h3>
+			<p>
+                <ul>
+                    <li>https://threejs.org/docs</li>
+                    <li>https://redstapler.co/add-3d-model-to-website-threejs/</li>
+                </ul>
+			</p>
+		</div>
+    </body>
+</html>
