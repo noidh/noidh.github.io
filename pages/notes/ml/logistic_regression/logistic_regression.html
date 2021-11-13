@@ -31,7 +31,7 @@
             <p>The sigmoid function can be visualized as below graph</p>
             <img class="image_center"  src="sigmoid.png">
 
-            <p>With the input feature vector \(X = [\begin{array}{}1&x_1&x_2&...&x_M\end{array}]\) and the actual value \(Y\), the objective of logistic regression is to find the weight vector \(W = [\begin{array}{}w_0&w_1&w_2&...&w_M\end{array}]\) so that it satisfies the condition.</p>
+            <p>With the input feature vector \(X = [\begin{array}{}1&x_1&x_2&...&x_M\end{array}]\) and the actual value \(Y\), the objective of logistic regression is to find the weight vector \(W = [\begin{array}{}w_0&w_1&w_2&...&w_M\end{array}]\) so that it satisfies the following condition.</p>
             <p>\(W^T X\) is a linear combination output of the feature vector and the weight vector, we apply sigmoid function to get hypothesis function.</p>
             <p>\[h_{W}(X) = \frac{1}{1 + e^{-W^T X}}\]</p>
             <p>In binary classification problems, there are 2 cases can happen</p>
@@ -53,7 +53,7 @@
             <p>\[J(w) = -\frac{1}{M} \sum_{i = 1}^{M}\left[ Y^i \times \log(h_{W}(X^i)) + (1 - Y^i) \times \log(1 - h_{W}(X^i)) \right]\]</p>
 
             <h4>Gradient Descent</h4>
-            <p>To apply gradient descent to update the value of \(w_j\), we need to take derivate of the cost function at it</p>
+            <p>To apply gradient descent to update the value of \(w_j\), we need to take the partial derivate of the cost function at each \(w_j\)</p>
             <p>\[\frac{\delta J(w)}{\delta w_j} = -\frac{1}{M} \sum_{i = 1}^{M}\left[ Y^i \times \frac{\delta \log(h_{W}(X^i))}{\delta w_j} + (1 - Y^i) \times \frac{\delta \log(1 - h_{W}(X^i))}{\delta w_j} \right] = -\frac{1}{M} \sum_{i = 1}^{M}\left[ Y^i \times \frac{\frac{\delta h_{W}(X^i)}{\delta w_j}}{h_{W}(X^i)} - (1 - Y^i) \times \frac{\frac{\delta h_{W}(X^i)}{\delta w_j}}{1 - h_{W}(X^i)} \right] \tag{1}\]</p>
             <p>We know that</p>
             <p>\[\frac{\delta h_{W}(X)}{\delta w_j} = \frac{\delta \frac{1}{1 + e^{-W^T X}}}{\delta w_j} = \frac{e^{-{W^T}X} \times x_j}{(1 + e^{-{W^T}X})^2} = \frac{1}{1 + e^{-{W^T}X}} \times \frac{1 + e^{-{W^T}X} - 1}{1 + e^{-{W^T}X}} \times x_j = \frac{1}{1 + e^{-{W^T}X}} \times (1 - \frac{1}{1 + e^{-{W^T}X}}) \times x_j = h_{W}(X) \times (1 - h_{W}(X)) \times x_j \tag{2}\]</p>
