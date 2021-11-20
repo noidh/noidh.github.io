@@ -25,7 +25,7 @@
 
         <div class="introduction">	
 			<h3>1. Principal Component Analysis</h3>
-			<p>Principal Component Analysis (PCA) is an important statistic technique and widely used in Machine Learning to reduce the dimension of training data.</p>
+			<p>Principal Component Analysis (PCA) is an important statistic technique and widely used in Machine Learning to reduce the dimension of the dataset.</p>
             <p>In other words, PCA help us eliminate the unuseful information or noise and keep the most important once in data.</p>
             <p>Below are steps for calculating PCA in 2D data which is can be easily extended to higher dimension dataset.</p>
             <ol>
@@ -41,8 +41,8 @@
                 </li>
 
                 <li>
-                    <p>Creating a matrix \(M\) by subtractiing it's value by the corresponding mean value: this step is to standardize the range of variables.
-                        Since variables which have larger ranges will dominate the calculation and it can lead to wrong results. we can obtain a better result by dividing by the standard deviation after subtracting by the mean value.
+                    <p>Creating a matrix \(M\) by subtracting it's value by the corresponding mean value: this step is to standardize the range of variables.
+                        Since variables which have larger ranges potentially dominate the output of calculation and it can lead to wrong results. we can obtain a better result by dividing by the standard deviation after subtracting by the mean value.
                     </p>    
                     <p><p>\[M=\left[\begin{array}{} (x_1 - \mu_x) & (x_2 - \mu_x) & ... & (x_n - \mu_x) \\ (y_1 - \mu_y) & (y_2 - \mu_y) & ... & (y_n - \mu_y) \end{array} \right]\]</p></p>
                 </li>
@@ -53,14 +53,26 @@
                 </li>
 
                 <li>
-                    <p>Calculating the eignen values and eigen vectors of the covariance matrix: the eigen vector represents the direction and the eigen value represents the magnitude of the covariance value. Therefore, principal components show the directions of the data that having a maximum of variance.</p>
+                    <p>Calculating the eigen values and eigen vectors of the covariance matrix: the eigen vector represents the direction and the eigen value represents the magnitude of the covariance value. Therefore, principal components depict the directions of the data that having a maximum of variance.</p>
+                    <p>Example of calculating eigen values and eigen vector of 2x2 matrix \(C\).</p>
+                    <p>\[C = \left[\begin{array}{}c_{00}&c_{01}\\c_{10}&c_{11}\end{array} \right]\]</p>
+                    <p> Assume that \(v\) is an eigen vector of the matrix \(C\), thererfore it has to satisfy below condition. </p>
+                    <p>\[Cv=\lambda v\]</p>
+                    <p>\[\Rightarrow (C - \lambda I)v = 0 \]</p>
+                    <p>\[\Rightarrow \left[\begin{array}{}c_{00} - \lambda&c_{01}\\c_{10}&c_{11} - \lambda\end{array} \right]v = 0 \tag{1}\]</p>
+                    <p>The equation \((1)\) has non-zero solution iff the matrix \(\left[\begin{array}{}c_{00} - \lambda&c_{01}\\c_{10}&c_{11} - \lambda\end{array} \right]\) is not invertable or its determinant is zero.</p>
+                    <p>\[\det = (c_{00} - \lambda)(c_{11} - \lambda) - c_{10}c_{01} = 0\]</p>
+                    <p>\[\Rightarrow \lambda^2 - (c_{00} + c_{11})\lambda + c_{00}c_{11} - c_{10}c_{01} = 0 \tag{2}\]</p>
+                    <p>Solve the quadratic equation \((2)\), we have \(\Delta = (c_{00} + c_{11})^2 - 4(c_{00}c_{11} - c_{10}c_{01}) = c_{00}^2 + c_{11}^2 - 2c_{00}c_{11} + 4c_{10}c_{01} = (c_{00} - c_{11})^2 + 4c_{10}c_{01}\)</p>
+                    <p>\[\lambda_1 = \frac{c_{00} + c_{11} - \sqrt{\Delta}}{2}, \lambda_2 = \frac{c_{00} + c_{11} + \sqrt{\Delta}}{2}\]</p>
+                    <p>Substitute \(\lambda_1\) and \(\lambda_2\) into \((1)\) and calculate eigen vectors \(v_1\) and \(v_2\) respectively. </p>
                 </li>
             </ol>
 
 
 			<h3>2. Experiment</h3>
 			<p>Demo video</p>
-			
+			<iframe width="853" height="480" frameborder="0" allowfullscreen src="https://www.youtube.com/embed/f0N5d-CnJv4"></iframe>
 
 			<h3>3. References</h3>
 			<p>
