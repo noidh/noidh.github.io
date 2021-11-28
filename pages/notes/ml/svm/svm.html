@@ -31,7 +31,7 @@
 			<p>In which, support vectors are the data points that lie closest to the decision boundary. In other words, support vectors are critical points that influence to the direction and position of the decision boundary.</p>
 			<img class="image_center" src="svm_1.bmp">	
 
-			<p>Suppose there are an input feature vector \(X=\left[\begin{array}{}x_1&x_2&...&x_N\end{array}\right]\), an output value \(Y\), output is vector \(W=\left[\begin{array}{}w_1&w_2&...&w_N\end{array}\right]\), so that the linear combination \(WX = Y\) or \(\sum_{i=1}^{N} w_ix_i = Y\)</p>
+			<p>Suppose there are an input feature vector \(X=\left[\begin{array}{}x_1&x_2&...&x_N\end{array}\right]\), an output value \(Y\), output is vector \(W=\left[\begin{array}{}w_1&w_2&...&w_N\end{array}\right]\), so that the linear combination \(WX + b = Y\) or \(\sum_{i=1}^{N} w_ix_i + b = Y\)</p>
 			<img class="image_center" src="svm_2.bmp">
 
 			<p>Define the hyperplane \(H\) such that \(WX_i + b \ge +1\) when \(Y_i = +1\) and \(WX_i + b \le -1\) when \(Y_i = -1\)</p>
@@ -46,17 +46,20 @@
 			<p>The constraints can be recombined as \(Y_i(WX_i) \ge 1\)</p>
 
 			<p>So, the SVM problem is minimizing \(||W||\) or \(\frac{1}{2} ||W||^2\) such that \(Y_i(WX_i + b) = 1\) or \(Y_i(WX_i + b) - 1 = 0\). This optimization problem with contraint can be solved by <a href="https://www.khanacademy.org/math/multivariable-calculus/applications-of-multivariable-derivatives/constrained-optimization/a/lagrange-multipliers-single-constraint">the Lagrange multiplier</a>.</p>
-			<p>\[min L_p = \frac{1}{2}||W||^2 - \sum_{i=1}^N \lambda_i(Y_i(WX_i + b) - 1)\]</p>
-			<p>\[\Rightarrow min L_p = \frac{1}{2}||W||^2 - \sum_{i=1}^N \lambda_iY_i(WX_i + b) + \sum_{i=1}^N \lambda_i\tag{1}\]</p>
-
+			<p>\[min L = \frac{1}{2}||W||^2 - \sum_{i=1}^M \lambda_i(Y_i(WX_i + b) - 1)\]</p>
+			<p>\[\Rightarrow min L = \frac{1}{2}||W||^2 - \sum_{i=1}^M \lambda_iY_i(WX_i + b) + \sum_{i=1}^M \lambda_i\tag{1}\]</p>
+			<p>Where \(M\) is number of observations.</p>
 			<p>Take the partial derivative with respect to \(W\) and \(b\) and set them to zero</p>
-			<p>\[\frac{\delta L_p}{\delta W} = ||W|| - \sum_{i=1}^N \lambda_iY_iX_i = 0\]</p>
-			<p>\[\frac{\delta L_p}{\delta b} = \sum_{i=1}^N \lambda_iY_i = 0\]</p>
-			<p>\[\Rightarrow ||W|| = \sum_{i=1}^N a_iY_iX_i, \sum_{i=1}^N \lambda_iY_i = 0\tag{2}\]</p>
+			<p>\[\frac{\delta L}{\delta W} = ||W|| - \sum_{i=1}^M \lambda_iY_iX_i = 0\]</p>
+			<p>\[\frac{\delta L}{\delta b} = \sum_{i=1}^M \lambda_iY_i = 0\]</p>
+			<p>\[\Rightarrow ||W|| = \sum_{i=1}^M a_iY_iX_i, \sum_{i=1}^M \lambda_iY_i = 0\tag{2}\]</p>
 
-			<p>Substitute \((2)\) into \(1\)</p>
-			<p>\[min L_p = \frac{1}{2}(\sum_{i=1}^N \lambda_iY_iX_i)^2 - \sum_{i=1}^N \lambda_iY_i(\sum_{j=1}^N \lambda_jY_jX_jX_i) - b \sum_{i=1}^N \lambda_iY_i + \sum_{i=1}^N \lambda_i\]</p>
+			<p>Substitute \((2)\) into \((1)\), we have a new Lagrange Dual Problem that is instead of minimizing \(L\) wrt \(W, b\), we maximize \(L\) wrt \(\lambda\)</p>
+			<p>\[max L = \frac{1}{2}\sum_{i=1}^M \lambda_iY_iX_i \sum_{j=1}^M \lambda_jY_jX_j - \sum_{i=1}^M \lambda_iY_iX_i\sum_{j=1}^M \lambda_jY_jX_j - b \sum_{i=1}^M \lambda_iY_i + \sum_{i=1}^M \lambda_i\]</p>
+			<p>\[\Rightarrow max L = \frac{1}{2}\sum_{i=1}^M \sum_{j=1}^M \lambda_iY_iX_i \lambda_jY_jX_j - \sum_{i=1}^M \sum_{j=1}^M \lambda_iY_iX_i \lambda_jY_jX_j + \sum_{i=1}^M \lambda_i\]</p>
+			<p>\[\Rightarrow max L = \sum_{i=1}^M \lambda_i - \frac{1}{2}\sum_{i=1}^M \sum_{j=1}^M \lambda_i\lambda_jY_iY_jX_iX_j, st. \sum_{i=1}^M \lambda_i Y_i = 0 \tag{3}\]</p>
 
+			<p>Solve the quadratic equation \((3)\) to obtain \(\lambda\), then substitute \(\lambda\) back into equation \((1)\) and solve it to obtain \(W\) \(b\)</p>
 			<h3>2. Experiment</h3>
 			<p>Demo video</p>
 			
