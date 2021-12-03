@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Camera Calibration</title>
+        <link rel="stylesheet" href="../../../../index_css.css">
+		
+		<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+		<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+    </head>
+
+    <body>
+        <div class="header">
+			<div  style="width: 270px; float: left;">
+				<h2 style="display: flex; align-self: left; position:absolute; top:0px;">Doan Huu Noi (NEO)</h2>
+				<h4></h4><p><a><< doanhuunoi@gmail.com >></a></p></h4>
+				<p style="word-wrap: break-word;">I'm an enthusiastic researcher in Image Processing and Computer Vision. Learning new theories and bringing them to practice is my hobby. My research topics are Pattern Matching, Stereo-Vision Reconstruction, and other Miscellaneous.</p>
+			</div>
+			<div style="float: left;">
+				<img style="height: 220px;" src="https://noidh.github.io/header.jpg">
+			</div>
+        </div>
+        <div class="navigation">
+            <div class="nav_item"><a href="https://noidh.github.io">[Home]</a></div>
+        </div>
+
+        <div class="introduction">	
+			<h3>1. Camera Calibration</h3>
+			<p>Camera calibration is the process of estimating the parameters of a camera.</p>
+			<ul>
+				<li>Intrinsic parameters: focal length, optical center, skew of the camera.</li>
+				<li>Extrinsic parameters: rotation and translation of the camera with respect to some world coordinate system.</li>
+			</ul>
+
+			<h4>Extrinsic Parameters</h4>
+			<p>Extrinsic parameters of camera is used for projecting the 3D point \((X_w, Y_w, Z_w)\) from the world coordinate to the camera coordinate as \((X_c, Y_c, Z_c)\)</p>
+			<p>\[\left[\begin{array}{}X_c\\Y_c\\Z_c\end{array}\right]=R\left[\begin{array}{}X_w\\Y_w\\Z_w\end{array}\right] + t\]</p>
+			<p>Or</p>
+			<p>\[\left[\begin{array}{}X_c\\Y_c\\Z_c\end{array}\right]=[R|t]\left[\begin{array}{}X_w\\Y_w\\Z_w\\1\end{array}\right]\]</p>
+			<p>Where \(R\) is 3x3 rotation matrix, \(t\) is 3x1 transtaion matrix, \([R|t]\) is 3x4 combination matrix of \(R\) and \(t\)</p>
+
+			<h4>Intrinsic Parameters</h4>
+			<p>Intrinsic parameters of camera is used for mapping the 3D point \((X_c, Y_c, Z_c)\) from the camera coordinate onto 2D image plane as \((u, v)\).</p>
+			<p>\[\left[\begin{array}{}u^{'}\\v^{'}\\w^{'}\end{array}\right] = K\left[\begin{array}{}X_c\\Y_c\\Z_c\end{array}\right]\]</p>
+			<p>Where \(K = \left[\begin{array}{}f_x&\gamma&c_x\\0&f_y&c_y\\0&0&1\end{array}\right]\) is intrinsic parameter matrix</p>
+			<p>Then, \(u = \frac{u^{'}}{w^{'}}\) and \(v = \frac{v^{'}}{w^{'}}\)</p>
+			<h3>2. Experiment</h3>
+			
+			<h3>3. References</h3>
+			<p>
+				<ul>
+					<li>https://learnopencv.com/camera-calibration-using-opencv/</li>
+					<li>https://www.scratchapixel.com/lessons/3d-basic-rendering/computing-pixel-coordinates-of-3d-point/perspective-projection</li>
+					
+				</ul>
+			</p>
+		</div>
+    </body>
+</html>

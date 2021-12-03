@@ -36,11 +36,11 @@
 
 			<p>Define the hyperplane \(H\) such that \(WX_i + b \ge +1\) when \(Y_i = +1\) and \(WX_i + b \le -1\) when \(Y_i = -1\)</p>
 			<p>The plane \(H_1\) is \(WX_i+b=+1\), \(H_2\) is \(WX_i + b =-1\), \(H_0\) is \(WX_i + b = 0\)</p>
-			<p>The value \(d+\) is the distance from nearest positive point to \(H_0\), \(d-\) is the distance from nearest negative point to \(H_0\)</p>
+			<p>The value \(d+\) is the distance from the nearest positive point to \(H_0\), \(d-\) is the distance from the nearest negative point to \(H_0\)</p>
             <p>The points on \(H_1\) and \(H_2\) are support vectors.</p>
 			<p>The margin of hyperplane is the distance between \(H_1\) and \(H_2\) or the summation of \(d+\) and \(d-\)</p>
 
-			<p>The distance from any point on \(H_0\) to \(H_1\) is \(\frac{\left|WX + b\right|}{||W||} = \frac{1}{||W||}\), then the distance between \(H_1\) and \(H_2\) is \(\frac{2}{||W||}\)</p>
+			<p>The distance from any point on \(H_1\) to \(H_0\) is \(\frac{\left|WX + b\right|}{||W||} = \frac{1}{||W||}\), then the distance between \(H_1\) and \(H_2\) is \(\frac{2}{||W||}\)</p>
 			
 			<p>In order to maximize the margin, we need to minimize \(||W||\) with constraints \(WX_i + b \ge +1\) if \(Y_i = +1\) and \(WX_i + b \le -1\) if \(Y_i = -1\).</p>
 			<p>The constraints can be recombined as \(Y_i(WX_i) \ge 1\)</p>
@@ -54,12 +54,12 @@
 			<p>\[\frac{\delta L}{\delta b} = \sum_{i=1}^M \lambda_iY_i = 0\]</p>
 			<p>\[\Rightarrow ||W|| = \sum_{i=1}^M a_iY_iX_i, \sum_{i=1}^M \lambda_iY_i = 0\tag{2}\]</p>
 
-			<p>Substitute \((2)\) into \((1)\), we have a new Lagrange Dual Problem that is instead of minimizing \(L\) wrt \(W, b\), we maximize \(L\) wrt \(\lambda\)</p>
+			<p>Substitute \((2)\) into \((1)\), we have a new Lagrange Dual Problem that is instead of minimizing \(L\) wrt \(W, b\), we maximize \(L\) wrt \(\lambda\) (<a href="https://web.mit.edu/6.034/wwwbob/svm.pdf">An Idiot’s guide to Support vector machines (SVMs)</a>)</p>
 			<p>\[max L = \frac{1}{2}\sum_{i=1}^M \lambda_iY_iX_i \sum_{j=1}^M \lambda_jY_jX_j - \sum_{i=1}^M \lambda_iY_iX_i\sum_{j=1}^M \lambda_jY_jX_j - b \sum_{i=1}^M \lambda_iY_i + \sum_{i=1}^M \lambda_i\]</p>
 			<p>\[\Rightarrow max L = \frac{1}{2}\sum_{i=1}^M \sum_{j=1}^M \lambda_iY_iX_i \lambda_jY_jX_j - \sum_{i=1}^M \sum_{j=1}^M \lambda_iY_iX_i \lambda_jY_jX_j + \sum_{i=1}^M \lambda_i\]</p>
 			<p>\[\Rightarrow max L = \sum_{i=1}^M \lambda_i - \frac{1}{2}\sum_{i=1}^M \sum_{j=1}^M \lambda_i\lambda_jY_iY_jX_iX_j, st. \sum_{i=1}^M \lambda_i Y_i = 0 \tag{3}\]</p>
 
-			<p>Solve the quadratic equation \((3)\) to obtain \(\lambda\), then substitute \(\lambda\) back into equation \((1)\) and solve it to obtain \(W\) \(b\)</p>
+			<p>Solve the quadratic equation \((3)\) to obtain \(\lambda\), then substitute \(\lambda\) back into equation \((1)\) and solve it to obtain \(W\) and \(b\)</p>
 			<h3>2. Experiment</h3>
 			<p>Demo video</p>
 			
