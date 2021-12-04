@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Histogram of Gradient Transform</title>
+        <link rel="stylesheet" href="../../../../index_css.css">
+		
+		<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+		<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+    </head>
+
+    <body>
+        <div class="header">
+			<div  style="width: 270px; float: left;">
+				<h2 style="display: flex; align-self: left; position:absolute; top:0px;">Doan Huu Noi (NEO)</h2>
+				<h4></h4><p><a><< doanhuunoi@gmail.com >></a></p></h4>
+				<p style="word-wrap: break-word;">I'm an enthusiastic researcher in Image Processing and Computer Vision. Learning new theories and bringing them to practice is my hobby. My research topics are Pattern Matching, Stereo-Vision Reconstruction, and other Miscellaneous.</p>
+			</div>
+			<div style="float: left;">
+				<img style="height: 220px;" src="https://noidh.github.io/header.jpg">
+			</div>
+        </div>
+        <div class="navigation">
+            <div class="nav_item"><a href="https://noidh.github.io">[Home]</a></div>
+        </div>
+
+        <div class="introduction">	
+			<h3>1. Histogram of Oriented Gradient Transform</h3>
+			<p>Histogram of Oriented Gradient transform is one of very popular feature extraction algorithms. It comprises following steps.</p>
+            <ol>
+                <li>
+                    <p>Calculate the gradient of the image. The Sobel kernel can be used to extract the gradient along x axis \(G_x\) and the gradient along y axis \(G_y\). After that, the magnitude \(\mu\) and the angle \(\theta\) of gradient at each pixel is computed by below equations</p>
+                    <p>\[\mu = \sqrt{G_x^2 + G_y^2}\]</p>
+                    <p>\[\theta = \tan^{-1}(\frac{G_y}{G_x})\]</p>
+                    <img class="image_center" src="hog_1.bmp">
+                </li>
+
+                <li>
+                    <p>The gradient matrices area divided into 8x8 blocks. For each block, a 9 bins histogram of oriented gradients is calculated</p>
+                    <p>Number of bins = 9 (ranging from \(0^{\circ}\) to \(180^{\circ}\))</p>
+                    <p>Step size \(\Delta\theta = 20^{\circ}\)</p>
+                    <p>Each \(bin_j\) has boundary \([\Delta\theta \cdot j, \Delta\theta \cdot (j + 1)]\)</p>
+                    <p><img class="image_center" src="hog_2.png"></p>
+
+                    <p>The center angle value of each bin is \(C_j = \Delta\theta \cdot (j + 0.5)\)</p>
+                    <p>The histogram of oriented gradient is computed by voting approach, in which the value of each bin is accumulated from each elements \(\theta\) and \(\mu\) in the gradient matrices as below </p>
+
+                    <p>\[j = floor (\frac{\theta}{\Delta\theta})\]</p>
+                    <p>\[V_j = \mu \cdot (\frac{\theta}{\Delta\theta} - \frac{2j + 1}{2})\]</p>
+                    <p>\[V_{(j \mod 9)} = \mu - V_j\]</p>
+                </li>
+
+                <li>
+                    <p>4 blocks of 9 bins histogram of oriented gradients are clubbed together to create a new 2x2 block which has 36 bins.</p>
+                    <p>\[f_i = [b_1, b_2, ..., b_{36}]\]</p>
+                    <p>Then, each bin is normalized as \(f_i = \frac{f_i}{\sqrt{f_i^2  + \epsilon}}\)</p>
+                </li>
+            </ol>
+
+            <p>Histogram of Oriented Gradient feature can be collaborated with other machine learning algorithms like <a href="https://noidh.github.io/pages/notes/ml/svm/svm.html">Support Vector Machine</a> to perform classification task.</p>
+
+            <h3>2. Experiment</h3>
+			<iframe width="853" height="480" frameborder="0" allowfullscreen src="https://www.youtube.com/embed/1lc7SAqOczA"></iframe>
+
+			<h3>3. References</h3>
+			<p>
+				<ul>
+                    <li>https://towardsdatascience.com/hog-histogram-of-oriented-gradients-67ecd887675f</li>
+                    <li>https://learnopencv.com/histogram-of-oriented-gradients/</li>
+                    
+                </ul>
+			</p>
+		</div>
+    </body>
+</html>
