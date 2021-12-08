@@ -52,7 +52,7 @@
 			<p>Take the partial derivative with respect to \(W\) and \(b\) and set them to zero</p>
 			<p>\[\frac{\delta L}{\delta W} = ||W|| - \sum_{i=1}^M \lambda_iY_iX_i = 0\]</p>
 			<p>\[\frac{\delta L}{\delta b} = \sum_{i=1}^M \lambda_iY_i = 0\]</p>
-			<p>\[\Rightarrow ||W|| = \sum_{i=1}^M a_iY_iX_i, \sum_{i=1}^M \lambda_iY_i = 0\tag{2}\]</p>
+			<p>\[\Rightarrow ||W|| = \sum_{i=1}^M \lambda_iY_iX_i, \sum_{i=1}^M \lambda_iY_i = 0\tag{2}\]</p>
 
 			<p>Substitute \((2)\) into \((1)\), we have a new Lagrange Dual Problem that is instead of minimizing \(L\) wrt \(W, b\), we maximize \(L\) wrt \(\lambda\) (<a href="https://web.mit.edu/6.034/wwwbob/svm.pdf">An Idiot’s guide to Support vector machines (SVMs)</a>)</p>
 			<p>\[max L = \frac{1}{2}\sum_{i=1}^M \lambda_iY_iX_i \sum_{j=1}^M \lambda_jY_jX_j - \sum_{i=1}^M \lambda_iY_iX_i\sum_{j=1}^M \lambda_jY_jX_j - b \sum_{i=1}^M \lambda_iY_i + \sum_{i=1}^M \lambda_i\]</p>
