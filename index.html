@@ -4,18 +4,14 @@
         <title>Doan Huu Noi</title>
 
         <link rel="stylesheet" href="./index_css.css">
+		<script src="./index.js"></script>
     </head>
     <body>
-        <div class="header">
-			<div  style="width: 270px; float: left;">
-				<h2 style="display: flex; align-self: left; position:absolute; top:0px;">Doan Huu Noi (NEO)</h2>
-				<h4></h4><p><a><< doanhuunoi@gmail.com >></a></p></h4>
-				<p style="word-wrap: break-word;">I'm an enthusiastic researcher in Image Processing and Computer Vision. Learning new theories and bringing them to practice is my hobby. My research topics are Pattern Matching, Stereo-Vision Reconstruction, and other Miscellaneous.</p>
-			</div>
-			<div style="float: left;">
-				<img style="height: 220px;" src="https://noidh.github.io/header.jpg">
-			</div>
-        </div> 
+        <div id="header"></div>
+		<script>
+			Header("header");
+		</script> 
+
         <div class="navigation">
             <div class="nav_item"><a href="https://noidh.github.io">[Home]</a></div>
             <div class="nav_item">
@@ -30,22 +26,22 @@
                 </ul>
             </div>
 			<div class="nav_item">
-				<a>Technical Blog</a>
+				<a href="blog.html">Technical Blog</a>
 				<ul>
 					<li>
-						<a href="./pages/notes/ip/notes_ip.html">Image Processing</a>
+						<a href="notes_ip.html">Image Processing</a>
 					</li>	
 					<li>
-						<a href="./pages/notes/ip/notes_cv.html">Computer Vision</a>
+						<a href="notes_cv.html">Computer Vision</a>
 					</li>	
 					<li>
-						<a href="./pages/notes/ml/notes_ml.html">Machine Learning</a>
+						<a href="notes_ml.html">Machine Learning</a>
 					</li>				
 					<li>
-						<a href="./pages/notes/gl/opengl_notes.html">3D Rendering</a>
+						<a href="opengl_notes.html">3D Rendering</a>
 					</li>
 					<li>
-						<a href="./pages/notes/miscellanseous/notes_miscellaneous.html">Miscellaneous</a>
+						<a href="notes_miscellaneous.html">Miscellaneous</a>
 					</li>
 				</ul>
 			</div>
