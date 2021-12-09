@@ -43,6 +43,12 @@
 			<p>\[\left[\begin{array}{}u^{'}\\v^{'}\\w^{'}\end{array}\right] = K\left[\begin{array}{}X_c\\Y_c\\Z_c\end{array}\right]\]</p>
 			<p>Where \(K = \left[\begin{array}{}f_x&\gamma&c_x\\0&f_y&c_y\\0&0&1\end{array}\right]\) is intrinsic parameter matrix</p>
 			<p>Then, \(u = \frac{u^{'}}{w^{'}}\) and \(v = \frac{v^{'}}{w^{'}}\)</p>
+
+			<p>Finally, from the intrinsic parameters \(K\) and the extrinsic parameters \(R,t\), a 3D point \(M(X_w, Y_w, Z_w)\) in the world coordinate can be projected to a 2D point \(m(u, v, 1)\) in the image plane by</p>
+			
+			<p>\[Zm = K[R|t]M\]</p>
+			<p>Where \(Z\)  describes associated the depth information of 2D point</p>
+			
 			<h3>2. Experiment</h3>
 			
 			<h3>3. References</h3>
