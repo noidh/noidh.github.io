@@ -46,7 +46,7 @@ function BlogComputerVision(elementId)
         <li><a href="./pages/notes/ip/hog/hog.html">Histogram of Oriented Gradient Transform</a></li>	
         <li><a>SIFT </a></li>
         <li><a>Grapth Cut Segmentation </a></li>
-        <li><a>3D Warping </a></li>
+        <li><a href="./pages/notes/ip/dibr/dibr.html">Depth Image Based Rendering</a></li>
         <li><a>Camera Calibration </a></li>
         <li><a>K-Mean Segmentation </a></li>
         <li><a>Background subtraction by Code Book </a></li>
