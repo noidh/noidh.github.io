@@ -27,23 +27,27 @@
 			<h4>HSV</h4>
 			<p>HSV is represented by Hue, Saturation and Value</p>
 			<ul>
-				<li>Hue: represents dominant color perceived by a observer. \(H=\begin{cases}\theta & if B \le G \\ 360 - \theta & if B > G \end{cases}\), where \(\theta = \cos^-1 \left(\frac{\frac{1}{2}((R-G) + (R -B))}{\sqrt{(R-G)^2 + (R-G)(G-B)}}\right)\)</li>
+				<li>Hue: represents dominant color perceived by an observer. \(H=\begin{cases}\theta & if B \le G \\ 360 - \theta & if B > G \end{cases}\), where \(\theta = \cos^-1 \left(\frac{\frac{1}{2}((R-G) + (R -B))}{\sqrt{(R-G)^2 + (R-G)(G-B)}}\right)\)</li>
 				<li>Saturation: represents the amount of white light mixed with Hue. \(S=1 - \frac{3}{R + G + B}(min(R, G, B))\)</li>
 				<li>Value: represents the amount of intensity. \(V = \frac{(R + G + B)}{3}\)</li>
 			</ul>
+			<img class="image_center" src="hsv.png">
 
-			<p>To convert fro HSV to RGB</p>
+			<p>In order to convert from HSV to RGB</p>
 			<ul>
 				<li>If \(0^{\circ} \le H < 120^{\circ}\): \(B = V(1 - S)\), \(R = V\left(1 + \frac{S \cos H}{\cos(60^{\circ} - H)}\right)\), \(G = 3V - (R + B)\)</li>
 				<li>If \(120^{\circ} \le H < 240^{\circ}\): \(H = H - 120^{\circ}\), \(B = V(1 - S)\), \(R = V\left(1 + \frac{S \cos H}{\cos(60^{\circ} - H)}\right)\), \(G = 3V - (R + B)\)</li>
 				<li>If \(240^{\circ} \le H \le 360^{\circ}\): \(H = H - 240^{\circ}\), \(B = V(1 - S)\), \(R = V\left(1 + \frac{S \cos H}{\cos(60^{\circ} - H)}\right)\), \(G = 3V - (R + B)\)</li>
 			</ul>
 
+			<h4>YCbCr</h4>
+			<p>(to be updated soon...)</p>
 			<h3>2. Experiment</h3>
 			
 			<h3>3. References</h3>
 			<p>
 				<ul>
+					<li><a href="https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-rdprfx/b550d1b5-f7d9-4a0c-9141-b3dca9d7f525?redirectedfrom=MSDN">Color Conversion (RGB to YCbCr)</a></li>
 					<li>https://programmingdesignsystems.com/color/color-models-and-color-spaces/index.html</li>
 					<li>https://www.dynamsoft.com/blog/insights/image-processing-101-color-models/</li>
 					<li><a href="https://uotechnology.edu.iq/ce/lecture%202013n/4th%20Image%20Processing%20_Lectures/DIP_Lecture15.pdf">Color Image Processing</a></li>
