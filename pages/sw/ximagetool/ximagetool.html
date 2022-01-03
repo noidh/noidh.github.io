@@ -1,0 +1,67 @@
+<html>
+    <head>
+        <title>Doan Huu Noi</title>
+        <link rel="stylesheet" href="../../../index_css.css">
+        <script src="../../../index.js"></script>
+    </head>
+    <body>
+        <div id="header"></div>
+		<script>
+			Header("header");
+		</script> 
+        <div class="navigation">
+            <div class="nav_item"><a href="https://noidh.github.io">[Home]</a></div>
+        </div>
+        <div class="introduction">
+            <div id="div_header">
+                <img src="ximagetool.png" alt="icon" style="width: 80px; float: left; padding: 10px;">
+                <h1>XImage Tool</h1>
+                <p>
+                    XImageTool is a free software which demonstrates basic Image Processing/Computer Vision/Machine Learning algorithms.
+                </p>
+            </div>
+    
+            <div>
+                <p>
+                    Download the lastest release
+                    <ul>
+                        <li><a href="https://drive.google.com/file/d/1VWSk9SFCO_rZnkNhC9cFiBRlfoHz-YVS/view?usp=sharing">XImageTool_Win_X64 (v1.0.0).zip</a></li>
+                    </ul>
+                </p>
+                <p>
+                    <span style="color: red;">Notice:</span> Windows 10 users may face with an Microsoft Defender SmartScreen warning dialog for the first time opening 
+                    because I still don't pay a fee for signing certificate and it doesn't have enough reputation with Microsoft Defender yet.
+                    You can click [More info] -> [Run anyway] to overcome this issue temporarily.
+                </p>
+
+                <p>
+                    List of supported algorithms
+                    <h3>Image Processing</h3>
+                    <div id="list_content_ip"></div>
+                    <script>           
+                        BlogImageProcessing('../../../',"list_content_ip");
+                    </script>  
+            
+                    <h3>Computer Vision</h3>
+                    <div id="list_content_cv"></div>
+                    <script>           
+                        BlogComputerVision('../../../',"list_content_cv");
+                    </script>  
+            
+                    <h3>Machine Learning</h3>
+                    <div id="list_content_ml"></div>
+                    <script>           
+                        BlogMachineLearning('../../../',"list_content_ml");
+                    </script>
+            
+                    <h3>3D Rendering</h3>
+                    <div id="list_content_gl"></div>
+                    <script>           
+                        Blog3DRendering('../../../',"list_content_gl");
+                    </script>
+                </p>
+            </div>
+            
+        </div>
+    </body>
+</html>
