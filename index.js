@@ -42,7 +42,7 @@ function BlogComputerVision(prefix,elementId)
         <li><a>Hough Circle Transform </a></li>
         <li><a href="${prefix}/pages/notes/ip/leastsquare_matrix/leastsquare_matrix.html">Linear Least Square Approximation by Matrix Method</a></li>
         <li><a href="${prefix}/pages/notes/ip/ncc/ncc.html">Fast Normalized Cross Correlation</a></li>
-        <li><a>Feature-based Template Matching </a></li>
+        <li><a href="${prefix}/pages/notes/ip/simple_feature_matching/simple_feature_matching.html">A Simple Feature-based Matching </a></li>
         <li><a href="${prefix}/pages/notes/ip/hog/hog.html">Histogram of Oriented Gradient Transform</a></li>	
         <li><a>SIFT </a></li>
         <li><a>Grapth Cut Segmentation </a></li>
