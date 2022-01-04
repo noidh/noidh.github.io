@@ -25,7 +25,7 @@ function BlogImageProcessing(prefix,elementId)
         <li><a>In-Painting</a></li>	
         <li><a>Fourier Transform</a></li>	
         <li><a href="${prefix}/pages/notes/ip/color_model/color_model.html">Color Model</a></li>	
-        <li><a>Interpolation</a></li>
+        <li><a href="${prefix}/pages/notes/ip/interpolation/interpolation.html">Interpolation</a></li>
     </ol>
 </p>
     `;
