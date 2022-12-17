@@ -4,7 +4,7 @@ function Header(headerId)
 <div  style="width: 270px; float: left;">
     <h2>Doan Huu Noi</h2>
     <h4></h4><p><a><< doanhuunoi@gmail.com >></a></p></h4>
-    <p style="word-wrap: break-word;">I'm an enthusiastic researcher in Image Processing and Computer Vision. Learning new theories and bringing them to practice are my hobbies. My research topics are Pattern Matching, Stereo-Vision Reconstruction, and other Miscellaneous.</p>
+    <p style="word-wrap: break-word;">Image Processing, Computer Vision, Object Detection, Pattern Matching, Optimization, 3D Rendering, Stereo Vision...</p>
 </div>
 <div style="float: left;">
     <img style="height: 220px;" src="https://noidh.github.io/header.jpg">
