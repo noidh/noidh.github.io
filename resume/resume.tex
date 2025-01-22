@@ -16,7 +16,7 @@
 \urlstyle{same}
 
 \name{DOAN HUU NOI}
-\address{ +82-10-3674-3010 \\ doanhuunoi@gmail.com \\  \url{noidh.github.io}} 
+\address{ +65-8434-2003 \\ doanhuunoi@gmail.com \\  \url{noidh.github.io}} 
 
 \def\nameskip{\bigskip}
 \def\sectionskip{\medskip}
@@ -41,8 +41,8 @@
 
 	\begin{rSection}{Background}
 		\begin{tabular} {p{0.2\linewidth} p{0.8\linewidth}}
-			\bf Programming & C++,  Python, SIMD (SSE, AVX, NEON), OpenGL, QT, MFC,CUDA, CMake \\
-			\bf Research & Image Processing,  Computer Vision, Pattern Matching, Object Detection,  Machine Learning, 3D Rendering,Defect Inspection, Deep Learning Models Deployment \\
+			\bf Programming & C++,  Python,  Pytorch, SIMD (SSE, AVX, NEON), TensorRT, OpenCV, Open3D, OpenGL, QT, MFC, CUDA, CMake \\
+			\bf Research & Image Processing, Computer Vision,  Deep Learning,  Stereo Vision, Depth Estimation, 3D Gaussian Splatting, Pattern Matching, Object Detection, Machine Learning, 3D Rendering, Defect Inspection, Model Deployment \\
 			\bf Language & Vietnamese, Korean, English
 		\end{tabular}
 		
@@ -51,32 +51,35 @@
 	\begin{rSection}{Experience}
 		\begin{rSubsection}{Zoom}{Nov. 2022 - Current}{Video Processing Software  Engineer}{Singapore}
 			\item Participating in optimization tasks of the core image processing library.
-			\item Participating in development of 3D avatar project.
-			\item Participating in development of 3D-telepresence project.
-			\item Deploying deep learning models on multiple platforms by using mkldnn, openvino,  coreml,  tflite
-			\item Technologies: C/C++, Python, SIMD,OpenGL, Video Processing,  3D Rendering,  Deep learning models deployment.
+			\item Participating in development of 3D-telepresence project: \\
+			- System setup: camera setup,  intrinsic calibration, stereo calibration, multiple cameras synchronization.\\
+			- Data collection: synthesis data, real data.\\
+			- Model training: Depth net (based on RAFT-Stereo),  Render Net (based on 3DGS),  optimizing using TensorRT.\\
+			- Design and implement the demo program: Using python, OpenGL Cubemap.
+			\item \underline{Tech Stack:} C++, Python, Pytorch, SIMD, TensorRT, Open3D, OpenCV, OpenGL, Video Processing, Deep Learning, 3D Rendering, 3D Gaussian Splatting,  Depth Estimation,  Model Deployment.
 
 		\end{rSubsection}
 
 		\begin{rSubsection}{MVTech}{Nov. 2018 - Nov.2022}{Image Processing Researcher}{South Korea}
-			\item Participating in developing RAVID framework \\
-			- Developing the Shape Finder algorithm which is a feature-based matching algorithm. \href{https://blog.naver.com/mvtech_ravid/222119961697}{(View Demo)}\\ 			
+			\item Participated in developing RAVID framework \\
+			- Developed the Shape Finder algorithm which is a feature-based matching algorithm. \href{https://blog.naver.com/mvtech_ravid/222119961697}{(View Demo)}\\ 			
 - Developing very fast convolution and morphology operations by using SIMD and In-place Processing. \\
-			- Developing an OCR algorithm based on NCC matching algorithm.\\	
-			\item Developing defect inspection algorithms for automatic inspection machines.
-			\item Technologies: C/C++, SIMD, Image Processing, Computer Vision.
+			- Developed an OCR algorithm based on NCC matching algorithm.	
+			\item Developed defect inspection algorithms for automatic inspection machines.
+			\item \underline{Tech Stack:} C++, SIMD, Image Processing, Computer Vision.
 
 		\end{rSubsection}
 
 		\begin{rSubsection}{Enscape}{Feb. 2017 - Oct. 2018}{Software Engineer}{South Korea}
-			\item Developing defect inspection algorithms by using Halcon library.
-			\item Developing applications for Matrix machine, Auto-Handler machine.
-			\item Technologies: C++, MFC, Halcon, OpenCV, SIMD.
+			\item Developed defect inspection algorithms by using Halcon library.
+			\item Developed applications for Matrix machine, Auto-Handler machine.
+			\item \underline{Tech Stack:} C++, MFC, Halcon, OpenCV,  SIMD.
 
 		\end{rSubsection}
 
 		\begin{rSubsection}{Chowis}{Sept 2015 - Oct. 2016}{Software Engineer}{South Korea}
-			\item Developing Android application for a skin inspection kit.
+			\item Developed a Android application for a skin inspection kit.
+			\item \underline{Tech Stack:} C++, Java, Android
 
 		\end{rSubsection}
 	\end{rSection}
@@ -90,9 +93,6 @@
 
 		{\bf \href{https://noidh.github.io/pages/sw/ximage2text/ximagetotext.html}{XText}}
 		\\ XText is a free OCR software.
-
-		{\bf \href{https://noidh.github.io/pages/sw/ximage_trainer/ximage_trainer.html}{XImageTrainer}}
-		\\XImageTrainer is a free software used for preparing image data and collaborating with other DeepLearning frameworks to train the dataset. Without an efficient GUI tool, drawing bounding boxs for objects in thousands of images would be a painful job.  This application provides basic tools to make that task more convenient and simple.	
 	\end{rSection}
 
 \end{document}
