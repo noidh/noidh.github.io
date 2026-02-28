@@ -43,15 +43,15 @@
 
         <main class="content">
             <section class="section page-prose">
-			<h3>1. Introduction of Fast Median Filter by using Sorting Network</h3>
-			<p>Conventional Median Filter is very easy to be implemented by using standard sorting algorithms. However, it's hard to optimize the algorithm by using a parallel processing mechanism.</p>
-			<p>With sorting network consisting of basic comparing and swap operations, a parallel processing (SIMD, GPGPU) can be applied efficently.</p>
-			<p>Example of array size 3, comparing and swapping sequentially to move the smallest element to the bottom.</p>
+			<h3>1. Introduction to the fast median filter using a sorting network</h3>
+			<p>The conventional median filter is easy to implement using standard sorting algorithms. However, it is hard to optimize using parallel processing mechanisms.</p>
+			<p>With a sorting network consisting of basic compare-and-swap operations, parallel processing (SIMD, GPGPU) can be applied efficiently.</p>
+			<p>Example with array size 3, comparing and swapping sequentially to move the smallest element to the bottom.</p>
 			<img class="image_center" src="fast_median_1.jpg">
 			<img class="image_center" src="fast_median_2.jpg">
-			<p>Example of array size 5</p>
+			<p>Example with array size 5</p>
 			<img class="image_center" src="fast_median_3.jpg">
-			<p>And there are some varied optimal versions.</p>
+			<p>There are also several optimized variants.</p>
 			<img class="image_center" src="fast_median_4.jpg">
 			
 			<br>

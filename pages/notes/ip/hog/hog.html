@@ -9,6 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../../../index_css.css">
     <script src="../../../../index.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
 
 </head>
 <body>
@@ -44,7 +46,7 @@
         <main class="content">
             <section class="section page-prose">
 			<h3>1. Histogram of Oriented Gradient Transform</h3>
-			<p>Histogram of Oriented Gradient transform is one of very popular feature extraction algorithms. It comprises following steps.</p>
+			<p>The histogram of oriented gradients transform is one of the most popular feature extraction algorithms. It comprises the following steps.</p>
             <ol>
                 <li>
                     <p>Calculate the gradient of the image. The Sobel kernel can be used to extract the gradient along x axis \(G_x\) and the gradient along y axis \(G_y\). After that, the magnitude \(\mu\) and the angle \(\theta\) of gradient at each pixel is computed by below equations</p>
@@ -54,7 +56,7 @@
                 </li>
 
                 <li>
-                    <p>The gradient matrices area divided into 8x8 blocks. For each block, a 9 bins histogram of oriented gradients is calculated</p>
+                    <p>The gradient matrices are divided into 8x8 blocks. For each block, a 9-bin histogram of oriented gradients is calculated</p>
                     <p>Number of bins = 9 (ranging from \(0^{\circ}\) to \(180^{\circ}\))</p>
                     <p>Step size \(\Delta\theta = 20^{\circ}\)</p>
                     <p>Each \(bin_j\) has boundary \([\Delta\theta \cdot j, \Delta\theta \cdot (j + 1)]\)</p>
@@ -69,7 +71,7 @@
                 </li>
 
                 <li>
-                    <p>4 blocks of 9 bins histogram of oriented gradients are clubbed together to create a new 2x2 block which has 36 bins.</p>
+                    <p>Four 9-bin histograms of oriented gradients are grouped together to create a new 2x2 block that has 36 bins.</p>
                     <p>\[f_i = [b_1, b_2, ..., b_{36}]\]</p>
                     <p>Then, each bin is normalized as \(f_i = \frac{f_i}{\sqrt{f_i^2  + \epsilon}}\)</p>
                 </li>

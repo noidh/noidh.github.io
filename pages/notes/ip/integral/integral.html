@@ -9,6 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../../../index_css.css">
     <script src="../../../../index.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
 
 </head>
 <body>
@@ -44,22 +46,22 @@
         <main class="content">
             <section class="section page-prose">
 			<h3>1. Introduction</h3>
-			<p>Integral Image or Summed-area table is a data structure and algorithm for quickly and effiently generating the sum of values in a rectangular subset of a grid.</p>
-			<p>An integral image is created to store integral value at every position (x,y). The value at any point (x, y) is the sum of all the pixels to the left top of (x, y).</p>
+			<p>The integral image, or summed-area table, is a data structure and algorithm for quickly and efficiently computing the sum of values in a rectangular subset of a grid.</p>
+			<p>An integral image is created to store the integral value at every position (x, y). The value at any point (x, y) is the sum of all the pixels to the upper left of (x, y).</p>
             <p>\[Integral(x,y)=\sum_{x^{'}<{x}, y^{'} <{y}}I(x^{'}, y^{'})\]</p>
             
-            <p>The integral value can be computed more efficiently.</p>
+            <p>The integral values can be computed efficiently as follows.</p>
             <img class="image_center"  src="integral.png">
             <p>\[Integral(x,y)=I(x,y) + Integral(x, y - 1) + Integral(x - 1,y) - Integral(x -1, y-1)\]</p>
 
-            <p>After finish calculating the integral image, summation of arbitrary rectangular area can be computed from 4 corners.</p>
+            <p>After computing the integral image, the sum over any rectangular area can be computed from its four corners.</p>
             <p>\[sum(ABCD)=Integral(D) + Integral(A) - Integral(B) - Integral(C)\]</p>
 
-            <p>Integral histogram is similar with integral image but having 256 channel value per pixel (8-bit image).</p>
+            <p>The integral histogram is similar to the integral image but has 256 channel values per pixel (for an 8-bit image).</p>
             
             <p>Moreover, this method can be extended to quickly calculate variance or standard deviation of a block.</p>
             <p>\[Var(ABCD)=\frac{1}{W * H}\sum_{x, y}(I(x,y) - \mu)^{2}=\frac{1}{W*H}\sum_{x,y}(I^{2}(x, y) - 2*{\mu}*{I(x,y)} + {\mu}^{2})=\frac{1}{W*H}(\sum_{x,y}I^{2}(x, y) - 2*{\mu}*\sum_{x,y}{I(x,y)} + \sum_{x,y}{\mu}^{2})=\frac{1}{W*H}(\sum_{x,y}I^{2}(x, y) - 2*{\mu}*\sum_{x,y}{I(x,y)} + (W*H)*{\mu}^{2})\]</p>
-            <p>Where \(\sum_{x,y}I^{2}(x, y)\) can be obtained by integral of square pixel value</p>
+            <p>Where \(\sum_{x,y}I^{2}(x, y)\) can be obtained by the integral of the squared pixel values</p>
             
             <br>
             <h3>2. Experiment</h3>

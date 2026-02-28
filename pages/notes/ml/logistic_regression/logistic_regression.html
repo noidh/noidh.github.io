@@ -47,16 +47,16 @@
         <main class="content">
             <section class="section page-prose">
 			<h3>1. Logistic Regression</h3>
-			<p>Logistic regression is used to solve classification problems, especially binary classification problems. in which, model's output is a discrete value corresponding to class or category.</p>
+			<p>Logistic regression is used to solve classification problems, especially binary classification problems, in which the model output is a discrete value corresponding to a class or category.</p>
             <p>In order to squash the input value from a wide unbounded range into a limited range \((0, 1)\), we use the sigmoid function as below.</p>
             <p>\[g(z) = \frac{1}{1 + e^{-z}}\]</p>
-            <p>The sigmoid function can be visualized as below graph</p>
+            <p>The sigmoid function can be visualized as the graph below</p>
             <img class="image_center"  src="sigmoid.png">
 
             <p>With the input feature vector \(X = [\begin{array}{}1&x_1&x_2&...&x_N\end{array}]\) and the actual value \(Y\), the objective of logistic regression is to find the weight vector \(W = [\begin{array}{}w_0&w_1&w_2&...&w_N\end{array}]\) so that it satisfies the following condition.</p>
             <p>\(W^T X\) is a linear combination output of the feature vector and the weight vector, we apply sigmoid function to get hypothesis function.</p>
             <p>\[h_{W}(X) = \frac{1}{1 + e^{-W^T X}}\]</p>
-            <p>In binary classification problems, there are 2 cases can happen</p>
+            <p>In binary classification problems, there are two possible cases</p>
             <ul>
                 <li>
                     <p>The input actual value \(Y = 1\): If the output of the hypothesis function \(h_{W}(X)\) is also \(1\), the error or the output of the cost function must be zero. Otherwise, if the output of the hypothesis function \(h_{W}(X)\) is zero, the output of the cost function must be very large. In order to satisfy this case, the cost function is defined as \(-\log(h_{W}(X))\)</p>
@@ -75,7 +75,7 @@
             <p>\[J(w) = -\frac{1}{M} \sum_{i = 1}^{M}\left[ Y^i \times \log(h_{W}(X^i)) + (1 - Y^i) \times \log(1 - h_{W}(X^i)) \right]\]</p>
 
             <h4>Gradient Descent</h4>
-            <p>To apply gradient descent to update the value of \(w_j\), we need to take the partial derivate of the cost function at each \(w_j\)</p>
+            <p>To apply gradient descent to update the value of \(w_j\), we need to take the partial derivative of the cost function at each \(w_j\)</p>
             <p>\[\frac{\delta J(w)}{\delta w_j} = -\frac{1}{M} \sum_{i = 1}^{M}\left[ Y^i \times \frac{\delta \log(h_{W}(X^i))}{\delta w_j} + (1 - Y^i) \times \frac{\delta \log(1 - h_{W}(X^i))}{\delta w_j} \right] = -\frac{1}{M} \sum_{i = 1}^{M}\left[ Y^i \times \frac{\frac{\delta h_{W}(X^i)}{\delta w_j}}{h_{W}(X^i)} - (1 - Y^i) \times \frac{\frac{\delta h_{W}(X^i)}{\delta w_j}}{1 - h_{W}(X^i)} \right] \tag{1}\]</p>
             <p>We know that</p>
             <p>\[\frac{\delta h_{W}(X)}{\delta w_j} = \frac{\delta \frac{1}{1 + e^{-W^T X}}}{\delta w_j} = \frac{e^{-{W^T}X} \times x_j}{(1 + e^{-{W^T}X})^2} = \frac{1}{1 + e^{-{W^T}X}} \times \frac{1 + e^{-{W^T}X} - 1}{1 + e^{-{W^T}X}} \times x_j = \frac{1}{1 + e^{-{W^T}X}} \times (1 - \frac{1}{1 + e^{-{W^T}X}}) \times x_j = h_{W}(X) \times (1 - h_{W}(X)) \times x_j \tag{2}\]</p>

@@ -53,14 +53,14 @@
             <img class="image_center" src="linear_regression.png">
 
             <h4>Cost Function</h4>
-            <p>In order to find the best values for \(m\) and \(b\), we choose Mean Square Error (MSE) function as a cost function and minimize this cost function help us find these parameter values.</p>
+            <p>In order to find the best values for \(m\) and \(b\), we choose the mean square error (MSE) as a cost function, and minimizing this cost function helps us find these parameter values.</p>
 			<p>\[minimize \frac{1}{N} \sum_{i=1}^N (y_i^{'} - y_i)^2\]</p>
             <p>\[J=\frac{1}{N} \sum_{i=1}^N (y_i^{'} - y_i)^2\]</p>
-            <p>For linear regression, the MSE is a convex function, therefore it's guaranteed to find a global minima.</p>
+            <p>For linear regression, the MSE is a convex function; therefore it is guaranteed to have a global minimum.</p>
 
             <h4>Gradient Descent</h4>
-            <p>Gradient descent is an iteration way used for adjusting parameter values to make the cost function converge to minima.</p>
-            <p>By taking the partial derivatices with respect to \(m\) and \(b\)</p>
+            <p>Gradient descent is an iterative method used for adjusting parameter values to make the cost function converge to a minimum.</p>
+            <p>By taking the partial derivatives with respect to \(m\) and \(b\)</p>
             <p>\[J=\frac{1}{N} \sum_{i=1}^N (y_i^{'} - y_i)^2 =\frac{1}{N} \sum_{i=1}^N (mx_i + b - y_i)^2 \]</p>
             <p>\[\frac{\delta J}{\delta m} = \frac{2}{N} \sum_{i=1}^N (mx_i + b - y_i) \cdot x_i = \frac{2}{N} \sum_{i=1}^N (y_i^{'} - y_i) \cdot x_i\]</p>
             <p>\[\frac{\delta J}{\delta b} = \frac{2}{N} \sum_{i=1}^N (mx_i + b - y_i) = \frac{2}{N} \sum_{i=1}^N (y_i^{'} - y_i)\]</p>
@@ -68,11 +68,11 @@
             <p>The learning function is defined as</p>
             <p>\[m \leftarrow m - \alpha \cdot \frac{\delta J}{\delta m} = m - \alpha \cdot \frac{2}{N} \sum_{i=1}^N (y_i^{'} - y_i) \cdot x_i\]</p>
             <p>\[b \leftarrow b - \alpha \cdot \frac{\delta J}{\delta b} = b - \alpha \cdot \frac{2}{N} \sum_{i=1}^N (y_i^{'} - y_i) \]</p>
-            <p>Where \(a\) is the learning rate. A smaller learning rate helps us get closer to minima but it's slow, a larger learning rate can make cost function converge to the minima faster but it can lead to overshoot.</p>
+            <p>Where \({\alpha}\) is the learning rate. A smaller learning rate helps us get closer to the minimum but is slow, while a larger learning rate can make the cost function converge faster but may lead to overshooting.</p>
 
             <img class="image_center" src="learning_rate.png">
 
-            <p>*) To avoid bias (the larger range feature gives more impaction to result) or overflow while calculating, the train data should be normalized or standardized into the same range before training</p>
+            <p>*) To avoid bias (features with larger ranges having more impact on the result) or overflow while calculating, the training data should be normalized or standardized into the same range before training</p>
             <p>Normalization: \(z = \frac{x - x_{min}}{x_{max} - x_{min}}\)</p>
             <p>Standardization: \(z = \frac{x - \mu}{\sigma}\)</p>
             <h3>2. Experiment</h3>

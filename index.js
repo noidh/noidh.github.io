@@ -47,7 +47,7 @@ function BlogComputerVision(prefix,elementId)
         <li><a href="${prefix}/pages/notes/ip/simple_feature_matching/simple_feature_matching.html">A Simple Feature-based Matching </a></li>
         <li><a href="${prefix}/pages/notes/ip/hog/hog.html">Histogram of Oriented Gradient Transform</a></li>	
         <li><a>SIFT </a></li>
-        <li><a>Grapth Cut Segmentation </a></li>
+        <li><a>Graph Cut Segmentation </a></li>
         <li><a href="${prefix}/pages/notes/ip/dibr/dibr.html">Depth Image Based Rendering</a></li>
         <li><a>Camera Calibration </a></li>
         <li><a>K-Mean Segmentation </a></li>

@@ -43,10 +43,10 @@
 
         <main class="content">
             <section class="section page-prose">
-			<h3>1. Basic of Lighting Model in OpenGL</h3>
+			<h3>1. Basics of the lighting model in OpenGL</h3>
             
             <p>In order to simulate the lighting, OpenGL uses lighting models which are based on approximations of reality. One of the most popular and simplest models is Phong lighting model.</p>
-            <p>Phong lighting model basically consist of 3 components: ambient, diffuse and specular</p>            
+            <p>The Phong lighting model basically consists of three components: ambient, diffuse, and specular</p>            
             <img class="image_center" src="basic_lighting_phong.png">
 
             <h3>A. Ambient lighting</h3>
@@ -59,7 +59,7 @@ vec3 ambient = fAmbientStrength * lightColor;
             </code>
             
             <h3>B. Diffuse lighting</h3>
-            <p>The diffuse lighting is calculated by dot product of the light source's direction vector and the surface's normal vector. Since dot product of 2 vectors gradually converges to 1 if angle between them goes to zero, the closer the surface is aligned to the light source's direction, the more lighting it can receive.</p>
+            <p>The diffuse lighting is calculated by the dot product of the light source's direction vector and the surface normal. Since dot product of 2 vectors gradually converges to 1 if angle between them goes to zero, the closer the surface is aligned to the light source's direction, the more lighting it can receive.</p>
             <img class="image_center" src="diffuse_light.png">
             <code class="code_view">
                 <pre>
@@ -73,7 +73,7 @@ vec3 diffuse = diff * lightColor;
 
 
             <h3>C. Specular lighting</h3>
-            <p>The specular lighting depicts the bright spot on a shiny object. it's calculated by the dot product of the refection vector of the light source's direction vector and the eye's direction vector. the closer the angle between them, the more lighting our eyes can perceive. the pow operation makes the specular light down to zero faster so that a bright spot displays more intuitively.</p>
+            <p>The specular lighting depicts the bright spot on a shiny object. It is calculated by the dot product of the reflection of the light direction vector and the view direction vector. The closer the angle between them, the more light our eyes perceive. The pow operation makes the specular term fall to zero faster so that the bright spot appears more intuitively.</p>
             <img class="image_center" src="basic_lighting_specular_theory.png">
             <code class="code_view">
                 <pre>

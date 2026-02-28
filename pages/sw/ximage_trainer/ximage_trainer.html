@@ -47,26 +47,26 @@
                 <img src="ximagetrainer.png" alt="icon" style="width: 80px; float: left; padding: 10px;">
                 <h1>XImage Trainer</h1>
                 <p>
-                    XImageTrainer is free software using for preparing image data and collaborates with other DeepLearning frameworks to train the dataset. 
-                    Without a good GUI tool, drawing a bounding box for objects of thousand images would be a painful job. 
-                    XImageTrainer provides a basic tool to make this task more convenient and simple.
+                    XImageTrainer is free software for preparing image data and collaborating with other deep learning frameworks to train datasets. 
+                    Without a good GUI tool, drawing bounding boxes for objects in thousands of images would be a painful job. 
+                    XImageTrainer provides basic tools to make this task more convenient and simple.
                 </p>
             </div>
     
             <div>
                 <p>
-                    Download the lastest release
+                    Download the latest release
                     <ul>
                         <li><a href="ximagetrainer_win_x64_v1.0.0.zip">XImageTrainer_Win_X64 (v1.0.0).zip</a></li>
                         <li><a href="XImageTrainer_Linux_x64(v1.0.0).zip">XImageTrainer_Linux_X64 (v1.0.0).zip</a></li>
                     </ul>
                 </p>
                 <p>
-                    <span style="color: red;">Notice:</span> Windows 10 users may be blocked by the Microsoft Defender SmartScreen warning dialog for the first time opening 
+                    <span style="color: red;">Notice:</span> Windows 10 users may see the Microsoft Defender SmartScreen warning dialog the first time they open it. 
                     You can ignore this issue temporarily by pressing [More info] -> [Run anyway].
                 </p>
                 <p>
-                    List of supported Deeplearning frameworks until now
+                    Currently supported deep learning frameworks
                     <ul>
                         <li><a href="https://pjreddie.com/darknet/">Darknet and Yolo</a></li>
                     </ul>
@@ -75,46 +75,46 @@
             <div>
                 <h2>1. Setting the Darknet</h2>
 				<p>
-					You must go to <a href="https://github.com/pjreddie/darknet">Darknet</a> to obtain the source code, then build the Darknet which uses Yolo network to train the image dataset.
+					Go to <a href="https://github.com/pjreddie/darknet">Darknet</a> to obtain the source code, then build Darknet, which uses the YOLO network to train image datasets.
 				</p>
                 <p>
-                    Click [Setting] button to open Setting dialog.                 
+                    Click the [Setting] button to open the Settings dialog.                 
                 </p>
                 <img src="settings.jpg" class="image_center" >
                 <p>
-                    Choose the Darknet's execution file and command arguments value
+                    Choose Darknet's executable file and command arguments.
                 </p>
                 
             </div>
             <div>
                 <h2>2. Create a new project</h2>
                 <p>
-                    Click [New Project] button to open Add Project dialog.
+                    Click the [New Project] button to open the Add Project dialog.
                 </p>
                 <img src="create_project.jpg" class="image_center" >
                 <p>
-                    Enter the project's name and workspace's directory. After generating, the project's structure consist of Classes, Configuration, Train Images, Test Images.
+                    Enter the project name and workspace directory. After generating, the project structure consists of Classes, Configuration, Train Images, and Test Images.
                 </p>
                 <img src="new_project.jpg" class="image_center" >
             </div>
             <div>
                 <h2>3. Add class (category) name</h2>
                 <p>
-                    Right click on [Classes] and choose [Edit Class Categories] to open Edit Class dialog. Enter new class name for each row.
+                    Right-click on [Classes] and choose [Edit Class Categories] to open the Edit Class dialog. Enter a new class name for each row.
                 </p>
                 <img src="editclass1.jpg" class="image_center" >
             </div>
             <div>
-                <h2>4. Configurate Yolo network</h2>
+                <h2>4. Configure YOLO network</h2>
                 <p>
-                    Right click on [Configuration] and choose [Edit Configuration] to open Configuration dialog.
+                    Right-click on [Configuration] and choose [Edit Configuration] to open the Configuration dialog.
                 </p>
                 <img src="configuration1.jpg" class="image_center" >
             </div>
             <div>
                 <h2>5. Add Images and ROI (Region of interest)</h2>
                 <p>
-                Right click on [Train Image] or [Test Images] and choose [Add Image] to open Open File dialog. You can select a single file or multiple files to import. Images then are copied into project's Images folder. Images already exist cannot be added.
+                Right-click on [Train Images] or [Test Images] and choose [Add Image] to open the Open File dialog. You can select one or multiple files to import. Images are copied into the project's Images folder. Images that already exist cannot be added again.
                 </p>
                 <img src="addimage.jpg" class="image_center" >
                 

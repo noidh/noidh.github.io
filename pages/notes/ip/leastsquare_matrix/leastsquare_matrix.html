@@ -9,6 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../../../index_css.css">
     <script src="../../../../index.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
 
 </head>
 <body>
@@ -47,7 +49,7 @@
 			<p>\(x\) is an exact solution to linear problem \(Ax=b\) if the error \(e=b - Ax\) is zero. However, when the error \(e\) isn't zero and its length is as small as possible, we can find a least squares solution \(\widehat{x}\).
 			</p>	
 			<p>Therefore, if \(Ax=b\) has no exact solution, we can solve \(A\widehat{x}=b\) to obtain an approximation solution.</p>
-			<p>In order to solve \(A\widehat{x}=b\), multiply 2 side by \(A^{T}\) transpose matrix of \(A\)</p>
+			<p>In order to solve \(A\widehat{x}=b\), multiply both sides by \(A^{T}\), the transpose of \(A\)</p>
 			<p>
 				\[A^{T}A\widehat{x}=A^{T}b\]
 			</p>
@@ -55,18 +57,18 @@
 			<p>
 				\[\widehat{x}=\left[A^{T}A\right]^{-1}A^{T}b\tag{1}\]
 			</p>
-			<p>To apply the least squares approximation to fit a straight line in 2D, we assume that there are number of N 2D points \((x_{1-N}, y_{1-N})\). A straight line that has least square distance to each point can be described as \(y=Mx + B\)</p>
+			<p>To apply the least squares approximation to fit a straight line in 2D, we assume that there are N 2D points \((x_{1-N}, y_{1-N})\). A straight line that has least square distance to each point can be described as \(y=Mx + B\)</p>
 			<p>The linear problem \(Ax=b\) now is \(\left[\begin{array}{ccc}x_{1} & 1\\x_{2} & 1\\...\\x_{N} & 1\end{array}\right]\left[\begin{array}{ccc}M\\B\end{array}\right]=\left[\begin{array}{c}y_{1}\\y_{2}\\...\\y_{N}\end{array}\right]\)</p>
             <p>Where \(A=\left[\begin{array}{ccc}x_{1} & 1\\x_{2} & 1\\...\\x_{N} & 1\end{array}\right]\), \(x=\left[\begin{array}{ccc}M\\B\end{array}\right]\), and \(b=\left[\begin{array}{c}y_{1}\\y_{2}\\...\\y_{N}\end{array}\right]\)</p>
 			<p>\[\left[A^{T}A\right]^{-1}=\left[\begin{array}{}\sum_{i}^{N}x_{i}^{2} & \sum_{i}^{N}x_{i}\\\sum_{i}^{N}x_{i}&N\end{array}\right], A^{T}b=\left[\begin{array}{}\sum_{i}^{N}x_{i}y_{i}\\\sum_{i}^{N}y_{i}\end{array}\right]\tag{2}\]</p>
 			<p>From \((1)\) and \((2)\), we have \(\widehat{x}=\left[\begin{array}{}\sum_{i}^{N}x_{i}^{2} & \sum_{i}^{N}x_{i}\\\sum_{i}^{N}x_{i}&N\end{array}\right]^{-1}\left[\begin{array}{}\sum_{i}^{N}x_{i}y_{i}\\\sum_{i}^{N}y_{i}\end{array}\right]\)</p>
 			<p>We need to find inverse of square matrix \(\left[\begin{array}{}\sum_{i}^{N}x_{i}^{2} & \sum_{i}^{N}x_{i}\\\sum_{i}^{N}x_{i}&N\end{array}\right]^{-1}\)</p>
-			<p>\(Det=N\sum_{i}^{N}x_{i}^{2} - (\sum_{i}^{N}x_{i})^2\), check for the \(Det\) is difference from zero.</p>
+			<p>\(Det=N\sum_{i}^{N}x_{i}^{2} - (\sum_{i}^{N}x_{i})^2\), check that \(Det\) is different from zero.</p>
 			<p>Inverse matrix is \[\frac{1}{N\sum_{i}^{N}x_{i}^{2} - (\sum_{i}^{N}x_{i})^2}\left[\begin{array}{}N & -\sum_{i}^{N}x_{i}\\-\sum_{i}^{N}x_{i}&\sum_{i}^{N}x_{i}^{2}\end{array}\right]\tag{3}\]</p>
 			
 			<p>Finally, we have </p>
 			<p>\[\widehat{x}=\frac{1}{N\sum_{i}^{N}x_{i}^{2} - (\sum_{i}^{N}x_{i})^2}\left[\begin{array}{}N & -\sum_{i}^{N}x_{i}\\-\sum_{i}^{N}x_{i}&\sum_{i}^{N}x_{i}^{2}\end{array}\right]\left[\begin{array}{}\sum_{i}^{N}x_{i}y_{i}\\\sum_{i}^{N}y_{i}\end{array}\right]\]</p>
-			<p>Then, \(M=\frac{N\sum_{i}^{N}x_{i}y_{i} - \sum_{i}^{N}x_{i}\sum_{i}^{N}y_{i}}{N\sum_{i}^{N}x_{i}^{2} - (\sum_{i}^{N}x_{i})^2}\), \(B=\frac{\sum_{i}^{N}x_{i}^{2}\sum_{i}^{N}y_{i} - \sum_{i}^{N}x_{i}\sum_{i}^{N}x_{i}y{i}}{N\sum_{i}^{N}x_{i}^{2} - (\sum_{i}^{N}x_{i})^2}\) or \(B=\frac{\sum_{i}^{N}y_{i} - M\sum_{i}^{N}x_{i}}{N}\)</p>
+			<p>Then, \(M=\frac{N\sum_{i}^{N}x_{i}y_{i} - \sum_{i}^{N}x_{i}\sum_{i}^{N}y_{i}}{N\sum_{i}^{N}x_{i}^{2} - (\sum_{i}^{N}x_{i})^2}\), \(B=\frac{\sum_{i}^{N}x_{i}^{2}\sum_{i}^{N}y_{i} - \sum_{i}^{N}x_{i}\sum_{i}^{N}x_{i}y_{i}}{N\sum_{i}^{N}x_{i}^{2} - (\sum_{i}^{N}x_{i})^2}\) or \(B=\frac{\sum_{i}^{N}y_{i} - M\sum_{i}^{N}x_{i}}{N}\)</p>
 			
 			<br>
 			<h3>2. Experiment</h3>

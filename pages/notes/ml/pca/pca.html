@@ -47,9 +47,9 @@
         <main class="content">
             <section class="section page-prose">
 			<h3>1. Principal Component Analysis</h3>
-			<p>Principal Component Analysis (PCA) is an important statistic technique and widely used in Machine Learning to reduce the dimension of the dataset.</p>
-            <p>In other words, PCA help us eliminate the unuseful information or noise and keep the most important once in data.</p>
-            <p>Below are steps for calculating PCA in 2D data which is can be easily extended to higher dimension dataset.</p>
+			<p>Principal component analysis (PCA) is an important statistical technique widely used in machine learning to reduce the dimensionality of a dataset.</p>
+            <p>In other words, PCA helps us eliminate unimportant information or noise and keep the most important components in the data.</p>
+            <p>Below are the steps for calculating PCA on 2D data, which can be easily extended to higher-dimensional datasets.</p>
             <ol>
                 <li>
                     <p>Creating a matrix \(D\) by assembling all the data points into it where each column is one data point.</p>
@@ -63,14 +63,12 @@
                 </li>
 
                 <li>
-                    <p>Creating a matrix \(M\) by subtracting it's value by the corresponding mean value: this step is to standardize the range of variables.
-                        Since variables which have larger ranges potentially dominate the output of calculation and it can lead to wrong results. we can obtain a better result by dividing by the standard deviation after subtracting by the mean value.
-                    </p>    
+                    <p>Creating a matrix \(M\) by subtracting its values by the corresponding mean value: this step standardizes the range of the variables. Since variables with larger ranges can potentially dominate the output of the calculation and lead to poor results, we can obtain a better result by dividing by the standard deviation after subtracting the mean value.</p>    
                     <p><p>\[M=\left[\begin{array}{} (x_1 - \mu_x) & (x_2 - \mu_x) & ... & (x_n - \mu_x) \\ (y_1 - \mu_y) & (y_2 - \mu_y) & ... & (y_n - \mu_y) \end{array} \right]\]</p></p>
                 </li>
 
                 <li>
-                    <p>Calculating the covariance matrix \(C\): the reason why we need to calculate the covariance matrix is expoloring the relationship between variables itself and between difference variables.</p>
+                    <p>Calculating the covariance matrix \(C\): the reason we calculate the covariance matrix is to explore the relationships within and between different variables.</p>
                     <p>\[C=MM^T\]</p>
                 </li>
 
@@ -78,11 +76,11 @@
                     <p>Calculating the eigen values and eigen vectors of the covariance matrix: the eigen vector represents the direction and the eigen value represents the magnitude of the covariance value. Therefore, principal components depict the directions of the data that having a maximum of variance.</p>
                     <p>Example of calculating eigen values and eigen vector of 2x2 matrix \(C\).</p>
                     <p>\[C = \left[\begin{array}{}c_{00}&c_{01}\\c_{10}&c_{11}\end{array} \right]\]</p>
-                    <p> Assume that \(v\) is an eigen vector of the matrix \(C\), thererfore it has to satisfy below condition. </p>
+                    <p> Assume that \(v\) is an eigenvector of the matrix \(C\); therefore it has to satisfy the following condition. </p>
                     <p>\[Cv=\lambda v\]</p>
                     <p>\[\Rightarrow (C - \lambda I)v = 0 \]</p>
                     <p>\[\Rightarrow \left[\begin{array}{}c_{00} - \lambda&c_{01}\\c_{10}&c_{11} - \lambda\end{array} \right]v = 0 \tag{1}\]</p>
-                    <p>The equation \((1)\) has non-zero solution iff the matrix \(\left[\begin{array}{}c_{00} - \lambda&c_{01}\\c_{10}&c_{11} - \lambda\end{array} \right]\) is not invertable or its determinant is zero.</p>
+                    <p>The equation \((1)\) has a non-zero solution iff the matrix \(\left[\begin{array}{}c_{00} - \lambda&c_{01}\\c_{10}&c_{11} - \lambda\end{array} \right]\) is not invertible or its determinant is zero.</p>
                     <p>\[\det = (c_{00} - \lambda)(c_{11} - \lambda) - c_{10}c_{01} = 0\]</p>
                     <p>\[\Rightarrow \lambda^2 - (c_{00} + c_{11})\lambda + c_{00}c_{11} - c_{10}c_{01} = 0 \tag{2}\]</p>
                     <p>Solve the quadratic equation \((2)\), we have \(\Delta = (c_{00} + c_{11})^2 - 4(c_{00}c_{11} - c_{10}c_{01}) = c_{00}^2 + c_{11}^2 - 2c_{00}c_{11} + 4c_{10}c_{01} = (c_{00} - c_{11})^2 + 4c_{10}c_{01}\)</p>

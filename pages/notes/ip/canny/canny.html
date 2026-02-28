@@ -9,6 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../../../index_css.css">
     <script src="../../../../index.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
 
 </head>
 <body>
@@ -48,9 +50,9 @@
 			<ol type="1">
 				<li>Apply Gaussian filter to denoise.</li>
 				<li>Find the intensity gradients of the image.</li>
-				<li>Compute gradient's maginute and theta, then apply a non-maximal suppression to remove undesired edges.</li>
+				<li>Compute the gradient magnitude and orientation \(\theta\), then apply non-maximal suppression to remove undesired edges.</li>
 				<li>Apply double threshold to determine potential edges.</li>
-				<li>Perform edge tracking by hysteresis to detect real edge.</li>
+				<li>Perform edge tracking by hysteresis to detect real edges.</li>
 			</ol>
 			
 			<br>

@@ -9,6 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../../../index_css.css">
     <script src="../../../../index.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
 
 </head>
 <body>
@@ -45,12 +47,12 @@
             <section class="section page-prose">
 			<h3>1. Color Model</h3>
 			<h4>RGB Color Model</h4>
-			<p>RGB color model is combination of 3 channel Red, Green and Blue which's value are between 0 and 1.</p>
-			<p>In digital representation, the value of each channel depends on the bit depth. For example, the value is range from 0 to 255 with 8-bit depth unsigned image.</p>
+			<p>The RGB color model is a combination of three channels—red, green, and blue—whose values are between 0 and 1.</p>
+			<p>In digital representation, the value of each channel depends on the bit depth. For example, with an 8-bit unsigned image the values range from 0 to 255.</p>
 			<img class="image_center" src="rgb_1.jpg">
 
 			<h4>HSV</h4>
-			<p>HSV is represented by Hue, Saturation and Value</p>
+			<p>HSV is represented by hue, saturation, and value</p>
 			<ul>
 				<li>Hue: represents dominant color perceived by an observer. \(H=\begin{cases}\theta & if B \le G \\ 360 - \theta & if B > G \end{cases}\), where \(\theta = \cos^-1 \left(\frac{\frac{1}{2}((R-G) + (R -B))}{\sqrt{(R-G)^2 + (R-G)(G-B)}}\right)\)</li>
 				<li>Saturation: represents the amount of white light mixed with Hue. \(S=1 - \frac{3}{R + G + B}(min(R, G, B))\)</li>
@@ -58,7 +60,7 @@
 			</ul>
 			<img class="image_center" src="hsv.png">
 
-			<p>In order to convert from HSV to RGB</p>
+			<p>To convert from HSV to RGB</p>
 			<ul>
 				<li>If \(0^{\circ} \le H < 120^{\circ}\): \(B = V(1 - S)\), \(R = V\left(1 + \frac{S \cos H}{\cos(60^{\circ} - H)}\right)\), \(G = 3V - (R + B)\)</li>
 				<li>If \(120^{\circ} \le H < 240^{\circ}\): \(H = H - 120^{\circ}\), \(B = V(1 - S)\), \(R = V\left(1 + \frac{S \cos H}{\cos(60^{\circ} - H)}\right)\), \(G = 3V - (R + B)\)</li>

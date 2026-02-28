@@ -9,6 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../../../index_css.css">
     <script src="../../../../index.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
 
 </head>
 <body>
@@ -46,9 +48,9 @@
 			<h3>1. A Simple 3D Earth by QT and OpenGL</h3>
 
             <h4>A. Calculate Vertices</h4>
-            <p>Actually, the Earth isn't a pefect sphere, thus for a simple rendering in this article, we assume that it's a sphere so that vertex's coordinate can be easily calculated based on longitude and latitude of the Earth. The longitude ranges from -180 to 180 degree and the Prime meridian or zero degree longitude goes through Greenwich. The latitude ranges from -90 degree to 90 degree.</p>
+            <p>Actually, the Earth isn't a perfect sphere, but for simple rendering in this article we assume that it's a sphere so that the vertex coordinates can be easily calculated based on the Earth's longitude and latitude. The longitude ranges from -180 to 180 degree and the Prime meridian or zero degree longitude goes through Greenwich. The latitude ranges from -90 degree to 90 degree.</p>
             <img class="image_center" src="640px-Latitude_and_Longitude_of_the_Earth.svg.png">
-            <p>By choosing step is 1 degree, there are 360 longitudes and 180 latitudes. We can get better resolution by decreasing step size that however results in lower computing performance and rendering.</p>
+            <p>By choosing a step size of 1 degree, there are 360 longitudes and 180 latitudes. We can get better resolution by decreasing the step size, but this results in lower performance during computation and rendering.</p>
             <p>Now, from every longitude \(\theta\) and latitude \(\phi\), vertex's coordinate \((x,y,z)\) can be calculated as below.</p>
             <img class="image_center" src="earth_3d_1.png">
             <p>\(y=r \times sin(\phi)\)</p>
@@ -56,7 +58,7 @@
             <p>\(x=xz \times sin(\theta)\)</p>
             <p>\(z=xz \times cos(\theta)\)</p>
             <p>Where, \(r=1.0\)</p>
-            <p>For rendering the Earth with color texture, we also need to calculate the texture's coordinate. For each vertex, the corresponding texture's coordinate is the index of the longitude and the latitude which is normalized from 0->1.0.</p>
+            <p>For rendering the Earth with a color texture, we also need to calculate the texture coordinates. For each vertex, the corresponding texture coordinate is the index of the longitude and latitude normalized from 0 to 1.0.</p>
 
             <h4>B. Calculate Indices</h4>
             <p>From 4 vertices, two triangles can be formed in counterclockwise ordering as below</p>

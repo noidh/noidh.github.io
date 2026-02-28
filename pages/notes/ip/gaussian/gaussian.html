@@ -48,27 +48,27 @@
             <section class="section page-prose">
 			<h3>1. Introduction</h3>
 			<p>The Gaussian filter is a convolution operator that is used to blur images and remove detail and noise.</p>
-			<p>In 2D, the Gaussian kernel is described as \(G(x,y)=\frac{1}{2\pi{\sigma^2}}e^{-\frac{x^2+y^2}{2\sigma^2}}\)</p>
-			<p>Where \(\sigma\) is the standard deviation of the distribution.</p>
+			<p>In 2D, the Gaussian kernel is described as \(G(x,y)=\frac{1}{2\pi{\sigma^2}}e^{-\frac{x^2+y^2}{2\sigma^2}}\).</p>
+			<p>Here, \(\sigma\) is the standard deviation of the distribution.</p>
 			<img class="image_center" src="gaussian_1.jpg">
-			<p>When \(\sigma\) get larger, the value of kernel becomes smaller. And if the kernel size isn't scaled to bigger, it'll make the image darker gradually as you see Video 2 below. In order to avoid this, the kernel value should be normalized so that the sum of them is always 1.</p>
+			<p>When \(\sigma\) gets larger, the kernel values become smaller. If the kernel size is not increased accordingly, the image gradually becomes darker, as you can see in Video 2 below. To avoid this, the kernel values should be normalized so that their sum is always 1.</p>
 			
 			<p>The Gaussian filter can be optimized in several ways.</p>
-			<p>The first, in 2D an isotropic Gaussian shown above is separatable into \(x\) and \(y\) components, thus 2-D convolution can be performed by \(x\) direction first, then \(y\) direction.</p>	
+			<p>First, in 2D an isotropic Gaussian as shown above is separable into \(x\) and \(y\) components, so the 2D convolution can be computed by filtering in the \(x\) direction and then in the \(y\) direction.</p>	
 			<p>\(G(x,y)=\frac{1}{2\pi{\sigma^2}}e^{-\frac{x^2+y^2}{2\sigma^2}} = \frac{1}{\sqrt{2\pi}{\sigma}}e^{-\frac{x^2}{2\sigma^2}}\cdot{\frac{1}{\sqrt{2\pi}{\sigma}}e^{-\frac{y^2}{2\sigma^2}}}\)</p>
 			
-			<p>The second is approximate a gaussian using a box filter aka mean filter. By performing the box filter multiple times, an approximation gaussion filter can be obtained more quickly.</p>
+			<p>Second, we can approximate a Gaussian using a box (mean) filter. By applying the box filter multiple times, we can obtain an approximate Gaussian filter more efficiently.</p>
 			<img class="image_center" src="gaussian_2.jpg">
 			
-			<p>The third is using an approximation Gaussian kernel. Below is an approximation of Gaussion filter with \(kernel size = 5\times{5},\sigma=1.0\).</p>
+			<p>Third, we can use an approximate Gaussian kernel. Below is an approximation of a Gaussian filter with \(kernel\ size = 5\times{5},\sigma=1.0\).</p>
 			<img class="image_center" src="gaussian_3.jpg">					
 			
 			<br>
 			<h3>2. Experiment</h3>
-			<p>Video 1: Demo a 2D Gaussion Filter</p>	
+			<p>Video 1: Demo of a 2D Gaussian filter</p>	
 			<iframe width="853" height="480" frameborder="0" allowfullscreen src="https://www.youtube.com/embed/fkY-NthXh-k"></iframe>
 
-			<p>Video 2: Demo a 2D Gaussion Filter Without Normalize Kernel</p>
+			<p>Video 2: Demo of a 2D Gaussian filter without kernel normalization</p>
 			<iframe width="853" height="480" frameborder="0" allowfullscreen src="https://www.youtube.com/embed/b5EtYKqknpc"></iframe>
 			<h3>3. References</h3>
 			<p>

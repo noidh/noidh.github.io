@@ -9,6 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../../../index_css.css">
     <script src="../../../../index.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
 
 </head>
 <body>
@@ -45,10 +47,10 @@
             <section class="section page-prose">
 			<h3>1. Introduction</h3>
 			<p>Histogram Equalization is a simple algorithm that can improve the contrast in an image.</p>
-			<p>By stretching out the range of histogram distribution, the contrast of image can be enhanced. However, the noise can be strengthened too.</p>
+			<p>By stretching out the range of the histogram distribution, the contrast of the image can be enhanced. However, noise may also be amplified.</p>
 			<img class="image_center"  src="hist_1.bmp">
 			<img class="image_center"  src="hist_2.bmp">
-			<p>For the histogram H(i), a cummulative distribution function (cdf) \(H^{'}(i)\) is defined as below.</p>
+			<p>For the histogram H(i), a cumulative distribution function (CDF) \(H^{'}(i)\) is defined as below.</p>
 			<p>\[H^{'}(i)=\sum_{0\le{j}<{i}}H(j)\]</p>
 
 			<p>After calculating the cdf function, \(H^{'}(i)\) must be normalized such that the maximum value is in the range of intensity gray value.  Then, the image pixel is mapped into a new value.</p>
