@@ -62,32 +62,32 @@ HEAD_TEMPLATE = '''<!DOCTYPE html>
     <div id="header" class="site-header"></div>
     <script>Header("header");</script>
 
-    <div class="layout">
-        <aside class="sidebar" aria-label="Site navigation">
-            <nav class="nav">
-                <div class="nav_item">
-                    <a href="{root}index.html" class="nav_link">Home</a>
-                </div>
-                <div class="nav_item nav_item--dropdown">
-                    <a href="{root}project.html" class="nav_link">Personal Projects</a>
-                    <ul class="nav_dropdown">
-                        <li><a href="{root}pages/sw/ximagetool/ximagetool.html">XImage Tool</a></li>
-                        <li><a href="{root}pages/sw/ximage2text/ximagetotext.html">XText</a></li>
-                    </ul>
-                </div>
-                <div class="nav_item nav_item--dropdown">
-                    <a href="{root}blog.html" class="nav_link nav_link--current">Technical Blog</a>
-                    <ul class="nav_dropdown">
-                        <li><a href="{root}notes_ip.html">Image Processing</a></li>
-                        <li><a href="{root}notes_cv.html">Computer Vision</a></li>
-                        <li><a href="{root}notes_ml.html">Machine Learning</a></li>
-                        <li><a href="{root}opengl_notes.html">3D Rendering</a></li>
-                        <li><a href="{root}notes_miscellaneous.html">Miscellaneous</a></li>
-                    </ul>
-                </div>
-            </nav>
-        </aside>
+    <header class="site-nav" aria-label="Site navigation">
+        <nav class="nav nav--horizontal">
+            <div class="nav_item">
+                <a href="{root}index.html" class="nav_link">Home</a>
+            </div>
+            <div class="nav_item nav_item--dropdown">
+                <a href="{root}project.html" class="nav_link">Personal Projects ▾</a>
+                <ul class="nav_dropdown">
+                    <li><a href="{root}pages/sw/ximagetool/ximagetool.html">XImage Tool</a></li>
+                    <li><a href="{root}pages/sw/ximage2text/ximagetotext.html">XText</a></li>
+                </ul>
+            </div>
+            <div class="nav_item nav_item--dropdown">
+                <a href="{root}blog.html" class="nav_link nav_link--current">Technical Blog ▾</a>
+                <ul class="nav_dropdown">
+                    <li><a href="{root}notes_ip.html">Image Processing</a></li>
+                    <li><a href="{root}notes_cv.html">Computer Vision</a></li>
+                    <li><a href="{root}notes_ml.html">Machine Learning</a></li>
+                    <li><a href="{root}opengl_notes.html">3D Rendering</a></li>
+                    <li><a href="{root}notes_miscellaneous.html">Miscellaneous</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
 
+    <div class="layout">
         <main class="content">
             <section class="section page-prose">
 '''
@@ -160,10 +160,71 @@ def apply_template(repo_root, rel_path, root_prefix, title, has_mathjax):
     return True
 
 
+# Block to replace sidebar with horizontal nav (use .format(root=root_prefix))
+SIDEBAR_TO_HORIZONTAL_NAV = '''
+
+    <header class="site-nav" aria-label="Site navigation">
+        <nav class="nav nav--horizontal">
+            <div class="nav_item">
+                <a href="{root}index.html" class="nav_link">Home</a>
+            </div>
+            <div class="nav_item nav_item--dropdown">
+                <a href="{root}project.html" class="nav_link">Personal Projects ▾</a>
+                <ul class="nav_dropdown">
+                    <li><a href="{root}pages/sw/ximagetool/ximagetool.html">XImage Tool</a></li>
+                    <li><a href="{root}pages/sw/ximage2text/ximagetotext.html">XText</a></li>
+                </ul>
+            </div>
+            <div class="nav_item nav_item--dropdown">
+                <a href="{root}blog.html" class="nav_link nav_link--current">Technical Blog ▾</a>
+                <ul class="nav_dropdown">
+                    <li><a href="{root}notes_ip.html">Image Processing</a></li>
+                    <li><a href="{root}notes_cv.html">Computer Vision</a></li>
+                    <li><a href="{root}notes_ml.html">Machine Learning</a></li>
+                    <li><a href="{root}opengl_notes.html">3D Rendering</a></li>
+                    <li><a href="{root}notes_miscellaneous.html">Miscellaneous</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="layout">
+        <main class="content">'''
+
+# Pattern: <div class="layout"> ... </aside> ... <main class="content">
+SIDEBAR_PATTERN = re.compile(
+    r'(\s*)<div class="layout">\s*'
+    r'<aside class="sidebar"[^>]*>.*?</aside>\s*'
+    r'<main class="content">',
+    re.DOTALL,
+)
+
+
+def replace_sidebar_with_horizontal_nav(repo_root, rel_path, root_prefix):
+    """Replace sidebar nav with horizontal nav in a file that already uses the template."""
+    path = os.path.join(repo_root, rel_path)
+    if not os.path.isfile(path):
+        return False
+    with open(path, 'r', encoding='utf-8') as f:
+        text = f.read()
+    if '<aside class="sidebar"' not in text:
+        return False
+    replacement = SIDEBAR_TO_HORIZONTAL_NAV.format(root=root_prefix)
+    new_text, n = SIDEBAR_PATTERN.subn(replacement, text, count=1)
+    if n == 0:
+        return False
+    with open(path, 'w', encoding='utf-8') as f:
+        f.write(new_text)
+    return True
+
+
 def main():
     repo_root = os.path.dirname(os.path.abspath(__file__))
     for rel_path, root, title, has_mathjax in PAGES:
-        apply_template(repo_root, rel_path, root, title, has_mathjax)
+        if replace_sidebar_with_horizontal_nav(repo_root, rel_path, root):
+            print("Nav updated:", rel_path)
+        else:
+            apply_template(repo_root, rel_path, root, title, has_mathjax)
 
 
 if __name__ == '__main__':

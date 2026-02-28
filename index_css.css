@@ -18,7 +18,8 @@
     --space-xl: 2rem;
     --space-2xl: 3rem;
     --sidebar-width: 260px;
-    --content-max: 720px;
+    --content-max: 600px;
+    --layout-max: 880px;
     --radius: 6px;
 }
 
@@ -51,7 +52,7 @@ body {
     flex-wrap: wrap;
     align-items: flex-start;
     gap: var(--space-xl);
-    max-width: 1200px;
+    max-width: var(--layout-max);
     margin: 0 auto;
 }
 
@@ -93,79 +94,101 @@ body {
     object-fit: cover;
 }
 
-/* --- Layout --- */
-.layout {
+/* --- Horizontal nav (under header) — larger, easier to see --- */
+.site-nav {
+    background: var(--color-surface);
+    border-bottom: 2px solid var(--color-border);
+    padding: 0 var(--space-xl);
+}
+
+.site-nav .nav--horizontal {
     display: flex;
     flex-wrap: wrap;
-    max-width: 1200px;
+    align-items: center;
+    gap: 0;
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+    max-width: var(--layout-max);
+}
+
+.site-nav .nav_item {
+    margin: 0;
+    position: relative;
+}
+
+.site-nav .nav_link {
+    display: block;
+    padding: 1rem 1.25rem;
+    color: var(--color-text);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.0625rem;
+    letter-spacing: 0.01em;
+}
+
+.site-nav .nav_link:hover,
+.site-nav .nav_link--current {
+    color: var(--color-accent);
+}
+
+.site-nav .nav_item--dropdown:hover .nav_dropdown,
+.site-nav .nav_item--dropdown .nav_dropdown:focus-within {
+    opacity: 1;
+    visibility: visible;
+}
+
+.site-nav .nav_dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 220px;
+    margin: 0;
+    padding: var(--space-sm) 0;
+    list-style: none;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-top: none;
+    border-radius: 0 0 var(--radius) var(--radius);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.15s ease, visibility 0.15s ease;
+    z-index: 10;
+}
+
+.site-nav .nav_dropdown li {
+    margin: 0;
+}
+
+.site-nav .nav_dropdown a {
+    display: block;
+    padding: 0.625rem 1.25rem;
+    color: var(--color-text);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.site-nav .nav_dropdown a:hover,
+.site-nav .nav_dropdown a.nav_link--current {
+    color: var(--color-accent);
+    background: rgba(13, 115, 119, 0.08);
+}
+
+.site-nav .nav_dropdown a.nav_link--current {
+    font-weight: 600;
+}
+
+/* --- Layout (content only, no sidebar) --- */
+.layout {
+    max-width: var(--layout-max);
     margin: 0 auto;
     padding: var(--space-lg) var(--space-xl);
 }
 
-/* --- Sidebar --- */
-.sidebar {
-    flex: 0 0 var(--sidebar-width);
-    padding-right: var(--space-xl);
-}
-
-.nav {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.nav_item {
-    margin-bottom: var(--space-xs);
-}
-
-.nav_link {
-    display: inline-block;
-    padding: var(--space-xs) 0;
-    color: var(--color-text);
-    text-decoration: none;
-    font-weight: 500;
-}
-
-.nav_link:hover,
-.nav_link--current {
-    color: var(--color-accent);
-}
-
-.nav_item--dropdown .nav_link {
-    padding-right: var(--space-sm);
-}
-
-.nav_dropdown {
-    list-style: none;
-    margin: 0 0 var(--space-sm) var(--space-md);
-    padding: 0;
-    border-left: 2px solid var(--color-border);
-    padding-left: var(--space-md);
-}
-
-.nav_dropdown li {
-    margin-bottom: var(--space-xs);
-}
-
-.nav_dropdown a {
-    color: var(--color-text-muted);
-    text-decoration: none;
-    font-size: 0.9375rem;
-}
-
-.nav_dropdown a:hover,
-.nav_dropdown a.nav_link--current {
-    color: var(--color-accent);
-}
-
-.nav_dropdown a.nav_link--current {
-    font-weight: 500;
-}
-
 /* --- Main content --- */
 .content {
-    flex: 1 1 0;
-    min-width: 0;
     max-width: var(--content-max);
 }
 
@@ -334,7 +357,7 @@ body {
     height: auto;
 }
 
-/* --- Legacy layout (project.html, blog pages) --- */
+/* --- Legacy (pages still using .navigation / .introduction) --- */
 .navigation {
     display: block;
     float: left;
@@ -376,17 +399,15 @@ body {
 /* --- Responsive --- */
 @media (max-width: 900px) {
     .layout {
-        flex-direction: column;
         padding: var(--space-md);
     }
 
-    .sidebar {
-        flex: none;
-        width: 100%;
-        padding-right: 0;
-        margin-bottom: var(--space-lg);
-        padding-bottom: var(--space-lg);
-        border-bottom: 1px solid var(--color-border);
+    .site-nav {
+        padding: 0 var(--space-md);
+    }
+
+    .site-nav .nav_link {
+        padding: var(--space-sm) var(--space-md);
     }
 
     .site-header {

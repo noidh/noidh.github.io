@@ -15,32 +15,32 @@
     <div id="header" class="site-header"></div>
     <script>Header("header");</script>
 
-    <div class="layout">
-        <aside class="sidebar" aria-label="Site navigation">
-            <nav class="nav">
-                <div class="nav_item">
-                    <a href="../../index.html" class="nav_link">Home</a>
-                </div>
-                <div class="nav_item nav_item--dropdown">
-                    <a href="../../project.html" class="nav_link">Personal Projects</a>
-                    <ul class="nav_dropdown">
-                        <li><a href="../../pages/sw/ximagetool/ximagetool.html">XImage Tool</a></li>
-                        <li><a href="../../pages/sw/ximage2text/ximagetotext.html">XText</a></li>
-                    </ul>
-                </div>
-                <div class="nav_item nav_item--dropdown">
-                    <a href="../../blog.html" class="nav_link nav_link--current">Technical Blog</a>
-                    <ul class="nav_dropdown">
-                        <li><a href="../../notes_ip.html">Image Processing</a></li>
-                        <li><a href="../../notes_cv.html">Computer Vision</a></li>
-                        <li><a href="../../notes_ml.html">Machine Learning</a></li>
-                        <li><a href="../../opengl_notes.html">3D Rendering</a></li>
-                        <li><a href="../../notes_miscellaneous.html">Miscellaneous</a></li>
-                    </ul>
-                </div>
-            </nav>
-        </aside>
+    <header class="site-nav" aria-label="Site navigation">
+        <nav class="nav nav--horizontal">
+            <div class="nav_item">
+                <a href="../../index.html" class="nav_link">Home</a>
+            </div>
+            <div class="nav_item nav_item--dropdown">
+                <a href="../../project.html" class="nav_link">Personal Projects ▾</a>
+                <ul class="nav_dropdown">
+                    <li><a href="../../pages/sw/ximagetool/ximagetool.html">XImage Tool</a></li>
+                    <li><a href="../../pages/sw/ximage2text/ximagetotext.html">XText</a></li>
+                </ul>
+            </div>
+            <div class="nav_item nav_item--dropdown">
+                <a href="../../blog.html" class="nav_link nav_link--current">Technical Blog ▾</a>
+                <ul class="nav_dropdown">
+                    <li><a href="../../notes_ip.html">Image Processing</a></li>
+                    <li><a href="../../notes_cv.html">Computer Vision</a></li>
+                    <li><a href="../../notes_ml.html">Machine Learning</a></li>
+                    <li><a href="../../opengl_notes.html">3D Rendering</a></li>
+                    <li><a href="../../notes_miscellaneous.html">Miscellaneous</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
 
+    <div class="layout">
         <main class="content">
             <section class="section page-prose">
             <h3># Short note of Intel SIMD api</h3>
