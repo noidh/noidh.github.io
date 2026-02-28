@@ -1,13 +1,15 @@
 function Header(headerId)
 {
     document.getElementById(headerId).innerHTML = `
-<div  style="width: 270px; float: left;">
-    <h2>Doan Huu Noi</h2>
-    <h4></h4><p><a><< doanhuunoi@gmail.com >></a></p></h4>
-    <p style="word-wrap: break-word;">Image Processing, Computer Vision, Object Detection, Pattern Matching, Optimization, 3D Rendering, Stereo Vision...</p>
-</div>
-<div style="float: left;">
-    <img style="height: 220px;" src="https://noidh.github.io/header.jpg">
+<div class="header_inner">
+    <div class="header_text">
+        <h1>Doan Huu Noi</h1>
+        <p><a href="mailto:doanhuunoi@gmail.com" class="header_email">&lt;doanhuunoi@gmail.com&gt;</a></p>
+        <p class="header_bio">Image Processing, Computer Vision, Object Detection, Pattern Matching, Optimization, 3D Rendering, Stereo Vision…</p>
+    </div>
+    <div class="header_photo">
+        <img src="https://noidh.github.io/header.jpg" alt="Doan Huu Noi" width="160" height="200">
+    </div>
 </div>`;
 }
 

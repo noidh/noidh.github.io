@@ -1,110 +1,118 @@
 <!DOCTYPE html>
 <html lang="en-US">
-    <head>
-        <title>Doan Huu Noi</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Doan Huu Noi — Computer Vision Engineer. Image Processing, Object Detection, 3D Rendering, Stereo Vision.">
+    <title>Doan Huu Noi — Computer Vision Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./index_css.css">
+    <script src="./index.js"></script>
+</head>
+<body>
+    <div id="header" class="site-header"></div>
+    <script>Header("header");</script>
 
-        <link rel="stylesheet" href="./index_css.css">
-		<script src="./index.js"></script>
-    </head>
-    <body>
-        <div id="header"></div>
-		<script>
-			Header("header");
-		</script> 
+    <div class="layout">
+        <aside class="sidebar" aria-label="Site navigation">
+            <nav class="nav">
+                <div class="nav_item">
+                    <a href="https://noidh.github.io" class="nav_link nav_link--current">Home</a>
+                </div>
+                <div class="nav_item nav_item--dropdown">
+                    <a href="project.html" class="nav_link">Personal Projects</a>
+                    <ul class="nav_dropdown">
+                        <li><a href="./pages/sw/ximagetool/ximagetool.html">XImage Tool</a></li>
+                        <li><a href="./pages/sw/ximage2text/ximagetotext.html">XText</a></li>
+                    </ul>
+                </div>
+                <div class="nav_item nav_item--dropdown">
+                    <a href="blog.html" class="nav_link">Technical Blog</a>
+                    <ul class="nav_dropdown">
+                        <li><a href="notes_ip.html">Image Processing</a></li>
+                        <li><a href="notes_cv.html">Computer Vision</a></li>
+                        <li><a href="notes_ml.html">Machine Learning</a></li>
+                        <li><a href="opengl_notes.html">3D Rendering</a></li>
+                        <li><a href="notes_miscellaneous.html">Miscellaneous</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
 
-        <div class="navigation">
-            <div class="nav_item"><a href="https://noidh.github.io">[Home]</a></div>
-            <div class="nav_item">
-                <a href="project.html">Personal Projects</a>
-                <ul>
-					<li>
-                        <a href="./pages/sw/ximagetool/ximagetool.html">XImage Tool</a>
+        <main class="content">
+            <section class="intro" aria-labelledby="intro-heading">
+                <p class="intro_tagline">Computer Vision Engineer — Image Processing, Object Detection, 3D Rendering, Stereo Vision</p>
+            </section>
+
+            <section class="section" aria-labelledby="education-heading">
+                <h2 id="education-heading" class="section_title">Education</h2>
+                <ul class="list list--timeline">
+                    <li><strong>2015</strong> — Soongsil University, Seoul, South Korea — Master's in Video and Image Processing.</li>
+                    <li><strong>2013</strong> — Posts and Telecommunications Institute of Technology, HCM City, Vietnam — Bachelor's in Information System.</li>
+                </ul>
+            </section>
+
+            <section class="section" aria-labelledby="background-heading">
+                <h2 id="background-heading" class="section_title">Background &amp; Skills</h2>
+                <ul class="list">
+                    <li><strong>Programming &amp; domains:</strong>
+                        <span class="skill skill--strong">C++</span>,
+                        <span class="skill skill--strong">Image Processing</span>,
+                        <span class="skill skill--strong">Computer Vision</span>,
+                        <span class="skill skill--strong">SIMD (SSE, AVX, NEON)</span>,
+                        <span class="skill skill--mid">OpenGL</span>,
+                        <span class="skill skill--strong">QT</span>,
+                        <span class="skill skill--strong">MFC</span>
                     </li>
+                    <li><strong>Languages:</strong> Vietnamese (native), Korean, English</li>
+                </ul>
+            </section>
 
-					<li>
-                        <a href="./pages/sw/ximage2text/ximagetotext.html">XText</a>
+            <section class="section" aria-labelledby="publications-heading">
+                <h2 id="publications-heading" class="section_title">Publications</h2>
+                <p class="section_note"><a href="https://scholar.google.co.kr/citations?user=nhm8WBMAAAAJ&hl=en" class="link">Google Scholar</a></p>
+                <ul class="pubs">
+                    <li class="pub">
+                        <span class="pub_year">2021</span>
+                        <span class="pub_title">A Method for matching pattern using image and an apparatus of thereof</span>
+                        (No: <a href="https://doi.org/10.8080/1020210025073" class="link">1024319840000</a>)
+                        <a href="https://blog.naver.com/mvtech_ravid/222119961697" class="link">View Demo</a>
                     </li>
-                    <li>
-                        <a href="./pages/sw/ximage_trainer/ximage_trainer.html">XImage Trainer</a>
+                    <li class="pub">
+                        <span class="pub_year">2018</span>
+                        <span class="pub_title">Method for hole filling in 3D model, and recording medium and apparatus for performing the same</span>,
+                        US Patent. (Min-Cheol Hong, Beomsu Kim, Tien-dat Nguyen, Huu-Noi Doan)
+                        <a href="https://patentimages.storage.googleapis.com/d5/ab/0a/111cb20d160a96/US9916694.pdf" class="link">PDF</a>
+                    </li>
+                    <li class="pub">
+                        <span class="pub_year">2017</span>
+                        <span class="pub_title">Hole-Filling Algorithm with Spatio-Temporal Background Information for View Synthesis</span>,
+                        IEICE TRANSACTIONS on Information and Systems. (HN Doan, TD Nguyen, MC Hong)
+                        <a href="https://www.jstage.jst.go.jp/article/transinf/E100.D/9/E100.D_2016PCP0010/_pdf" class="link">PDF</a>
+                    </li>
+                    <li class="pub">
+                        <span class="pub_year">2015</span>
+                        <span class="pub_title">A spatial-temporal hole filling approach with background modeling and texture synthesis for 3D video</span>,
+                        Proceedings of the 2015 Conference on research in adaptive and convergent systems. (Huu-Noi Doan, Min-Cheol Hong)
+                        <a href="https://dl.acm.org/doi/abs/10.1145/2811411.2811497" class="link">Link</a>
+                    </li>
+                    <li class="pub">
+                        <span class="pub_year">2015</span>
+                        <span class="pub_title">Hole filling algorithm using spatial-temporal background depth map for view synthesis in free view point television</span>,
+                        Pacific Rim Conference on Multimedia. (HN Doan, B Kim, MC Hong)
+                        <a href="https://link.springer.com/chapter/10.1007/978-3-319-24078-7_61" class="link">Link</a>
+                    </li>
+                    <li class="pub">
+                        <span class="pub_year">2014</span>
+                        <span class="pub_title">Directional hole filling algorithm in new view synthesis for 3D video using local segmentation</span>,
+                        Proceedings of the 2014 Conference on Research in Adaptive and Convergent Systems. (Huu-Noi Doan, Tuan-Anh Nguyen, Min-Cheol Hong)
+                        <a href="https://dl.acm.org/doi/abs/10.1145/2663761.2664229" class="link">Link</a>
                     </li>
                 </ul>
-            </div>
-			<div class="nav_item">
-				<a href="blog.html">Technical Blog</a>
-				<ul>
-					<li>
-						<a href="notes_ip.html">Image Processing</a>
-					</li>	
-					<li>
-						<a href="notes_cv.html">Computer Vision</a>
-					</li>	
-					<li>
-						<a href="notes_ml.html">Machine Learning</a>
-					</li>				
-					<li>
-						<a href="opengl_notes.html">3D Rendering</a>
-					</li>
-					<li>
-						<a href="notes_miscellaneous.html">Miscellaneous</a>
-					</li>
-				</ul>
-			</div>
-        </div>
-        <div class="introduction">
-			<!-- Education-->
-			<h2>1. Education </h2>
-			<ul>
-				<li>
-				[2015] Soongsil University, Seoul, South Korea, Master's Degree in Video and Image Processing.
-				</li>
-				<li>
-				[2013] Posts and Telecommunications Institute of Technology, HCM City, Vietnam, Bachelor's Degree in Information System.
-				</li>
-			</ul>
-			
-			<!-- Background-->
-			<h2>2. Background </h2>
-			<p>
-			<ul>
-				<li>Programming: <span class="background_prog_good">C++</span>, <span class="background_prog_good">Image Processing</span>, <span class="background_prog_good">Computer Vision</span>, <span class="background_prog_good">SIMD (SSE, AVX, NEON)</span>, <span class="background_prog_avg">OpenGL</span>, <span class="background_prog_good">QT</span>, <span class="background_prog_good">MFC</span></li>
-				<li>Language: Vietnamese (native), Korean, English</li>
-			</ul>
-			</p>
-				
-			<!-- Project -->
-
-			<!-- Publications-->
-            <h2>3. Publications (<a href="https://scholar.google.co.kr/citations?user=nhm8WBMAAAAJ&hl=en">Google Scholar</a>) </h2>
-			<p>
-				<ul>
-					<li>
-						[2021] A Method for matching pattern using image and an apparatus of thereof,  (No: <a href="https://doi.org/10.8080/1020210025073">1024319840000</a>) <a href="https://blog.naver.com/mvtech_ravid/222119961697">View Demo</a>					
-					</li>	
-					<br>				
-					<li>
-					[2018] Method for hole filling in 3D model, and recording medium and apparatus for performing the same, US Patent. (Min-Cheol Hong, Beomsu Kim, Tien-dat Nguyen, Huu-Noi Doan) <a href="https://patentimages.storage.googleapis.com/d5/ab/0a/111cb20d160a96/US9916694.pdf">PDF</a>				
-					</li>	
-					<br>
-					<li>
-					[2017] Hole-Filling Algorithm with Spatio-Temporal Background Information for View Synthesis, IEICE TRANSACTIONS on Information and Systems. (HN Doan, TD Nguyen, MC Hong) <a  href="https://www.jstage.jst.go.jp/article/transinf/E100.D/9/E100.D_2016PCP0010/_pdf">PDF</a>
-					</li>
-					<br>
-					<li>
-					[2015] A spatial-temporal hole filling approach with background modeling and texture synthesis for 3D video, Proceedings of the 2015 Conference on research in adaptive and convergent systems. (Huu-Noi Doan, Min-Cheol Hong) <a href="https://dl.acm.org/doi/abs/10.1145/2811411.2811497">Link</a>
-					</li>
-					<br>
-					<li>
-					[2015] Hole filling algorithm using spatial-temporal background depth map for view synthesis in free view point television, Pacific Rim Conference on Multimedia. (HN Doan, B Kim, MC Hong) <a href="https://link.springer.com/chapter/10.1007/978-3-319-24078-7_61">Link</a>
-					</li>
-					<br>
-					<li>
-					[2014] Directional hole filling algorithm in new view synthesis for 3D video using local segmentation, Proceedings of the 2014 Conference on Research in Adaptive and Convergent Systems. (Huu-Noi Doan, Tuan-Anh Nguyen, Min-Cheol Hong) <a href="https://dl.acm.org/doi/abs/10.1145/2663761.2664229">Link</a>
-					</li>					
-				</ul>			
-			</p>
-			
-        </div>
-
-    </body>
+            </section>
+        </main>
+    </div>
+</body>
 </html>
-<!-Correct my so bad english->

@@ -1,46 +1,68 @@
-<html>
-    <head>
-        <title>Technical Blog</title>
-        <link rel="stylesheet" href="./index_css.css">
-        <script src="./index.js"></script>
-    </head>
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Technical blog — Image Processing, Computer Vision, Machine Learning, 3D Rendering. Doan Huu Noi.">
+    <title>Technical Blog — Doan Huu Noi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./index_css.css">
+    <script src="./index.js"></script>
+</head>
+<body>
+    <div id="header" class="site-header"></div>
+    <script>Header("header");</script>
 
-    <body>
-        <div id="header"></div>
-        <script>
-            Header("header");
-        </script>
-        
-        <div class="navigation">
-            <div class="nav_item"><a href="https://noidh.github.io">[Home]</a></div>
-        </div>
+    <div class="layout">
+        <aside class="sidebar" aria-label="Site navigation">
+            <nav class="nav">
+                <div class="nav_item">
+                    <a href="https://noidh.github.io" class="nav_link">Home</a>
+                </div>
+                <div class="nav_item nav_item--dropdown">
+                    <a href="project.html" class="nav_link">Personal Projects</a>
+                    <ul class="nav_dropdown">
+                        <li><a href="./pages/sw/ximagetool/ximagetool.html">XImage Tool</a></li>
+                        <li><a href="./pages/sw/ximage2text/ximagetotext.html">XText</a></li>
+                    </ul>
+                </div>
+                <div class="nav_item nav_item--dropdown">
+                    <a href="blog.html" class="nav_link nav_link--current">Technical Blog</a>
+                    <ul class="nav_dropdown">
+                        <li><a href="notes_ip.html">Image Processing</a></li>
+                        <li><a href="notes_cv.html">Computer Vision</a></li>
+                        <li><a href="notes_ml.html">Machine Learning</a></li>
+                        <li><a href="opengl_notes.html">3D Rendering</a></li>
+                        <li><a href="notes_miscellaneous.html">Miscellaneous</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
 
-        <div class="introduction">
-	          
-        <h3>Image Processing</h3>
-        <div id="list_content_ip"></div>
-        <script>           
-            BlogImageProcessing('.', "list_content_ip");
-        </script>  
-
-        <h3>Computer Vision</h3>
-        <div id="list_content_cv"></div>
-        <script>           
-            BlogComputerVision('.', "list_content_cv");
-        </script>  
-
-        <h3>Machine Learning</h3>
-        <div id="list_content_ml"></div>
-        <script>           
-            BlogMachineLearning('.', "list_content_ml");
-        </script>
-
-        <h3>3D Rendering</h3>
-        <div id="list_content_gl"></div>
-        <script>           
-            Blog3DRendering('.', "list_content_gl");
-        </script>
-
-        </div>
-    </body>
+        <main class="content">
+            <section class="section" aria-labelledby="ip-heading">
+                <h2 id="ip-heading" class="section_title">Image Processing</h2>
+                <div id="list_content_ip"></div>
+                <script>BlogImageProcessing('.', "list_content_ip");</script>
+            </section>
+            <section class="section" aria-labelledby="cv-heading">
+                <h2 id="cv-heading" class="section_title">Computer Vision</h2>
+                <div id="list_content_cv"></div>
+                <script>BlogComputerVision('.', "list_content_cv");</script>
+            </section>
+            <section class="section" aria-labelledby="ml-heading">
+                <h2 id="ml-heading" class="section_title">Machine Learning</h2>
+                <div id="list_content_ml"></div>
+                <script>BlogMachineLearning('.', "list_content_ml");</script>
+            </section>
+            <section class="section" aria-labelledby="gl-heading">
+                <h2 id="gl-heading" class="section_title">3D Rendering</h2>
+                <div id="list_content_gl"></div>
+                <script>Blog3DRendering('.', "list_content_gl");</script>
+            </section>
+        </main>
+    </div>
+</body>
 </html>

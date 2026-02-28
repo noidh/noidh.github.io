@@ -1,23 +1,48 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>A Simple Contrast Enhancement Algorithm by Histogram Equalization</title>
-        <link rel="stylesheet" href="../../../../index_css.css">
-		<script src="../../../../index.js"></script>
-		<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-		<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
-    </head>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Histogram Equalization — Doan Huu Noi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../../index_css.css">
+    <script src="../../../../index.js"></script>
 
-    <body>
-        <div id="header"></div>
-		<script>
-			Header("header");
-		</script> 
-        <div class="navigation">
-            <div class="nav_item"><a href="https://noidh.github.io">[Home]</a></div>
-        </div>
+</head>
+<body>
+    <div id="header" class="site-header"></div>
+    <script>Header("header");</script>
 
-        <div class="introduction">	
+    <div class="layout">
+        <aside class="sidebar" aria-label="Site navigation">
+            <nav class="nav">
+                <div class="nav_item">
+                    <a href="../../../../index.html" class="nav_link">Home</a>
+                </div>
+                <div class="nav_item nav_item--dropdown">
+                    <a href="../../../../project.html" class="nav_link">Personal Projects</a>
+                    <ul class="nav_dropdown">
+                        <li><a href="../../../../pages/sw/ximagetool/ximagetool.html">XImage Tool</a></li>
+                        <li><a href="../../../../pages/sw/ximage2text/ximagetotext.html">XText</a></li>
+                    </ul>
+                </div>
+                <div class="nav_item nav_item--dropdown">
+                    <a href="../../../../blog.html" class="nav_link nav_link--current">Technical Blog</a>
+                    <ul class="nav_dropdown">
+                        <li><a href="../../../../notes_ip.html">Image Processing</a></li>
+                        <li><a href="../../../../notes_cv.html">Computer Vision</a></li>
+                        <li><a href="../../../../notes_ml.html">Machine Learning</a></li>
+                        <li><a href="../../../../opengl_notes.html">3D Rendering</a></li>
+                        <li><a href="../../../../notes_miscellaneous.html">Miscellaneous</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="content">
+            <section class="section page-prose">
 			<h3>1. Introduction</h3>
 			<p>Histogram Equalization is a simple algorithm that can improve the contrast in an image.</p>
 			<p>By stretching out the range of histogram distribution, the contrast of image can be enhanced. However, the noise can be strengthened too.</p>
@@ -39,6 +64,8 @@
 					<li>https://docs.opencv.org/3.4.15/d4/d1b/tutorial_histogram_equalization.html</li>
 				</ul>
 			</p>
-		</div>
-    </body>
+            </section>
+        </main>
+    </div>
+</body>
 </html>

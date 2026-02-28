@@ -1,20 +1,49 @@
-<html>
-    <head>
-        <title>Micellaneous</title>
-        <link rel="stylesheet" href="./index_css.css">
-		<script src="./index.js"></script>
-    </head>
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Miscellaneous notes — CUDA, SIMD, CRTP, KD-Tree, dynamic programming. Doan Huu Noi.">
+    <title>Miscellaneous — Doan Huu Noi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./index_css.css">
+    <script src="./index.js"></script>
+</head>
+<body>
+    <div id="header" class="site-header"></div>
+    <script>Header("header");</script>
 
-    <body>
-        <div id="header"></div>
-		<script>
-			Header("header");
-		</script> 
-        <div class="navigation">
-            <div class="nav_item"><a href="https://noidh.github.io">[Home]</a></div>
-        </div>
+    <div class="layout">
+        <aside class="sidebar" aria-label="Site navigation">
+            <nav class="nav">
+                <div class="nav_item">
+                    <a href="https://noidh.github.io" class="nav_link">Home</a>
+                </div>
+                <div class="nav_item nav_item--dropdown">
+                    <a href="project.html" class="nav_link">Personal Projects</a>
+                    <ul class="nav_dropdown">
+                        <li><a href="./pages/sw/ximagetool/ximagetool.html">XImage Tool</a></li>
+                        <li><a href="./pages/sw/ximage2text/ximagetotext.html">XText</a></li>
+                    </ul>
+                </div>
+                <div class="nav_item nav_item--dropdown">
+                    <a href="blog.html" class="nav_link nav_link--current">Technical Blog</a>
+                    <ul class="nav_dropdown">
+                        <li><a href="notes_ip.html">Image Processing</a></li>
+                        <li><a href="notes_cv.html">Computer Vision</a></li>
+                        <li><a href="notes_ml.html">Machine Learning</a></li>
+                        <li><a href="opengl_notes.html">3D Rendering</a></li>
+                        <li><a href="notes_miscellaneous.html" class="nav_link--current">Miscellaneous</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
 
-        <div class="introduction">
+        <main class="content">
+            <section class="section page-prose" aria-labelledby="notes-heading">
+                <h2 id="notes-heading" class="section_title">Miscellaneous</h2>
 
             <h3>Priority Queue, Min Max Heap</h3>
             <pre class="code_view">
@@ -534,7 +563,9 @@ static void SortNetMax(arg_type* arr, int i, int j)
     arr[j] = OpMinMax::_max(arr[i], arr[j]);
 };
                                 </code>
-            </pre>			
-		</div>
-    </body>
+            </pre>
+            </section>
+        </main>
+    </div>
+</body>
 </html>
